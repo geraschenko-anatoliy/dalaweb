@@ -1,0 +1,84 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.AbonentCredit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список кредитов</h2>
+
+<table>
+    <tr>
+        <th>
+            Абонент
+        </th>
+        <th>
+            Кредит
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateWhereCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrePayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidForTheEntirePeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Term)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentForMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonent.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit.Name)
+        </td>
+        <td>
+            @item.DateWhereCreated.ToString("d")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrePayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidForTheEntirePeriod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidMonths)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Term)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentForMonth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { abonentId = item.AbonentID, creditId = item.CreditID }) |
+            @Html.ActionLink("Details", "Details", new { abonentId = item.AbonentID, creditId = item.CreditID }) |
+            @Html.ActionLink("Delete", "Delete", new { abonentId = item.AbonentID, creditId = item.CreditID })
+        </td>
+    </tr>
+}
+
+</table>

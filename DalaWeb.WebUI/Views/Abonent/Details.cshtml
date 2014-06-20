@@ -1,0 +1,62 @@
+﻿@model DalaWeb.Domain.Entities.Abonent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.Label(Model.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Telephone)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.Label(Model.Telephone)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.INN)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.Label(Model.INN)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.NumberOfInhabitants)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.Label(Model.NumberOfInhabitants.ToString())
+            </div>
+        </td>
+    </tr>
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AbonentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
