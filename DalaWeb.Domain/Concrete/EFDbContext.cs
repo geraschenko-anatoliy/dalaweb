@@ -13,6 +13,12 @@ namespace DalaWeb.Domain.Concrete
     {
         public DbSet<Abonent> Abonents { get; set; }
         public DbSet<Credit> Credits { get; set; }
+        public DbSet<AbonentCredit> AbonentCredits { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Street> Streets { get; set; }
+        public DbSet<City> Cities { get; set; }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -24,6 +30,6 @@ namespace DalaWeb.Domain.Concrete
             //        .ToTable("AbonentCredit"));
         }
 
-        public DbSet<AbonentCredit> AbonentCredits { get; set; }
+
     }
 }

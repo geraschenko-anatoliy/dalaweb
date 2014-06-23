@@ -14,16 +14,10 @@ namespace DalaWeb.Domain.Concrete
         private Repository<Abonent> abonentRepository;
         private Repository<Credit> creditRepository;
         private Repository<AbonentCredit> abonentCreditRepository;
+        private Repository<Address> addressRepository;
+        private Repository<City> cityRepository;
+        private Repository<Street> streetRepository;
 
-        public IRepository<AbonentCredit> AbonentCreditRepository
-        {
-            get
-            {
-                if (this.abonentCreditRepository == null)
-                    this.abonentCreditRepository = new Repository<AbonentCredit>(context);
-                return abonentCreditRepository;
-            }
-        }
         public IRepository<Abonent> AbonentRepository
         {
             get
@@ -31,6 +25,16 @@ namespace DalaWeb.Domain.Concrete
                 if (this.abonentRepository == null)
                     this.abonentRepository = new Repository<Abonent>(context);
                 return abonentRepository;
+            }
+        }        
+        
+        public IRepository<AbonentCredit> AbonentCreditRepository
+        {
+            get
+            {
+                if (this.abonentCreditRepository == null)
+                    this.abonentCreditRepository = new Repository<AbonentCredit>(context);
+                return abonentCreditRepository;
             }
         }
         public IRepository<Credit> CreditRepository
@@ -42,6 +46,35 @@ namespace DalaWeb.Domain.Concrete
                 return creditRepository;
             }
         }
+
+        public IRepository<Address> AddressRepository
+        {
+            get
+            {
+                if (this.addressRepository == null)
+                    this.addressRepository = new Repository<Address>(context);
+                return addressRepository;
+            }
+        }      
+        public IRepository<City> CityRepository
+        {
+            get
+            {
+                if (this.cityRepository == null)
+                    this.cityRepository = new Repository<City>(context);
+                return cityRepository;
+            }
+        }  
+        public IRepository<Street> StreetRepository
+        {
+            get
+            {
+                if (this.streetRepository == null)
+                    this.streetRepository = new Repository<Street>(context);
+                return streetRepository;
+            }
+        }
+
         public void Save()
         {
             context.SaveChanges();

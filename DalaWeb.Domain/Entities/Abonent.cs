@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,5 +26,6 @@ namespace DalaWeb.Domain.Entities
         [Display(Name = "Число жителей")]
         public int NumberOfInhabitants { get; set; }
         public virtual ICollection<AbonentCredit> AbonentCredits { get; set; }
+        public virtual Address Address { get; set; }
     }
 }

@@ -69,6 +69,22 @@
     <Compile Include="Migrations\201406201231238_InitialCreate3.Designer.cs">
       <DependentUpon>201406201231238_InitialCreate3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406230908118_InitialCreate4.cs" />
+    <Compile Include="Migrations\201406230908118_InitialCreate4.Designer.cs">
+      <DependentUpon>201406230908118_InitialCreate4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406230918200_InitialCreate5.cs" />
+    <Compile Include="Migrations\201406230918200_InitialCreate5.Designer.cs">
+      <DependentUpon>201406230918200_InitialCreate5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406230947109_InitialCreate6.cs" />
+    <Compile Include="Migrations\201406230947109_InitialCreate6.Designer.cs">
+      <DependentUpon>201406230947109_InitialCreate6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406231105570_InitialCreate7.cs" />
+    <Compile Include="Migrations\201406231105570_InitialCreate7.Designer.cs">
+      <DependentUpon>201406231105570_InitialCreate7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,6 +104,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406201231238_InitialCreate3.resx">
       <DependentUpon>201406201231238_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406230908118_InitialCreate4.resx">
+      <DependentUpon>201406230908118_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406230918200_InitialCreate5.resx">
+      <DependentUpon>201406230918200_InitialCreate5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406230947109_InitialCreate6.resx">
+      <DependentUpon>201406230947109_InitialCreate6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406231105570_InitialCreate7.resx">
+      <DependentUpon>201406231105570_InitialCreate7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

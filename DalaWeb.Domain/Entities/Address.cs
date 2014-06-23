@@ -8,32 +8,41 @@ using System.Threading.Tasks;
 
 namespace DalaWeb.Domain.Entities
 {
-    //public class Address
-    //{
-    //    [Key, ForeignKey("Abonent")]
-    //    public int AbonentId { get; set; }
+    public class Address
+    {
+        [Key]
+        [ForeignKey("Abonent")]
+        public int AbonentID { get; set; }
+        public int CityId { get; set; }
+        //public virtual City City {get; set;}
+        public int StreetId { get; set; }
+        //public virtual Street Street { get; set; }
+        public string House { get; set; }
 
-    //    public int CityId { get; set; }
-    //    public virtual City City {get; set;}
-    //    public int StreetId { get; set; }
-    //    public int HouseId { get; set; }
-    //    public string letter { get; set; }
-    //}
+        public virtual Abonent Abonent { get; set; }
+    }
 
-    //public class City 
-    //{
-    //    [Key]
-    //    public int CityId {get; set;}
+    public class City 
+    {
+        [Key]
+        public int CityId {get; set;}
+        [Required]
+        public string Name { get; set; }
 
-    //    public virtual Street Street { get; set; } 
-    //    public virtual ICollection<Address> Addresses { get; set; }
-    //}
+        public ICollection<Street> Streets { get; set; }
+    }
 
-    //public class Street : City
-    //{
-    //    [Key]
-    //    public int StreetId { get; set; }
-    //    public virtual House House { get; set; }
-    //    public virtual ICollection
-    //}
+    public class Street
+    {
+        [Key]
+        public int StreetId { get; set; }
+        
+        [ForeignKey("City")]
+        public int CityId { get; set; }
+        
+        [Required]
+        public string Name { get; set; }
+
+        public virtual City City { get; set; }
+    }
 }

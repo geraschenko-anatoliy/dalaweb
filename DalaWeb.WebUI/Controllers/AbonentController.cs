@@ -15,13 +15,15 @@ namespace DalaWeb.WebUI.Controllers
     {
         private IUnitOfWork unitOfWork;
         private IRepository<Abonent> abonentRepository;
-        //private IRepository<Credit> creditRepository;
+        private IRepository<City> cityRepository;
+        private IRepository<Street> streetRepository;
 
         public AbonentController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
             abonentRepository = unitOfWork.AbonentRepository;
-            //creditRepository = unitOfWork.CreditRepository;
+            cityRepository = unitOfWork.CityRepository;
+            streetRepository = unitOfWork.StreetRepository;
         }
 
         public ActionResult Index()
@@ -72,8 +74,12 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Abonent abonent = abonentRepository.GetById(id); 
-
+            Abonent abonent = abonentRepository.GetById(id);
+            if (abonent.Address != null)
+            {
+                ViewBag.City = cityRepository.GetById(abonent.Address.CityId).Name;
+                ViewBag.Street = streetRepository.GetById(abonent.Address.StreetId).Name;
+            }
             if (abonent == null)
             {
                 return HttpNotFound();

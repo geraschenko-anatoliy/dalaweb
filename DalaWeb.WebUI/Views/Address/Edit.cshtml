@@ -1,0 +1,54 @@
+﻿@model DalaWeb.Domain.Entities.Address
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Address</legend>
+
+        @Html.HiddenFor(model => model.AbonentID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CityId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CityId)
+            @Html.ValidationMessageFor(model => model.CityId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StreetId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StreetId)
+            @Html.ValidationMessageFor(model => model.StreetId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.House)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.House)
+            @Html.ValidationMessageFor(model => model.House)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

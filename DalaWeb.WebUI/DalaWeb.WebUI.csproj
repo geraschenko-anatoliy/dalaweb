@@ -131,6 +131,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AbonentController.cs" />
     <Compile Include="Controllers\AbonentCreditController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -240,6 +241,11 @@
     <Content Include="Views\AbonentCredit\Create.cshtml" />
     <Content Include="Views\AbonentCredit\Edit.cshtml" />
     <Content Include="Views\AbonentCredit\Delete.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\Address\Details.cshtml" />
+    <Content Include="Views\Address\Create.cshtml" />
+    <Content Include="Views\Address\Edit.cshtml" />
+    <Content Include="Views\Address\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

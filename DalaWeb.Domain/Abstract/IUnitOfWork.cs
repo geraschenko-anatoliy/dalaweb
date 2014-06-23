@@ -11,7 +11,12 @@ namespace DalaWeb.Domain.Abstract
     {
         void Save();
         IRepository<Abonent> AbonentRepository { get; }
+        
         IRepository<Credit> CreditRepository { get; }
         IRepository<AbonentCredit> AbonentCreditRepository { get; }
+
+        IRepository<Address> AddressRepository { get; }
+        IRepository<City> CityRepository { get; }
+        IRepository<Street> StreetRepository { get; }
     }
 }

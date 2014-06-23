@@ -102,6 +102,39 @@
         </tr>
         }
     </table>
+ <h2>Адрес</h2>
+ if(Model.Address != null)
+ {    
+
+     <table>
+        <tr>
+            <td>
+                <b>Город</b>
+            </td>
+            <td>
+                <b>Улица</b>
+            </td>
+            <td>
+                <b>Дом</b>
+            </td>
+        </tr>
+         <tr>
+             <td>
+                 @ViewBag.City
+             </td>
+             <td>
+                 @ViewBag.Street
+             </td>
+             <td>
+                 @Model.Address.House
+             </td>
+         </tr>
+     </table>
+ }
+else
+ {
+     @Html.ActionLink("Добавить адрес", "Create", "Address", new { abonentId = Model.AbonentID}, null)
+ }
 }
 <div>
     @Html.ActionLink("Back to List", "Index")
