@@ -1,0 +1,35 @@
+﻿@model System.DateTime?
+
+<div class="editor-field">
+    @Html.TextBox("", String.Format("{0:mm/dd/yyyy}", (Model == DateTime.MinValue) ? null : Model), new { @class = "datepicker" })
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#@ViewData.ModelMetadata.PropertyName").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yyyy/mm/dd',
+            gotoCurrent: true,
+            format: 'yyyy/mm/dd'
+        });
+    });
+
+    //jQuery(function ($) {
+    //    $.validator.addMethod('date',
+    //    function (value, element) {
+    //        if (this.optional(element)) {
+    //            return true;
+    //        }
+
+    //        var ok = true;
+    //        try {
+    //            $.datepicker.parseDate('dd/mm/yy', value);
+    //        }
+    //        catch (err) {
+    //            ok = false;
+    //        }
+    //        return ok;
+    //    });
+    //});
+</script>

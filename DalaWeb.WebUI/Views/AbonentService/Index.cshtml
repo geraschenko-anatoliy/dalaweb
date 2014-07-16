@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.AbonentService>
+
+@{
+    ViewBag.Title = "Главная";
+}
+
+<h2>Главная</h2>
+
+<table>
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model)*@
+        </th>
+        <th>
+@*            @Html.DisplayNameFor(model => model.Name)*@
+        </th>
+        <th>
+@*            @Html.DisplayNameFor(model => model.Telephone)*@
+        </th>
+        <th>
+@*            @Html.DisplayNameFor(model => model.INN)*@
+        </th>
+        <th>
+@*            @Html.DisplayNameFor(model => model.NumberOfInhabitants)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonent.AbonentNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonent.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service.ServiceCompany.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service.Price)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.AbonentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AbonentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AbonentId })*@
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Функции
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="@Url.Action("Edit", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Редактировать</a></li>
+                    <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Детальнее</a></li>
+                    <li><a href="@Url.Action("Delete", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Удалить</a></li>
+                </ul>
+            </div> 
+        </td>
+    </tr>
+}
+
+</table>

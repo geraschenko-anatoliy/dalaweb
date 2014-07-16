@@ -17,6 +17,8 @@ namespace DalaWeb.Domain.Concrete
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Street> Streets { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<ServiceCompany> ServiceCompanies { get; set; }
+        public DbSet<Service> Services { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -24,10 +26,10 @@ namespace DalaWeb.Domain.Concrete
             //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             //modelBuilder.Entity<Abonent>()
-            //    .HasMany(c => c.Credits).WithMany(i => i.Abonents)
-            //    .Map(t => t.MapLeftKey("AbonentID")
-            //        .MapRightKey("CreditID")
-            //        .ToTable("AbonentCredit"));
+            //             .HasMany(c => c.Services).WithMany(i => i.Abonents)
+            //             .Map(t => t.MapLeftKey("AbonentId")
+            //                 .MapRightKey("ServiceId")
+            //                 .ToTable("AbonentsServices"));
         }
 
 

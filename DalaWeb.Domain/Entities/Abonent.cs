@@ -11,7 +11,9 @@ namespace DalaWeb.Domain.Entities
     public class Abonent
     {
         [Key]
-        public int AbonentID { get; set; }
+        public int AbonentId { get; set; }
+        [Display(Name="Номер абонента")]
+        public string AbonentNumber { get; set; }
         [Required(ErrorMessage = "*")]
         [Display(Name="Абонент")]
         public string Name { get; set; }
@@ -26,6 +28,7 @@ namespace DalaWeb.Domain.Entities
         [Display(Name = "Число жителей")]
         public int NumberOfInhabitants { get; set; }
         public virtual ICollection<AbonentCredit> AbonentCredits { get; set; }
+        public virtual ICollection<AbonentService> AbonentServices { get; set; }
         public virtual Address Address { get; set; }
     }
 }

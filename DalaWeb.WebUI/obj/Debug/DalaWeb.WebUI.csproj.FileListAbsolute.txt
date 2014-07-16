@@ -5,6 +5,7 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\b
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\DalaWeb.Domain.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\EntityFramework.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Microsoft.Web.Mvc.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Newtonsoft.Json.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Ninject.dll

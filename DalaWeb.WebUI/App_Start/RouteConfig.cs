@@ -17,18 +17,12 @@ namespace DalaWeb.WebUI
             ArrayAwareRoute route = new ArrayAwareRoute("{controller}/{action}/{id}", new MvcRouteHandler());
             object defaults = new
             {
-                controller = "Product",
+                controller = "Abonent",
                 action = "Index",
                 id = UrlParameter.Optional
             };
             route.Defaults = new RouteValueDictionary(defaults);
             routes.Add("Default", route);
-
-            //routes.MapRoute(
-            //    name: "Default",
-            //    url: "{controller}/{action}/{id}",
-            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            //);
         }
     }
 }

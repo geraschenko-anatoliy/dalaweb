@@ -1,38 +1,65 @@
 ﻿@model DalaWeb.Domain.Entities.Address
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование";
 }
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.js"></script>
 
-<h2>Edit</h2>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CityId").change(function () {
+            $("#StreetId").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStreets")',
+                dataType: 'json',
+                data: { cityId: $("#CityId").val() },
+                success: function (streets) {
+                    $.each(streets, function (i, street) {
+                        $("#StreetId").append('<option value="' + street.Value + '">' +
+                         street.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+
+<h2>Редактировать</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Address</legend>
+        <legend>Адрес</legend>
 
-        @Html.HiddenFor(model => model.AbonentID)
+        @Html.HiddenFor(model => model.AbonentId)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.CityId)
+            Город
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CityId)
+            @Html.DropDownList("CityId", (SelectList)ViewBag.Cities)
             @Html.ValidationMessageFor(model => model.CityId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.StreetId)
+            Улица
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.StreetId)
+            @Html.DropDownList("StreetId", (SelectList)ViewBag.Streets)
             @Html.ValidationMessageFor(model => model.StreetId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.House)
+            Дом
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.House)
@@ -40,13 +67,14 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Сохранить" class="btn btn-default" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+@*    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = Model.AbonentID }, null)*@
+    <button type="button" onclick="location.href='@Url.Action("Edit", "Abonent", new { id = Model.AbonentId })'" class="btn btn-default">Назад</button>
 </div>
 
 @section Scripts {

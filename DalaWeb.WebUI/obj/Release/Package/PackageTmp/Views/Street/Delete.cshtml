@@ -1,0 +1,33 @@
+﻿@model DalaWeb.Domain.Entities.Street
+
+@{
+    ViewBag.Title = "Удаление улицы";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно хотите удалить улицу @Model.Name из города @Model.City.Name?</h3>
+<fieldset>
+    <legend>Улица</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.City.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.City.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}

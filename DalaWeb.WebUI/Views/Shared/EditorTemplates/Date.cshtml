@@ -1,0 +1,9 @@
+﻿@*@model DateTime?
+@Html.Editor("", (Model.HasValue ? Model.Value.ToShortDateString() : string.Empty), new
+{
+    @class = "datepicker",
+    data_date_format = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower(),
+    data_date_language = System.Globalization.CultureInfo.CurrentCulture.Name
+})
+
+<input class="datepicker" data-val="true" data-val-date="The field CreatedOn must be a date." data-val-required="The CreatedOn field is required." id="CreatedOn" name="CreatedOn" type="text" value="" />*@

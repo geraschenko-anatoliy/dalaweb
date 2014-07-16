@@ -53,8 +53,8 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Create(int abonentId)
         {
-            ViewBag.AbonentID = abonentId;
-            ViewBag.CreditID = new SelectList(creditRepository.Get(), "CreditId", "Name");
+            ViewBag.AbonentId = abonentId;
+            ViewBag.CreditId = new SelectList(creditRepository.Get(), "CreditId", "Name");
             return View();
         }
 
@@ -69,11 +69,11 @@ namespace DalaWeb.WebUI.Controllers
             {
                 abonentCreditRepository.Insert(abonentCredit);
                 unitOfWork.Save();
-                return RedirectToAction("Edit", "Abonent", new { id = abonentCredit.AbonentID });
+                return RedirectToAction("Edit", "Abonent", new { id = abonentCredit.AbonentId });
             }
 
-            ViewBag.AbonentID = abonentCredit.AbonentID;
-            ViewBag.CreditID = new SelectList(creditRepository.Get(), "CreditId", "Name");
+            ViewBag.AbonentId = abonentCredit.AbonentId;
+            ViewBag.CreditId = new SelectList(creditRepository.Get(), "CreditId", "Name");
             return View(abonentCredit);
         }
 
@@ -88,8 +88,6 @@ namespace DalaWeb.WebUI.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.AbonentID = new SelectList(db.Abonents, "AbonentID", "Name", abonentcredit.AbonentID);
-            //ViewBag.CreditID = new SelectList(db.Credits, "CreditId", "Name", abonentcredit.CreditID);
             return View(abonentCredit);
         }
 

@@ -1,0 +1,22 @@
+﻿@model DalaWeb.Domain.Entities.City
+
+@{
+    ViewBag.Title = "Детальнее";
+}
+
+<h2>Детальнее</h2>
+
+<fieldset>
+    <legend>Город</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.CityId }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

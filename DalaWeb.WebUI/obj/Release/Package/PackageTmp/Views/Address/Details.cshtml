@@ -1,0 +1,36 @@
+﻿@model DalaWeb.Domain.Entities.Address
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробнее</h2>
+
+<fieldset>
+    <legend>Address</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CityId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CityId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StreetId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StreetId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.House)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.House)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentID }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

@@ -14,7 +14,6 @@ namespace DalaWeb.Domain.Entities
         [Required(ErrorMessage = "*")]
         [Display(Name = "Название")]
         public string Name { get; set; }
-
         public virtual ICollection<AbonentCredit> AbonentCredits { get; set; }
     }
 }

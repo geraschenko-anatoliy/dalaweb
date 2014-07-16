@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
+using DalaWeb.WebUI.ViewModels;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -34,8 +35,11 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Cities = cityRepository.Get();
+            ViewBag.Streets = streetRepository.Get();
             var addresses = addressRepository.Get();
-            return View(addresses.ToList());
+
+            return View(new AdressIndexViewModel(streetRepository, addressRepository, cityRepository));
         }
 
         //
@@ -56,8 +60,6 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Create(int abonentId)
         {      
-            //ViewBag.AbonentID = new SelectList(abonentRepository.Get(), "AbonentID", "Name");
-
             ViewBag.AbonentId = abonentId;
             ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name");
             ViewBag.StreetId = new SelectList(streetRepository.Get(), "StreetId", "Name");
@@ -75,26 +77,43 @@ namespace DalaWeb.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 addressRepository.Insert(address);
+                GenerateAbonentNumber(address);
                 unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Abonent", new { id = address.AbonentId });
             }
 
-            ViewBag.AbonentID = new SelectList(abonentRepository.Get() , "AbonentID", "Name", address.AbonentID);
+            ViewBag.AbonentId = new SelectList(abonentRepository.Get() , "AbonentId", "Name", address.AbonentId);
             return View(address);
         }
 
         //
         // GET: /Address/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(int abonentId )
         {
-            Address address = addressRepository.GetById(id);
+            Abonent abonent = abonentRepository.GetById(abonentId);
+            Address address = addressRepository.GetById(abonentId);
 
             if (address == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AbonentID = new SelectList(abonentRepository.Get(), "AbonentID", "Name", address.AbonentID);
+
+            SelectList CityIds = new SelectList(cityRepository.Get(), "CityId", "Name", abonent.Address.CityId);
+            //var selectedCity = CityIds.Where(x => x.Value == abonent.Address.CityId.ToString()).First().Value;
+
+            ////selectedCity.Selected = true;
+            //CityIds.Where(x => x.Value == abonent.Address.CityId.ToString()).First().Selected = true;
+            ViewBag.Cities = CityIds;
+            //ViewBag.CityIds = cityRepository.Get();
+
+            SelectList StreetIds = new SelectList(streetRepository.Get(), "StreetId", "Name", abonent.Address.StreetId);
+            ////var selectedStreet = StreetIds.Where(x => x.Value == abonent.Address.StreetId.ToString()).First().Selected = true;
+            ////selectedStreet.Selected = true;
+            //StreetIds.Where(x => x.Value == abonent.Address.StreetId.ToString()).First().Selected = true;
+            ViewBag.Streets = StreetIds;
+
+            //ViewBag.StreetId = streetRepository.Get();
             return View(address);
         }
 
@@ -108,13 +127,27 @@ namespace DalaWeb.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 addressRepository.Update(address);
+                GenerateAbonentNumber(address);
                 unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Abonent", new { id = address.AbonentId });
             }
-            ViewBag.AbonentID = new SelectList(abonentRepository.Get(), "AbonentID", "Name", address.AbonentID);
+            ViewBag.AbonentId = new SelectList(abonentRepository.Get(), "AbonentId", "Name", address.AbonentId);
             return View(address);
         }
 
+        public void GenerateAbonentNumber(Address address)
+        {
+            Abonent abonent = abonentRepository.GetById(address.AbonentId);
+            if (string.IsNullOrEmpty(abonent.AbonentNumber))
+            {
+                string abonentNumber = address.CityId.ToString("00") + address.StreetId.ToString("00");
+                int number = abonentRepository.Get().Where(x=> x.AbonentNumber != null).Where(x => x.AbonentNumber.IndexOf(abonentNumber) == 0).Count();
+                number++;
+                abonentNumber += number.ToString("000");
+                abonent.AbonentNumber = abonentNumber;
+                abonentRepository.Update(abonent);
+            }
+        }
         //
         // GET: /Address/Delete/5
 

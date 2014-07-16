@@ -1,0 +1,25 @@
+﻿@model DalaWeb.Domain.Entities.City
+
+@{
+    ViewBag.Title = "Удаление города";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно хотите удалить город @Model.Name?</h3>
+<fieldset>
+    <legend>Город</legend>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}

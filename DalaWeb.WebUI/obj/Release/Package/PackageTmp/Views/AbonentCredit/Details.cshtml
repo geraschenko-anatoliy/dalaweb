@@ -1,0 +1,123 @@
+﻿@model DalaWeb.Domain.Entities.AbonentCredit
+
+@{
+    ViewBag.Title = "Кредиты. Детальнее";
+}
+
+<h3>Кредит "@Model.Credit.Name" абонента <b>@Model.Abonent.Name</b></h3>
+
+<table>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.DateWhereCreated)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.DateWhereCreated)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.PrePayment)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PrePayment)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.PaidForTheEntirePeriod)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PaidForTheEntirePeriod)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.PaidMonths)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PaidMonths)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Term)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Term)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Price)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Price)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.PaymentForMonth)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PaymentForMonth)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.FullyPaid)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.FullyPaid)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Comment)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Comment)
+            </div>
+        </td>
+    </tr>
+</table>
+<div class="btn-group">
+    <button type="button" onclick="location.href='@Url.Action("Edit" , new { abonentid=Model.AbonentID, creditid=Model.CreditID })'" class="btn btn-default">Редактировать</button>
+    <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-default">К списку кредитов</button>
+    <button type="button" onclick="location.href='@Url.Action("Edit", "Abonent", new { id = Model.AbonentID })'" class="btn btn-default">К абоненту</button>
+</div>

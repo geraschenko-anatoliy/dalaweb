@@ -12,13 +12,11 @@ namespace DalaWeb.Domain.Entities
     {
         [Key]
         [ForeignKey("Abonent")]
-        public int AbonentID { get; set; }
+        public int AbonentId { get; set; }
         public int CityId { get; set; }
-        //public virtual City City {get; set;}
         public int StreetId { get; set; }
-        //public virtual Street Street { get; set; }
+        [Display(Name = "Дом")]
         public string House { get; set; }
-
         public virtual Abonent Abonent { get; set; }
     }
 
@@ -27,6 +25,7 @@ namespace DalaWeb.Domain.Entities
         [Key]
         public int CityId {get; set;}
         [Required]
+        [Display(Name = "Город")]
         public string Name { get; set; }
 
         public ICollection<Street> Streets { get; set; }
@@ -41,6 +40,7 @@ namespace DalaWeb.Domain.Entities
         public int CityId { get; set; }
         
         [Required]
+        [Display(Name = "Улица")]
         public string Name { get; set; }
 
         public virtual City City { get; set; }

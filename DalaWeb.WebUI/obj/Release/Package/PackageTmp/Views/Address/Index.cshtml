@@ -1,0 +1,47 @@
+﻿@model DalaWeb.WebUI.ViewModels.AdressIndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Адреса</h2>
+
+<table>
+    <tr>
+        <th>
+            Абонент
+        </th>
+        <th>
+            Город
+        </th>
+        <th>
+            Улица
+        </th>
+        <th>
+            Дом
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.addresses) {
+    <tr>
+        <td>
+            @item.Abonent.Name
+        </td>
+        <td>
+            @Model.cities.Where(x=>x.CityId == item.CityId).Select(x => x.Name).FirstOrDefault()
+        </td>
+        <td>
+            @Model.streets.Where(x => x.StreetId == item.StreetId).Select(x => x.Name).FirstOrDefault()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.House)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.AbonentID }) |
+            @Html.ActionLink("Детальнее", "Details", new { id=item.AbonentID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.AbonentID })
+        </td>
+    </tr>
+}
+
+</table>

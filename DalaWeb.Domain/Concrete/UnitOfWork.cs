@@ -17,7 +17,39 @@ namespace DalaWeb.Domain.Concrete
         private Repository<Address> addressRepository;
         private Repository<City> cityRepository;
         private Repository<Street> streetRepository;
+        private Repository<ServiceCompany> serviceCompanyRepository;
+        private Repository<Service> serviceRepository;
+        private Repository<AbonentService> abonentServiceRepository;
 
+
+        public IRepository<AbonentService> AbonentServiceRepository
+        {
+            get
+            {
+                if (this.abonentServiceRepository == null)
+                    this.abonentServiceRepository = new Repository<AbonentService>(context);
+                return abonentServiceRepository;
+            }
+        }
+
+        public IRepository<ServiceCompany> ServiceCompanyRepository
+        {
+            get
+            {
+                if (this.serviceCompanyRepository == null)
+                    this.serviceCompanyRepository = new Repository<ServiceCompany>(context);
+                return serviceCompanyRepository;
+            }
+        }
+        public IRepository<Service> ServiceRepository
+        {
+            get
+            {
+                if (this.serviceRepository == null)
+                    this.serviceRepository = new Repository<Service>(context);
+                return serviceRepository;
+            }
+        }
         public IRepository<Abonent> AbonentRepository
         {
             get
@@ -26,8 +58,7 @@ namespace DalaWeb.Domain.Concrete
                     this.abonentRepository = new Repository<Abonent>(context);
                 return abonentRepository;
             }
-        }        
-        
+        }          
         public IRepository<AbonentCredit> AbonentCreditRepository
         {
             get

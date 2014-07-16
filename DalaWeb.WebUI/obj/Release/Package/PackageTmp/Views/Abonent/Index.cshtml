@@ -1,0 +1,101 @@
+﻿@model DalaWeb.WebUI.ViewModels.AbonentIndexViewModel
+
+@{
+    ViewBag.Title = "Главная";
+}
+
+<h2>Абоненты</h2>
+
+<p>
+    @Html.ActionLink("Создать абонента", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Номер
+        </th>
+        <th>
+            Имя
+        </th>
+        <th>
+            ИНН
+        </th>
+        <th>
+            Телефон
+        </th>
+        <th>
+            Число жителей
+        </th>
+        <th>
+            Город
+        </th>
+        <th>
+            Улица
+        </th>
+        <th>
+            Дом
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.abonents) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbonentNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfInhabitants)
+        </td>
+        @if (item.Address!=null)
+        { 
+        <td>
+            @Model.cities.Where(x => x.CityId == item.Address.CityId).Select(x => x.Name).FirstOrDefault()
+        </td>
+        <td>
+            @Model.streets.Where(x => x.StreetId == item.Address.StreetId).Select(x => x.Name).FirstOrDefault()
+        </td>
+        <td>
+            @item.Address.House
+        </td>
+        }
+        else
+        {
+            <td>
+                <span class="label label-important">Город не указан</span>
+            </td>         
+            <td>
+                <span class="label label-important">Улица не указана</span>
+            </td> 
+            <td>
+                <span class="label label-important">Дом не указан</span>
+            </td>    
+        }
+        <td>
+            @*<button type="button" onclick="location.href='@Url.Action("Edit", new { id = item.AbonentID })'" class="btn btn-default">Редактировать</button>
+            <button type="button" onclick="location.href='@Url.Action("Details", new { id = item.AbonentID })'" class="btn btn-default">Детальнее</button>
+            <button type="button" onclick="location.href='@Url.Action("Delete", new { id = item.AbonentID })'" class="btn btn-default">Удалить</button>*@
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Функции
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="@Url.Action("Edit", new { id = item.AbonentID })">Редактировать</a></li>
+                    <li><a href="@Url.Action("Details", new { id = item.AbonentID })">Детальнее</a></li>
+                    <li><a href="@Url.Action("Delete", new { id = item.AbonentID })">Удалить</a></li>
+                </ul>
+            </div> 
+        </td>
+    </tr>
+}
+</table>

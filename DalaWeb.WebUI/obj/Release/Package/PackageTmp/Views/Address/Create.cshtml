@@ -1,0 +1,79 @@
+﻿@model DalaWeb.Domain.Entities.Address
+
+@{
+    ViewBag.Title = "Create";
+}
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CityId").change(function () {
+            $("#StreetId").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStreets")',
+                dataType: 'json',
+                data: { cityId: $("#CityId").val() },
+                success: function (streets) {
+                    $.each(streets, function (i, street) {
+                        $("#StreetId").append('<option value="' + street.Value + '">' +
+                         street.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+<h2>Создать</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.Hidden("AbonentId", (int)ViewBag.AbonentId)    
+    <fieldset>
+        <legend>Адрес</legend>
+
+        <div class="editor-label">
+            Город
+        </div>
+        <div class="editor-field">
+            @*@Html.DropDownList("CityId", (SelectList)ViewBag.CityId)*@
+            @Html.DropDownList("CityId", string.Empty)
+            @Html.ValidationMessageFor(model => model.CityId)
+        </div>
+
+        <div class="editor-label">
+            Улица
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("StreetId", new SelectList(string.Empty, "Value", "Text")) 
+            @Html.ValidationMessageFor(model => model.StreetId)
+        </div>
+
+        <div class="editor-label">
+            Дом
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.House)
+            @Html.ValidationMessageFor(model => model.House)
+        </div>
+        <p>
+            <input type="submit" value="Создать" class="btn btn-default"/>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = (int)ViewBag.AbonentId }, null)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

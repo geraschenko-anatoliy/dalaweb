@@ -1,0 +1,66 @@
+﻿@model DalaWeb.Domain.Entities.Abonent  
+
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.AbonentId)
+    @Html.HiddenFor(model => model.AbonentNumber)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.Telephone)
+    @Html.HiddenFor(model => model.INN)
+    @Html.HiddenFor(model => model.NumberOfInhabitants)
+
+    <fieldset>
+        <legend>Абонент</legend>
+        <div class="editor-label">
+            Сервисы
+        </div>
+        <div class="editor-field">
+            @foreach (var o in (SelectList)ViewBag.ServicesList)
+            {
+                if (o.Selected)
+                { 
+                    <label>
+                        <input type="checkbox"
+                               name="ServiceIds"
+                               value="@o.Value"
+                               checked="checked"
+                                />
+                        <span>@o.Text</span>
+                    </label>
+                }
+                else
+                {
+                     <label>
+                        <input type="checkbox"
+                               name="ServiceIds"
+                               value="@o.Value"
+                                />
+                        <span>@o.Text</span>
+                    </label>
+                }
+                @*<br />*@
+            }
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

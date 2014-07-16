@@ -1,7 +1,9 @@
 ﻿using DalaWeb.WebUI.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -23,7 +25,13 @@ namespace DalaWeb.WebUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+
+            BootstrapSupport.BootstrapBundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
+            LayoutsRouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
         }
     }
 }

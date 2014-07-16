@@ -1,0 +1,29 @@
+﻿@model DalaWeb.Domain.Entities.Street
+
+@{
+    ViewBag.Title = "Детальнее";
+}
+
+<h2>Детальнее</h2>
+
+<fieldset>
+    <legend>Улица</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.City.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.City.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.StreetId }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

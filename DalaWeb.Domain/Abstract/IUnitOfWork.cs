@@ -18,5 +18,10 @@ namespace DalaWeb.Domain.Abstract
         IRepository<Address> AddressRepository { get; }
         IRepository<City> CityRepository { get; }
         IRepository<Street> StreetRepository { get; }
+
+
+        IRepository<AbonentService> AbonentServiceRepository { get; }
+        IRepository<Service> ServiceRepository { get; }
+        IRepository<ServiceCompany> ServiceCompanyRepository { get; }
     }
 }

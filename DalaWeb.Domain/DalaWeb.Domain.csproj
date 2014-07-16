@@ -53,69 +53,37 @@
     <Compile Include="Entities\AbonentCredit.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Credit.cs" />
-    <Compile Include="Migrations\201406171809168_InitialCreate.cs" />
-    <Compile Include="Migrations\201406171809168_InitialCreate.Designer.cs">
-      <DependentUpon>201406171809168_InitialCreate.cs</DependentUpon>
+    <Compile Include="Entities\ServiceCompany.cs" />
+    <Compile Include="Migrations\201407161010199_simpledate.cs" />
+    <Compile Include="Migrations\201407161010199_simpledate.Designer.cs">
+      <DependentUpon>201407161010199_simpledate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406191333137_InitialCreate1.cs" />
-    <Compile Include="Migrations\201406191333137_InitialCreate1.Designer.cs">
-      <DependentUpon>201406191333137_InitialCreate1.cs</DependentUpon>
+    <Compile Include="Migrations\201407161543221_normaldate.cs" />
+    <Compile Include="Migrations\201407161543221_normaldate.Designer.cs">
+      <DependentUpon>201407161543221_normaldate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406191722379_InitialCreate2.cs" />
-    <Compile Include="Migrations\201406191722379_InitialCreate2.Designer.cs">
-      <DependentUpon>201406191722379_InitialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406201231238_InitialCreate3.cs" />
-    <Compile Include="Migrations\201406201231238_InitialCreate3.Designer.cs">
-      <DependentUpon>201406201231238_InitialCreate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406230908118_InitialCreate4.cs" />
-    <Compile Include="Migrations\201406230908118_InitialCreate4.Designer.cs">
-      <DependentUpon>201406230908118_InitialCreate4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406230918200_InitialCreate5.cs" />
-    <Compile Include="Migrations\201406230918200_InitialCreate5.Designer.cs">
-      <DependentUpon>201406230918200_InitialCreate5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406230947109_InitialCreate6.cs" />
-    <Compile Include="Migrations\201406230947109_InitialCreate6.Designer.cs">
-      <DependentUpon>201406230947109_InitialCreate6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406231105570_InitialCreate7.cs" />
-    <Compile Include="Migrations\201406231105570_InitialCreate7.Designer.cs">
-      <DependentUpon>201406231105570_InitialCreate7.cs</DependentUpon>
+    <Compile Include="Migrations\201407161939166_tripleprimarykey.cs" />
+    <Compile Include="Migrations\201407161939166_tripleprimarykey.Designer.cs">
+      <DependentUpon>201407161939166_tripleprimarykey.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201406171809168_InitialCreate.resx">
-      <DependentUpon>201406171809168_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407161010199_simpledate.resx">
+      <DependentUpon>201407161010199_simpledate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406191333137_InitialCreate1.resx">
-      <DependentUpon>201406191333137_InitialCreate1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407161543221_normaldate.resx">
+      <DependentUpon>201407161543221_normaldate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406191722379_InitialCreate2.resx">
-      <DependentUpon>201406191722379_InitialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406201231238_InitialCreate3.resx">
-      <DependentUpon>201406201231238_InitialCreate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406230908118_InitialCreate4.resx">
-      <DependentUpon>201406230908118_InitialCreate4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406230918200_InitialCreate5.resx">
-      <DependentUpon>201406230918200_InitialCreate5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406230947109_InitialCreate6.resx">
-      <DependentUpon>201406230947109_InitialCreate6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406231105570_InitialCreate7.resx">
-      <DependentUpon>201406231105570_InitialCreate7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407161939166_tripleprimarykey.resx">
+      <DependentUpon>201407161939166_tripleprimarykey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

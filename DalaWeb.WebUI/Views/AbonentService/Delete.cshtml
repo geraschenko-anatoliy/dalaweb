@@ -1,0 +1,54 @@
+﻿@model DalaWeb.Domain.Entities.Abonent
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно хотите удалить @Model.Name?</h3>
+<fieldset>
+    <legend>Абонент</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AbonentNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AbonentNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.INN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.INN)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfInhabitants)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfInhabitants)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}

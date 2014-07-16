@@ -1,0 +1,42 @@
+﻿@model DalaWeb.Domain.Entities.AbonentService
+
+@{
+    ViewBag.Title = "Создание";
+}
+
+
+<h2>Создать</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+
+        <legend>Сервис для Model.Abonent.Name</legend>
+        @Html.Hidden("AbonentId", (int)@ViewBag.AbonentId)
+        @Html.Hidden("FinishDate", (DateTime)@ViewBag.FinishDate)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Service.Name)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ServiceId", (SelectList)ViewBag.ServiceId)
+            @Html.ValidationMessageFor(model => model.ServiceId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+         </div>
+        <p>
+            <input type="submit" value="Создать" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+

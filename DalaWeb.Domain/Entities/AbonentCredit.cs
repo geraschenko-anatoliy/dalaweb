@@ -12,15 +12,17 @@ namespace DalaWeb.Domain.Entities
     public class AbonentCredit
     {
         [Key, Column(Order = 0)]
-        public int AbonentID { get; set; }
+        public int AbonentId { get; set; }
         [Key, Column(Order = 1)]
-        public int CreditID { get; set; }
+        public int CreditId { get; set; }
 
         public virtual Abonent Abonent { get; set; }
         public virtual Credit Credit { get; set; }
 
         [Required]
         [Display(Name = "Дата открытия")]
+        [Column(TypeName = "Date")]
+
         public DateTime DateWhereCreated { get; set; }
 
         [Required(ErrorMessage = "*")]
