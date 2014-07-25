@@ -1,7 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.Address
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование";
 }
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script src="~/Scripts/jquery-1.9.1.js"></script>
@@ -40,7 +40,7 @@
     <fieldset>
         <legend>Адрес</legend>
 
-        @Html.HiddenFor(model => model.AbonentID)
+        @Html.HiddenFor(model => model.AbonentId)
 
         <div class="editor-label">
             Город
@@ -74,7 +74,7 @@
 
 <div>
 @*    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = Model.AbonentID }, null)*@
-    <button type="button" onclick="location.href='@Url.Action("Edit", "Abonent", new { id = Model.AbonentID })'" class="btn btn-default">Назад</button>
+    <button type="button" onclick="location.href='@Url.Action("Edit", "Abonent", new { id = Model.AbonentId })'" class="btn btn-default">Назад</button>
 </div>
 
 @section Scripts {

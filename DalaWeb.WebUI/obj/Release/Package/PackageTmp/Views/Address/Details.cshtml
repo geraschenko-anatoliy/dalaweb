@@ -1,13 +1,13 @@
 ﻿@model DalaWeb.Domain.Entities.Address
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Детальнее";
 }
 
 <h2>Подробнее</h2>
 
 <fieldset>
-    <legend>Address</legend>
+    <legend>Адрес</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.CityId)
@@ -31,6 +31,6 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentID }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

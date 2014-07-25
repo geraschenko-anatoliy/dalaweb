@@ -6166,14 +6166,14 @@ a.badge:focus {
   position: fixed;
 }
 
- /*.editor-field
+ input.editor-field
  {
      text-align:center;
- }*/
- .editor-label
+ }
+ input.editor-label
   {
-     font-weight: bold;
-     font-family: Arial;
+     font-weight: bold !IMPORTANT;
+     font-family: Arial !IMPORTANT;
   } 
  .footer
  {

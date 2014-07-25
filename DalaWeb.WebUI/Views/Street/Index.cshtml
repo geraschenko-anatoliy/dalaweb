@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DalaWeb.Domain.Entities.Street>
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Addresses.Street>
 
 @{
     ViewBag.Title = "Улицы. Главная";
@@ -20,31 +20,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.City.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @*@Html.ActionLink("Редактировать", "Edit", new { id=item.StreetId }) |
-            @Html.ActionLink("Детальнее", "Details", new { id=item.StreetId }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.StreetId })*@
-            <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                Функции
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="@Url.Action("Edit", new { id = item.StreetId })">Редактировать</a></li>
-                <li><a href="@Url.Action("Details", new { id = item.StreetId })">Детальнее</a></li>
-                <li><a href="@Url.Action("Delete", new { id = item.StreetId })">Удалить</a></li>
-            </ul>
-            </div>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @*@Html.ActionLink("Редактировать", "Edit", new { id=item.StreetId }) |
+                    @Html.ActionLink("Детальнее", "Details", new { id=item.StreetId }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id=item.StreetId })*@
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Функции
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("Edit", new { id = item.StreetId })">Редактировать</a></li>
+                        <li><a href="@Url.Action("Details", new { id = item.StreetId })">Детальнее</a></li>
+                        <li><a href="@Url.Action("Delete", new { id = item.StreetId })">Удалить</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>

@@ -1,6 +1,7 @@
 ﻿using DalaWeb.Domain.Abstract;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Entities;
+using DalaWeb.Domain.Entities.Addresses;
 using System;
 using System.Collections.Generic;
 using System.Linq;

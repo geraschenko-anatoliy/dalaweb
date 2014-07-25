@@ -9,6 +9,8 @@ using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
 using DalaWeb.WebUI.ViewModels;
+using DalaWeb.Domain.Entities.Addresses;
+using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -29,8 +31,12 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Index()
         {
-            //return View(abonentRepository.Get());
             return View(new AbonentIndexViewModel(streetRepository, cityRepository, abonentRepository));
+        }
+
+        public ActionResult DeletedIndex()
+        {
+            return View(new DeletedAbonentIndexViewModel(streetRepository, cityRepository, abonentRepository));
         }
 
         //
@@ -39,6 +45,10 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Details(int id = 0)
         {
             Abonent abonent = abonentRepository.GetById(id);
+
+            if (abonent.isDeleted)
+                return RedirectToAction("DeletedIndex");
+
             if (abonent == null)
             {
                 return HttpNotFound();
@@ -77,17 +87,24 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Edit(int id = 0)
         {
             Abonent abonent = abonentRepository.GetById(id);
+
+            if (abonent == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (abonent.isDeleted)
+                return RedirectToAction("DeletedIndex");
+
             if (abonent.Address != null)
             {
                 ViewBag.City = cityRepository.GetById(abonent.Address.CityId).Name;
                 ViewBag.Street = streetRepository.GetById(abonent.Address.StreetId).Name;
             }
-            if (abonent == null)
-            {
-                return HttpNotFound();
-            }
+
             return View(abonent);
         }
+
 
         //
         // POST: /Abonent/Edit/5
@@ -105,12 +122,30 @@ namespace DalaWeb.WebUI.Controllers
             return View(abonent);
         }
 
+        public ActionResult DeletedDetails(int id = 0)
+        {
+            Abonent abonent = abonentRepository.GetById(id);
+            if (abonent.Address != null)
+            {
+                ViewBag.City = cityRepository.GetById(abonent.Address.CityId).Name;
+                ViewBag.Street = streetRepository.GetById(abonent.Address.StreetId).Name;
+            }
+            if (abonent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(abonent);
+        }
+
         //
         // GET: /Abonent/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
             Abonent abonent = abonentRepository.GetById(id);
+
+            if (abonent.isDeleted)
+                return RedirectToAction("DeletedIndex");
 
             if (abonent == null)
             {
@@ -120,13 +155,19 @@ namespace DalaWeb.WebUI.Controllers
         }
 
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(Abonent abonent)
         {
-            abonentRepository.Delete(id);
-            unitOfWork.Save();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                abonent.isDeleted = true;
+                abonentRepository.Update(abonent);
+                unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+
+            return View(abonent);
         }
 
         protected override void Dispose(bool disposing)

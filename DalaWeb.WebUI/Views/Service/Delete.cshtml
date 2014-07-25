@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Service
+﻿@model DalaWeb.Domain.Entities.Services.Service
 
 @{
     ViewBag.Title = "Сервисы";
@@ -57,7 +57,8 @@
         </td>
     </tr>
 </table>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Удалить" /> |

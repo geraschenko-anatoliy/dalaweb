@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
+using DalaWeb.Domain.Entities.Services;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -29,7 +30,11 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Index()
         {
-            return View(abonentServiceRepository.Get().Include(x => x.Service).Include(x=>x.Abonent).ToList());
+            return View(abonentServiceRepository.Get()
+                .Include(x => x.Service)
+                .Include(x=>x.Abonent)
+                .Where(x=> x.isOff == false)
+                .ToList());
         }
 
         //
@@ -53,9 +58,11 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Create(int abonentId)
         {
+            ViewBag.AbonentName = unitOfWork.AbonentRepository.GetById(abonentId).Name;
             ViewBag.AbonentId = abonentId;
             ViewBag.FinishDate = DateTime.MinValue;
             ViewBag.ServiceId = new SelectList(serviceRepository.Get(), "ServiceId", "Name");
+            ViewBag.CompanyId = new SelectList(unitOfWork.ServiceCompanyRepository.Get(), "CompanyId", "Name");
             return View();
         }
 
@@ -88,134 +95,55 @@ namespace DalaWeb.WebUI.Controllers
                                                                 .Where(x => x.ServiceId == serviceId)
                                                                 .Where(x => x.StartDate == startDate)
                                                                 .FirstOrDefault();
-            //int[] ids = new int[] { abonentId, serviceId };
+            ViewBag.AbonentId = abonentId;
+            ViewBag.ServiceId = serviceId;
 
-            //AbonentService abonentService = abonentServiceRepository.GetById(ids);
-
-            var abonentServices = abonentServiceRepository.Get().Where(x => x.AbonentId == abonentId)
-                                                                .Where(x => x.ServiceId == serviceId)
-                                                                .ToList();
-            if (abonentServices == null)
+            if (abonentService == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.ServiceId = serviceRepository.Get();
+            //Add default abonentService to return View
 
-            return View(abonentServices);
+            return View(abonentService);
         }
 
-        public ActionResult EditSelectedServices(int abonentId)
-        {
-            //PopulateAssignedAbonentServices(abonentId);
-
-            List<int> selectedServicesIdsList = abonentServiceRepository.Get().Where(x => x.AbonentId == abonentId).Select(x => x.ServiceId).ToList();
-            List<SelectListItem> selectedServicesList = new List<SelectListItem>();
-
-            foreach (var item in serviceRepository.Get())
-            {
-                if (selectedServicesIdsList.Contains(item.ServiceId))
-                    selectedServicesList.Add(new SelectListItem
-                    {
-                        Text = item.Name,
-                        Value = item.ServiceId.ToString(),
-                        Selected = true
-                    });
-                else
-                {
-                    selectedServicesList.Add(new SelectListItem
-                    {
-                        Text = item.Name,
-                        Value = item.ServiceId.ToString(),
-                        Selected = false
-                    });
-                }
-            }
-
-            ViewBag.ServicesList = selectedServicesList;
-
-            return View(unitOfWork.AbonentRepository.GetById(abonentId));
-        }
-
-        //private void PopulateAssignedAbonentServices(int abonentId)
-        //{
-        //    List<SelectListItem> allProducts = new List<SelectListItem>();
-        //    List<SelectListItem> selectedProducts = new List<SelectListItem>();
-
-        //    foreach (var item in productRepository.Get())
-        //    {
-        //        allProducts.Add(new SelectListItem
-        //        {
-        //            Text = item.Name,
-        //            Value = item.ProductId.ToString(),
-        //            Selected = false
-        //        });
-        //    }
-
-        //    foreach (var item in category.Products.Select(c => c.ProductId))
-        //    {
-        //        Product pr = productRepository.GetById(item);
-
-        //        selectedProducts.Add(new SelectListItem
-        //        {
-        //            Text = pr.Name,
-        //            Value = pr.ProductId.ToString(),
-        //            Selected = false
-        //        });
-        //    }
-
-        //    ViewBag.AllProducts = allProducts;
-        //    ViewBag.SelectedProducts = selectedProducts;
-        //}
+  
 
         //
         // POST: /AbonentService/Edit/5
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit()
-        //{
-        //    //abonent = 
-        //    //SetServices(abonent, ServiceIds);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
 
-        //    AbonentService abonentService = new AbonentService();
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        abonentServiceRepository.Update(abonentService);
-        //        unitOfWork.Save();
-        //        return RedirectToAction("Index");
-        //    }
-        //    //ViewBag.ServiceId = new SelectList(serviceRepository.Get(), "ServiceId", "Name");
-        //    return View(abonentService);
-        //}
-            
-        
-        //public ActionResult Edit(AbonentService abonentService)
-        //{
-        //    //abonent = 
-        //    //SetServices(abonent, ServiceIds);
-            
-        //    if (ModelState.IsValid)
-        //    {
-        //        abonentServiceRepository.Update(abonentService);
-        //        unitOfWork.Save();
-        //        return RedirectToAction("Index");
-        //    }
-        //    //ViewBag.ServiceId = new SelectList(serviceRepository.Get(), "ServiceId", "Name");
-        //    return View(abonentService);
-        //}
+        public ActionResult Edit(AbonentService abonentService)
+        {
+            if (ModelState.IsValid)
+            {
+                abonentServiceRepository.Update(abonentService);
+                unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+            ViewBag.AbonentId = abonentService.AbonentId;
+            ViewBag.ServiceId = abonentService.ServiceId;
+            return View(abonentService);
+        }
 
 
         //
         // GET: /AbonentService/Delete/5
 
-        public ActionResult Delete(int abonentId, int serviceId, DateTime startDate)
+        public ActionResult Remove(int abonentId, int serviceId, DateTime startDate)
         {
             var abonentService = abonentServiceRepository.Get().Where(x => x.AbonentId == abonentId)
-                                                                .Where(x => x.ServiceId == serviceId)
-                                                                .Where(x => x.StartDate == startDate)
-                                                                .FirstOrDefault();
+                                                    .Where(x => x.ServiceId == serviceId)
+                                                    .Where(x => x.StartDate == startDate)
+                                                    .FirstOrDefault();
+
+
+            abonentService.FinishDate = DateTime.MinValue;
+
             if (abonentService == null)
             {
                 return HttpNotFound();
@@ -223,16 +151,30 @@ namespace DalaWeb.WebUI.Controllers
             return View(abonentService);
         }
 
-        
-         //POST: /AbonentService/Delete/5
-
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(AbonentService abonentService)
+        public ActionResult Remove(AbonentService abonentService)
         {
-            abonentServiceRepository.Delete(abonentService);
-            unitOfWork.Save();
-            return RedirectToAction("Index");
+            abonentService.isOff = true;
+            if (ModelState.IsValid)
+            {
+                abonentServiceRepository.Update(abonentService);
+                unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+
+            return View(abonentService);
+        }
+
+        public JsonResult GetServices(int companyId)
+        {
+            List<SelectListItem> services = new List<SelectListItem>();
+
+            foreach (var item in unitOfWork.ServiceRepository.Get().Where(x => x.CompanyId == companyId))
+            {
+                services.Add(new SelectListItem { Text = item.Name, Value = item.ServiceId.ToString() });
+            }
+            return Json(new SelectList(services, "Value", "Text"));
         }
 
         protected override void Dispose(bool disposing)

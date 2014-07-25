@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Service
+﻿@model DalaWeb.Domain.Entities.Services.Service
 
 @{
     ViewBag.Title = "Сервисы";
@@ -6,57 +6,57 @@
 
 <h2>Детальнее</h2>
 
-    <table>
-        <tr>
-            <td>
-                <div class="display-label">
-                    @Html.DisplayNameFor(model => model.ServiceCompany.Name)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.ServiceCompany.Name)
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="display-label">
-                    @Html.DisplayNameFor(model => model.Name)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.Name)
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="display-label">
-                    @Html.DisplayNameFor(model => model.Price)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.Price)
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="display-label">
-                    @Html.DisplayNameFor(model => model.Type)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.Type)
-                </div>
-            </td>
-        </tr>
-    </table>
+<table>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.ServiceCompany.Name)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.ServiceCompany.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Price)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Price)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Type)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Type)
+            </div>
+        </td>
+    </tr>
+</table>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id=Model.ServiceId }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ServiceId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

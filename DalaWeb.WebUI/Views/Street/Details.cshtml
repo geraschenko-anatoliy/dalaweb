@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Street
+﻿@model DalaWeb.Domain.Entities.Addresses.Street
 
 @{
     ViewBag.Title = "Детальнее";
@@ -10,20 +10,20 @@
     <legend>Улица</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.City.Name)
+        @Html.DisplayNameFor(model => model.City.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.City.Name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+        @Html.DisplayNameFor(model => model.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id=Model.StreetId }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.StreetId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

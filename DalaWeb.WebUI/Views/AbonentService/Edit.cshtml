@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Abonent  
+﻿@model DalaWeb.Domain.Entities.Services.AbonentService
 
 @{
     ViewBag.Title = "Редактирование";
@@ -6,55 +6,68 @@
 
 <h2>Редактирование</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
     @Html.HiddenFor(model => model.AbonentId)
-    @Html.HiddenFor(model => model.AbonentNumber)
-    @Html.HiddenFor(model => model.Name)
-    @Html.HiddenFor(model => model.Telephone)
-    @Html.HiddenFor(model => model.INN)
-    @Html.HiddenFor(model => model.NumberOfInhabitants)
-
-    <fieldset>
-        <legend>Абонент</legend>
-        <div class="editor-label">
-            Сервисы
-        </div>
-        <div class="editor-field">
-            @foreach (var o in (SelectList)ViewBag.ServicesList)
-            {
-                if (o.Selected)
-                { 
-                    <label>
-                        <input type="checkbox"
-                               name="ServiceIds"
-                               value="@o.Value"
-                               checked="checked"
-                                />
-                        <span>@o.Text</span>
-                    </label>
+    @Html.HiddenFor(model => model.ServiceId)
+    <table>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Service.Name)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.Service.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.StartDate)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.StartDate)
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FinishDate)
+                </div>
+            </td>
+            <td>
+                @if (!@Model.isOff)
+                {
+                    <span class="label label-info">Сервис подключен</span>
                 }
                 else
                 {
-                     <label>
-                        <input type="checkbox"
-                               name="ServiceIds"
-                               value="@o.Value"
-                                />
-                        <span>@o.Text</span>
-                    </label>
+                    <div class="editor-field">
+                        <span class="label label-info">Сервис отключен</span>
+                        @Html.DisplayFor(model => model.FinishDate)
+                        @Html.ValidationMessageFor(model => model.FinishDate)
+                    </div>
                 }
-                @*<br />*@
-            }
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <p>
-            <input type="submit" value="Сохранить" />
-        </p>
-    </fieldset>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <p>
+                    <input type="submit" value="Сохранить" />
+                </p>
+            </td>
+        </tr>
+    </table>
 }
 
 <div>

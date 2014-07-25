@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
+using DalaWeb.Domain.Entities.Addresses;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -106,27 +107,27 @@ namespace DalaWeb.WebUI.Controllers
         //
         // GET: /Street/Delete/5
 
-        public ActionResult Delete(int id = 0)
-        {
-            Street street = streetRepository.GetById(id);
-            if (street == null)
-            {
-                return HttpNotFound();
-            }
-            return View(street);
-        }
+        //public ActionResult Delete(int id = 0)
+        //{
+        //    Street street = streetRepository.GetById(id);
+        //    if (street == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(street);
+        //}
 
-        //
-        // POST: /Street/Delete/5
+        ////
+        //// POST: /Street/Delete/5
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            streetRepository.Delete(id);
-            unitOfWork.Save();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    streetRepository.Delete(id);
+        //    unitOfWork.Save();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

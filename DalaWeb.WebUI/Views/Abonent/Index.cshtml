@@ -8,6 +8,7 @@
 
 <p>
     @Html.ActionLink("Создать абонента", "Create")
+    @Html.ActionLink("Просмотреть удаленных", "DeletedIndex")
 </p>
 <table>
     <tr>
@@ -38,60 +39,68 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.abonents) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AbonentNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.INN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telephone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfInhabitants)
-        </td>
-        @if (item.Address!=null)
-        { 
-        <td>
-            @Model.cities.Where(x => x.CityId == item.Address.CityId).Select(x => x.Name).FirstOrDefault()
-        </td>
-        <td>
-            @Model.streets.Where(x => x.StreetId == item.Address.StreetId).Select(x => x.Name).FirstOrDefault()
-        </td>
-        <td>
-            @item.Address.House
-        </td>
-        }
-        else
-        {
+    @foreach (var item in Model.abonents)
+    {
+        <tr>
             <td>
-                <span class="label label-important">Город не указан</span>
-            </td>         
+                @if (item.Address == null)
+                {
+                    <span class="label label-important">Добавьте адрес</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.AbonentNumber)
+                }
+            </td>
             <td>
-                <span class="label label-important">Улица не указана</span>
-            </td> 
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
             <td>
-                <span class="label label-important">Дом не указан</span>
-            </td>    
-        }
-        <td>
-             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Функции
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="@Url.Action("Edit", new { id = item.AbonentId })">Редактировать</a></li>
-                    <li><a href="@Url.Action("Details", new { id = item.AbonentId })">Детальнее</a></li>
-                    <li><a href="@Url.Action("Delete", new { id = item.AbonentId })">Удалить</a></li>
-                </ul>
-            </div> 
-        </td>
-    </tr>
-}
+                @Html.DisplayFor(modelItem => item.INN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfInhabitants)
+            </td>
+            @if (item.Address != null)
+            {
+                <td>
+                    @Model.cities.Where(x => x.CityId == item.Address.CityId).Select(x => x.Name).FirstOrDefault()
+                </td>
+                <td>
+                    @Model.streets.Where(x => x.StreetId == item.Address.StreetId).Select(x => x.Name).FirstOrDefault()
+                </td>
+                <td>
+                    @item.Address.House
+                </td>
+            }
+            else
+            {
+                <td>
+                    <span class="label label-important">Город не указан</span>
+                </td>
+                <td>
+                    <span class="label label-important">Улица не указана</span>
+                </td>
+                <td>
+                    <span class="label label-important">Дом не указан</span>
+                </td>
+            }
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Функции
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("Edit", new { id = item.AbonentId })">Редактировать</a></li>
+                        <li><a href="@Url.Action("Details", new { id = item.AbonentId })">Детальнее</a></li>
+                        <li><a href="@Url.Action("Delete", new { id = item.AbonentId })">Удалить</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
 </table>

@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Service
+﻿@model DalaWeb.Domain.Entities.Services.Service
 
 @{
     ViewBag.Title = "Кредиты";
@@ -6,7 +6,8 @@
 
 <h2>Редактирование</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 

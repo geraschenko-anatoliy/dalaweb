@@ -1,4 +1,8 @@
 ﻿using DalaWeb.Domain.Entities;
+using DalaWeb.Domain.Entities.Abonents;
+using DalaWeb.Domain.Entities.Addresses;
+using DalaWeb.Domain.Entities.Credits;
+using DalaWeb.Domain.Entities.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

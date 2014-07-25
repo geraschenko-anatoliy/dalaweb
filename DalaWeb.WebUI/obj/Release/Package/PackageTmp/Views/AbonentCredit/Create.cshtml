@@ -1,9 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.AbonentCredit
-
 @{
     ViewBag.Title = "Создать";
 }
-
 <h2>Создание кредита</h2>
 
 @using (Html.BeginForm()) {
@@ -19,7 +17,7 @@
             </td>
             <td>
                 <div class="editor-field">
-                    @Html.DropDownList("CreditId", (SelectList)ViewBag.CreditID)
+                    @Html.DropDownList("CreditId", (SelectList)ViewBag.CreditId)
                 </div>
             </td>
         </tr>
@@ -142,5 +140,6 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
+@*@Scripts.Render("~/bundles/jqueryval")*@
 }

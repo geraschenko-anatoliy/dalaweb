@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.ServiceCompany
+﻿@model DalaWeb.Domain.Entities.Services.ServiceCompany
 
 @{
     ViewBag.Title = "Детальнее";
@@ -10,13 +10,13 @@
     <legend>Сервис компания</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+        @Html.DisplayNameFor(model => model.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id=Model.CompanyId }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.CompanyId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

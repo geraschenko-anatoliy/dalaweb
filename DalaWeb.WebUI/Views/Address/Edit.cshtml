@@ -1,12 +1,12 @@
-﻿@model DalaWeb.Domain.Entities.Address
+﻿@model DalaWeb.Domain.Entities.Addresses.Address
 
 @{
     ViewBag.Title = "Редактирование";
 }
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script src="~/Scripts/jquery-1.9.1.js"></script>
-
-<script type="text/javascript">
+<script src="~/Scripts/DropDownHelpers/AddressDropdown.js"></script>
+@*<script type="text/javascript">
     $(document).ready(function () {
         $("#CityId").change(function () {
             $("#StreetId").empty();
@@ -28,12 +28,13 @@
             return false;
         })
     });
-</script>
+</script>*@
 
 
 <h2>Редактировать</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -73,7 +74,7 @@
 }
 
 <div>
-@*    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = Model.AbonentID }, null)*@
+    @*    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = Model.AbonentID }, null)*@
     <button type="button" onclick="location.href='@Url.Action("Edit", "Abonent", new { id = Model.AbonentId })'" class="btn btn-default">Назад</button>
 </div>
 

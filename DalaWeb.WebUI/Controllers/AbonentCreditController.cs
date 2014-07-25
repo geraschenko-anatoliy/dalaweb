@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
+using DalaWeb.Domain.Entities.Credits;
 
 namespace DalaWeb.WebUI.Controllers
 {

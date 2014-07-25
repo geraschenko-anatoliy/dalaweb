@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Address
+﻿@model DalaWeb.Domain.Entities.Addresses.Address
 
 @{
     ViewBag.Title = "Адреса. Удаление";
@@ -11,27 +11,28 @@
     <legend>Адрес</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.CityId)
+        @Html.DisplayNameFor(model => model.CityId)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CityId)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.StreetId)
+        @Html.DisplayNameFor(model => model.StreetId)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.StreetId)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.House)
+        @Html.DisplayNameFor(model => model.House)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.House)
     </div>
 </fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Удалить" class="btn btn-default" /> |

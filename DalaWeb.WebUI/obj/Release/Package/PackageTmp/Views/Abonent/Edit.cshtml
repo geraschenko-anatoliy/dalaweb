@@ -1,167 +1,212 @@
 ﻿@model DalaWeb.Domain.Entities.Abonent
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование";
 }
 
-<h2>Общая информация</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<h1>Информационная страница абонента @Model.Name</h1>
 
 <table>
-    @Html.HiddenFor(model => model.AbonentID)
-    <tr>
-        <td>
-            <div class="editor-label">
-                <b>@Html.LabelFor(model => model.Name, new { @class = "editor-label" })</b>
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Name, new { @class = "editor-label" })
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.AbonentNumber, new { @class = "editor-label"})
-            </div>
-        </td>
-        <td align="center">
-            @if (!String.IsNullOrEmpty(Model.AbonentNumber))
-            { 
-                <div class="editor-field">
-                    @Html.HiddenFor(model => model.AbonentNumber)
-                    @Html.Label(@Model.AbonentNumber, new { @style = "text-align: center" })
-                </div>
-            }
-            else
-            { 
-                <span style="font-size: 16px; align-content: center" class="label label-info">Добавьте адрес</span>
-            }
-            
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Telephone, new { @class = "editor-label" })
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Telephone, new { @class = "editor-field" })
-                @Html.ValidationMessageFor(model => model.Telephone)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.INN, new { @class = "editor-label" })
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.INN, new { @class = "editor-field" })
-                @Html.ValidationMessageFor(model => model.INN)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.NumberOfInhabitants, new { @class = "editor-label" })
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.NumberOfInhabitants, new { @class = "editor-field" })
-                @Html.ValidationMessageFor(model => model.NumberOfInhabitants)
-            </div>
-        </td>
-    </tr>
-    @*<tr>
-        <td>
-
-        </td>
-        <td>
-            @Html.ActionLink("Добавить кредит", "Create", "AbonentCredit", new { abonentId = Model.AbonentID }, null)
-        </td>
-    </tr>*@
-    <tr>
-        <td></td>
-        <td>
-            <input type="submit" value="Сохранить" class="btn btn-default" />
-        </td>
-    </tr>
-</table>
-    
-<h2>Кредиты</h2>
-    @Html.ActionLink("Добавить кредит", "Create", "AbonentCredit", new { abonentId = Model.AbonentID }, null)
-    if (Model.AbonentCredits.Any())
-    { 
-        <table>
-            <tr>
-                <td>
-                    <b>Название</b>
-                </td>
-                <td>
-                    <b>Сумма</b>
-                </td>
-            </tr>
-            @foreach (var item in Model.AbonentCredits.Where(i => i.AbonentID == Model.AbonentID))
-            {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.Credit.Name, "Details", "AbonentCredit", new { abonentId = item.AbonentID , creditId = item.CreditID}, null)
-                </td>
-                <td>
-                    @Html.ActionLink(item.Price.ToString(), "Details", "AbonentCredit", new { abonentId = item.AbonentID, creditId = item.CreditID}, null)
-                </td>
-            </tr>
-            }
-        </table>
-    }
- <h2>Адрес</h2>
- if(Model.Address != null)
- {    
-     <table>
         <tr>
             <td>
-                <b>Город</b>
-            </td>
-            <td>
-                <b>Улица</b>
-            </td>
-            <td>
-                <b>Дом</b>
+                <h2>Общая информация</h2>
+                @using (Html.BeginForm())
+                {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <table>
+                            @Html.HiddenFor(model => model.AbonentId)
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.Name)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.Name)
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.AbonentNumber)
+                                    </div>
+                                </td>
+                                <td align="center">
+                                    @if (!String.IsNullOrEmpty(Model.AbonentNumber))
+                                {
+                                        <div class="editor-field">
+                                            @Html.HiddenFor(model => model.AbonentNumber)
+                                            @Html.Label(@Model.AbonentNumber, new { @style = "text-align: center" })
+                                        </div>
+                                }
+                                else
+                                {
+                                        <span style="font-size: 16px; align-content: center" class="label label-info">Добавьте адрес</span>
+                                }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.Telephone)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.Telephone)
+                                        @Html.ValidationMessageFor(model => model.Telephone)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.INN)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.INN)
+                                        @Html.ValidationMessageFor(model => model.INN)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.NumberOfInhabitants)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.NumberOfInhabitants)
+                                        @Html.ValidationMessageFor(model => model.NumberOfInhabitants)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        Адрес
+                                    </div>
+                                </td>
+                                @if (Model.Address != null)
+                            {
+                                    <td>
+                                        @Html.ActionLink(   (string)ViewBag.City + " " +
+                                                        (string)ViewBag.Street + " " +
+                                                        @Model.Address.House, "Edit", "Address", new { abonentId = Model.Address.AbonentId }, null)
+                                    </td>
+                            }
+                            else
+                            {
+                                    <td>
+                                        @Html.ActionLink("Добавить адрес", "Create", "Address", new { abonentId = Model.AbonentId }, null)
+                                    </td>
+                            }
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Сохранить" class="btn btn-default" />
+                                </td>
+                            </tr>
+                        </table>
+                }
             </td>
         </tr>
-         <tr>
-             <td>
-                 <div class="editor-field">
-                     @Html.ActionLink((string)ViewBag.City, "Edit", "Address", new { abonentId = Model.Address.AbonentID }, null)
-                 </div>
-             </td>
-             <td>
-                 @Html.ActionLink((string)ViewBag.Street, "Edit", "Address", new { abonentId = Model.Address.AbonentID }, null)
-             </td>
-             <td>
-                 @Html.ActionLink(@Model.Address.House, "Edit", "Address", new { abonentId = Model.Address.AbonentID }, null)
-             </td>
-         </tr>
-     </table>
- }
-else
- {
-     @Html.ActionLink("Добавить адрес", "Create", "Address", new { abonentId = Model.AbonentID}, null)
- }
-}
+        <tr>
+            <td valign="top">
+                <h2>Сервисы</h2>
+                @Html.ActionLink("Добавить сервис", "Create", "AbonentService", new { abonentId = Model.AbonentId }, null)
+                @if (Model.AbonentServices.Any())
+            {
+                    <table>
+                        <tr>
+                            <td>
+                                <b>Название</b>
+                            </td>
+                            <td>
+                                <b>Цена</b>
+                            </td>
+                            <td>
+                                <b>Тип</b>
+                            </td>
+                            <td>
+                                <b>Поставщик</b>
+                            </td>
+                            <td>
+                                <b>Статус</b>
+                            </td>
+                        </tr>
+                        @foreach (var item in Model.AbonentServices)
+                    {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.Service.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.Service.Price.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.Service.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                                </td>
+                                 <td>
+                                    @Html.ActionLink(item.Service.ServiceCompany.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                                </td>
+
+                                <td>
+                                    @if (@item.isOff)
+                                    { 
+                                        <span class="label label-warning">Отключено</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-success">Подключено</span>                                        
+                                    }
+                                </td>
+                            </tr>
+                    }
+                    </table>
+            }
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <h2>Кредиты</h2>
+                @Html.ActionLink("Добавить кредит", "Create", "AbonentCredit", new { abonentId = Model.AbonentId }, null)
+                @if (Model.AbonentCredits.Any())
+            {
+                    <table>
+                        <tr>
+                            <td>
+                                <b>Название</b>
+                            </td>
+                            <td>
+                                <b>Сумма</b>
+                            </td>
+                        </tr>
+                        @foreach (var item in Model.AbonentCredits.Where(i => i.AbonentId == Model.AbonentId))
+                    {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.Credit.Name, "Details", "AbonentCredit", new { abonentId = item.AbonentId, creditId = item.CreditId }, null)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.Price.ToString(), "Details", "AbonentCredit", new { abonentId = item.AbonentId, creditId = item.CreditId }, null)
+                                </td>
+                            </tr>
+                    }
+                    </table>
+            }
+            </td>
+        </tr>
+    </table>
 <div>
     @Html.ActionLink("Вернуться", "Index")
 </div>

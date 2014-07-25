@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.ServiceCompany
+﻿@model DalaWeb.Domain.Entities.Services.ServiceCompany
 
 @{
     ViewBag.Title = "Удаление";
@@ -8,7 +8,8 @@
 
 <h3>Вы действительно хотите удалить компанию @Model.Name?</h3>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Удалить" /> |

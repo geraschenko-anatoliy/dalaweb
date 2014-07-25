@@ -3,10 +3,13 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\bin\Debug\DalaWeb.Domain.pdb
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\bin\Debug\EntityFramework.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\bin\Debug\EntityFramework.xml
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.dll
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.pdb
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csprojResolveAssemblyReference.cache
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.simpledate.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csproj.GenerateResource.Cache
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.normaldate.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.tripleprimarykey.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.differentStates.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.differentStates1.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.adddeletedusers.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csproj.GenerateResource.Cache
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.dll
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.pdb
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.notnulladdresshouse.resources

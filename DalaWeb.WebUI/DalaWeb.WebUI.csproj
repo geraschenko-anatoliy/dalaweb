@@ -142,11 +142,8 @@
     <Compile Include="Controllers\AbonentCreditController.cs" />
     <Compile Include="Controllers\AbonentServiceController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
-    <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
-    <Compile Include="Controllers\ExampleLayoutsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServiceCompanyController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\StreetController.cs" />
@@ -162,6 +159,7 @@
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\ArrayAwareRoute.cs" />
+    <Compile Include="ViewModels\DeletedAbonentIndexViewModel.cs" />
     <Compile Include="ViewModels\AddressIndexViewModel.cs" />
     <Compile Include="ViewModels\AbonentIndexViewModel.cs" />
   </ItemGroup>
@@ -231,6 +229,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\DropDownHelpers\AddressDropdown.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -256,6 +255,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\DropDownHelpers\ServiceDropdown.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -333,8 +333,9 @@
     <Content Include="Views\AbonentService\Details.cshtml" />
     <Content Include="Views\AbonentService\Create.cshtml" />
     <Content Include="Views\AbonentService\Edit.cshtml" />
-    <Content Include="Views\AbonentService\Delete.cshtml" />
-    <Content Include="Views\AbonentService\EditSelectedServices.cshtml" />
+    <Content Include="Views\AbonentService\Remove.cshtml" />
+    <Content Include="Views\Abonent\DeletedDetails.cshtml" />
+    <Content Include="Views\Abonent\DeletedIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

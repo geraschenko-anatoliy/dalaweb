@@ -49,11 +49,15 @@
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\Repository.cs" />
     <Compile Include="Concrete\UnitOfWork.cs" />
-    <Compile Include="Entities\Abonent.cs" />
-    <Compile Include="Entities\AbonentCredit.cs" />
-    <Compile Include="Entities\Address.cs" />
-    <Compile Include="Entities\Credit.cs" />
-    <Compile Include="Entities\ServiceCompany.cs" />
+    <Compile Include="Entities\Abonents\Abonent.cs" />
+    <Compile Include="Entities\Addresses\City.cs" />
+    <Compile Include="Entities\Addresses\Street.cs" />
+    <Compile Include="Entities\Credits\AbonentCredit.cs" />
+    <Compile Include="Entities\Addresses\Address.cs" />
+    <Compile Include="Entities\Credits\Credit.cs" />
+    <Compile Include="Entities\Services\AbonentService.cs" />
+    <Compile Include="Entities\Services\Service.cs" />
+    <Compile Include="Entities\Services\ServiceCompany.cs" />
     <Compile Include="Migrations\201407161010199_simpledate.cs" />
     <Compile Include="Migrations\201407161010199_simpledate.Designer.cs">
       <DependentUpon>201407161010199_simpledate.cs</DependentUpon>
@@ -65,6 +69,22 @@
     <Compile Include="Migrations\201407161939166_tripleprimarykey.cs" />
     <Compile Include="Migrations\201407161939166_tripleprimarykey.Designer.cs">
       <DependentUpon>201407161939166_tripleprimarykey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407171038469_differentStates.cs" />
+    <Compile Include="Migrations\201407171038469_differentStates.Designer.cs">
+      <DependentUpon>201407171038469_differentStates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407171039536_differentStates1.cs" />
+    <Compile Include="Migrations\201407171039536_differentStates1.Designer.cs">
+      <DependentUpon>201407171039536_differentStates1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407231028340_add-deleted-users.cs" />
+    <Compile Include="Migrations\201407231028340_add-deleted-users.Designer.cs">
+      <DependentUpon>201407231028340_add-deleted-users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407251138258_not-null-address-house.cs" />
+    <Compile Include="Migrations\201407251138258_not-null-address-house.Designer.cs">
+      <DependentUpon>201407251138258_not-null-address-house.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +104,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407161939166_tripleprimarykey.resx">
       <DependentUpon>201407161939166_tripleprimarykey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407171038469_differentStates.resx">
+      <DependentUpon>201407171038469_differentStates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407171039536_differentStates1.resx">
+      <DependentUpon>201407171039536_differentStates1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407231028340_add-deleted-users.resx">
+      <DependentUpon>201407231028340_add-deleted-users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407251138258_not-null-address-house.resx">
+      <DependentUpon>201407251138258_not-null-address-house.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

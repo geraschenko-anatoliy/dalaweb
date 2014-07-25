@@ -4,7 +4,7 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\geras_000\\documents\\visual\ studio\ 2013\\Projects\\DalaWeb\\DalaWeb\.WebUI\\obj\\Release\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\geras_000\\documents\\visual\ studio\ 2013\\Projects\\DalaWeb\\DalaWeb\.WebUI\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="EFDbContext-Web.config Connection String" description="" value="Data Source=(LocalDb)\v11.0;Initial Catalog=DalaWeb;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\DalaWebDb.mdf" tags="">
+  <parameter name="EFDbContext-Web.config Connection String" description="" value="Data Source=(LocalDb)\v11.0;Initial Catalog=DalaWebDataBase;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\DalaWebDataBase.mdf" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\geras_000\\documents\\visual\ studio\ 2013\\Projects\\DalaWeb\\DalaWeb\.WebUI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EFDbContext']/@connectionString" />
   </parameter>
 </parameters>

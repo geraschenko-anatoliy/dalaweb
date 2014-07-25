@@ -8,8 +8,12 @@
         <title>@ViewBag.Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="@Styles.Url("~/content/css")" rel="stylesheet"/>
-        @RenderSection("head", required: false)
-        @Html.Partial("_html5shiv")
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+        @*@RenderSection("head", required: false)*@
+        @*@Html.Partial("_html5shiv")*@
+        @Scripts.Render("~/js")
+        @RenderSection("Scripts", required: false)
         @* favicons and touch icons go here *@
     </head>
     <body>
@@ -32,15 +36,12 @@
         </div>        
         <div class="container">
             @Html.Partial("_alerts")
-            @Html.Partial("_validationSummary")
             @RenderBody()   
             <hr>
             <footer class="footer">
                 <p>&copy; Dala Web @System.DateTime.Now.ToString("yyyy")</p>
             </footer> 
         </div>
-         @Scripts.Render("~/js")
-         @RenderSection("Scripts", required: false)
     </body>
 </html>
 

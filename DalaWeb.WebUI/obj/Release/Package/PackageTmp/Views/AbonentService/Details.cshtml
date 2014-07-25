@@ -1,0 +1,83 @@
+﻿@model DalaWeb.Domain.Entities.AbonentService
+
+@{
+    ViewBag.Title = "Детальнее";
+}
+
+<h2>Детальнее о услуге "@Model.Service.Name" абонента "@Model.Abonent.Name"</h2>
+
+<table>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Service.Name)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Service.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Service.Price)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Service.Price)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Abonent.Name)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Abonent.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @Model.StartDate.ToShortDateString()
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @if(Model.isOff)
+                { 
+                    @Model.FinishDate.ToShortDateString()
+                }
+                else
+                {
+                    <span class="label label-success">Услуга подключена</span>      
+                }
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentId }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

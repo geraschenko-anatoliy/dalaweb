@@ -1,7 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.Abonent
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Детальнее";
 }
 
 <h2>Информация об абоненте @Model.Name</h2>
@@ -57,6 +57,6 @@
     </tr>
 </table>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentID }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

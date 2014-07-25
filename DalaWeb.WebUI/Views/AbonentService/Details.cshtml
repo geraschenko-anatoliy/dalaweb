@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.AbonentService
+﻿@model DalaWeb.Domain.Entities.Services.AbonentService
 
 @{
     ViewBag.Title = "Детальнее";
@@ -21,8 +21,8 @@
     </tr>
     <tr>
         <td>
-        <div class="editor-label">
-            @Html.DisplayNameFor(model => model.Service.Price)
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Service.Price)
             </div>
         </td>
         <td>
@@ -55,10 +55,29 @@
             </div>
         </td>
     </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </div>
+        </td>
+        <td>
+            <div class="editor-field">
+                @if (Model.isOff)
+                {
+                    @Model.FinishDate.ToShortDateString()
+                }
+                else
+                {
+                    <span class="label label-success">Услуга подключена</span>
+                }
+            </div>
+        </td>
+    </tr>
 </table>
 
 
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentId }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.AbonentId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

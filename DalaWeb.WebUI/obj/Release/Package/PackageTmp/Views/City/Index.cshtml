@@ -23,9 +23,20 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id=item.CityId }) |
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Функции
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="@Url.Action("Edit", new { id = item.CityId })">Редактировать</a></li>
+                    <li><a href="@Url.Action("Details", new { id = item.CityId })">Детальнее</a></li>
+                    <li><a href="@Url.Action("Delete", new { id = item.CityId })">Удалить</a></li>
+                </ul>
+            </div>
+            @*@Html.ActionLink("Редактировать", "Edit", new { id=item.CityId }) |
             @Html.ActionLink("Детальнее", "Details", new { id=item.CityId }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.CityId })
+            @Html.ActionLink("Удалить", "Delete", new { id=item.CityId })*@
         </td>
     </tr>
 }

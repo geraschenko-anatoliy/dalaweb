@@ -1,7 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.AbonentCredit
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование";
 }
 
 <h3>Редактирование кредита "@Model.Credit.Name" абонента @Model.Abonent.Name </h3>
@@ -11,11 +11,11 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend></legend>
+        <legend>Кредит</legend>
 
-        @Html.HiddenFor(model => model.AbonentID)
+        @Html.HiddenFor(model => model.AbonentId)
 
-        @Html.HiddenFor(model => model.CreditID)
+        @Html.HiddenFor(model => model.CreditId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.DateWhereCreated)
@@ -88,9 +88,12 @@
 
 <div>
     @Html.ActionLink("К списку кредитов", "Index")
-    @Html.ActionLink("К абоненту","Edit", "Abonent", new { id = Model.AbonentID }, null)
+    @Html.ActionLink("К абоненту","Edit", "Abonent", new { id = Model.AbonentId }, null)
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $('.datepicker').datepicker();
+    </script>
 }

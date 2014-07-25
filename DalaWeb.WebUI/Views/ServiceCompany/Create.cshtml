@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.ServiceCompany
+﻿@model DalaWeb.Domain.Entities.Services.ServiceCompany
 
 @{
     ViewBag.Title = "Сервис компания";
@@ -6,7 +6,8 @@
 
 <h2>Создать</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 

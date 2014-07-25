@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
+using DalaWeb.Domain.Entities.Credits;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -15,7 +16,6 @@ namespace DalaWeb.WebUI.Controllers
     {
         private IUnitOfWork unitOfWork;
         private IRepository<Credit> creditRepository;
-
 
         public CreditController(IUnitOfWork unitOfWork)
         {

@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.AbonentCredit
+﻿@model DalaWeb.Domain.Entities.Credits.AbonentCredit
 
 @{
     ViewBag.Title = "Кредиты. Удаление";
@@ -11,62 +11,63 @@
     <legend>AbonentCredit</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.DateWhereCreated)
+        @Html.DisplayNameFor(model => model.DateWhereCreated)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.DateWhereCreated)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.PrePayment)
+        @Html.DisplayNameFor(model => model.PrePayment)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PrePayment)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.PaidForTheEntirePeriod)
+        @Html.DisplayNameFor(model => model.PaidForTheEntirePeriod)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PaidForTheEntirePeriod)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.PaidMonths)
+        @Html.DisplayNameFor(model => model.PaidMonths)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PaidMonths)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Term)
+        @Html.DisplayNameFor(model => model.Term)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Term)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Price)
+        @Html.DisplayNameFor(model => model.Price)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Price)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.PaymentForMonth)
+        @Html.DisplayNameFor(model => model.PaymentForMonth)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PaymentForMonth)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Comment)
+        @Html.DisplayNameFor(model => model.Comment)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Comment)
     </div>
 </fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Удалить" class="btn btn-default" /> |

@@ -9,6 +9,8 @@ using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
 using DalaWeb.WebUI.ViewModels;
+using DalaWeb.Domain.Entities.Addresses;
+using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -19,7 +21,6 @@ namespace DalaWeb.WebUI.Controllers
         private IRepository<City> cityRepository;
         private IRepository<Street> streetRepository;
         private IRepository<Abonent> abonentRepository;
-
 
         public AddressController(IUnitOfWork unitOfWork)
         {
@@ -82,7 +83,9 @@ namespace DalaWeb.WebUI.Controllers
                 return RedirectToAction("Edit", "Abonent", new { id = address.AbonentId });
             }
 
-            ViewBag.AbonentId = new SelectList(abonentRepository.Get() , "AbonentId", "Name", address.AbonentId);
+            ViewBag.AbonentId = address.AbonentId;
+            ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name");
+            ViewBag.StreetId = new SelectList(streetRepository.Get(), "StreetId", "Name");
             return View(address);
         }
 
@@ -100,20 +103,11 @@ namespace DalaWeb.WebUI.Controllers
             }
 
             SelectList CityIds = new SelectList(cityRepository.Get(), "CityId", "Name", abonent.Address.CityId);
-            //var selectedCity = CityIds.Where(x => x.Value == abonent.Address.CityId.ToString()).First().Value;
-
-            ////selectedCity.Selected = true;
-            //CityIds.Where(x => x.Value == abonent.Address.CityId.ToString()).First().Selected = true;
             ViewBag.Cities = CityIds;
-            //ViewBag.CityIds = cityRepository.Get();
 
             SelectList StreetIds = new SelectList(streetRepository.Get(), "StreetId", "Name", abonent.Address.StreetId);
-            ////var selectedStreet = StreetIds.Where(x => x.Value == abonent.Address.StreetId.ToString()).First().Selected = true;
-            ////selectedStreet.Selected = true;
-            //StreetIds.Where(x => x.Value == abonent.Address.StreetId.ToString()).First().Selected = true;
             ViewBag.Streets = StreetIds;
 
-            //ViewBag.StreetId = streetRepository.Get();
             return View(address);
         }
 
@@ -184,8 +178,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return Json(new SelectList(streets, "Value", "Text"));
         }
-
-
 
         protected override void Dispose(bool disposing)
         {

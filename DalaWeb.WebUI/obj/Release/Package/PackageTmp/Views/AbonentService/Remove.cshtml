@@ -1,0 +1,69 @@
+﻿@model DalaWeb.Domain.Entities.AbonentService
+
+@{
+    ViewBag.Title = "Услуги";
+}
+
+<h2>Остановка</h2>
+
+<h3>Вы действительно хотите отключить услугу @Model.Service.Name абонента @Model.Abonent.Name?</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @*@Html.Hidden("AbonentId", (int)@ViewBag.AbonentId)*@
+    @Html.Hidden("AbonentId", Model.AbonentId)
+        <table>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Service.Name)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.Service.Name)
+                    @Html.ValidationMessageFor(model => model.ServiceId)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.StartDate)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.StartDate)
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FinishDate)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.FinishDate)
+                    @Html.ValidationMessageFor(model => model.FinishDate)
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <p>
+                    <input type="submit" value="Отключить" />
+                </p>
+            </td>
+        </tr>
+    </table>
+}
+<p>
+    @Html.ActionLink("Вернуться", "Index")
+</p>
