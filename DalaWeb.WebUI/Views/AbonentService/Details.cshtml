@@ -78,6 +78,6 @@
 
 
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.AbonentId }) |
+    @Html.ActionLink("Редактировать", "Edit", new { abonentId = Model.AbonentId, serviceId = Model.ServiceId, startDate = Model.StartDate }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

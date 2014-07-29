@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Services.Service>
+
+@{
+    ViewBag.Title = "Сервисы";
+}
+
+<h2>Архив</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceCompany.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceCompany.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @item.ToString()
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.ServiceId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ServiceId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ServiceId })*@
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Функции
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("Edit", new { id = item.ServiceId })">Редактировать</a></li>
+                        <li><a href="@Url.Action("Details", new { id = item.ServiceId })">Детальнее</a></li>
+                        <li><a href="@Url.Action("Delete", new { id = item.ServiceId })">Удалить</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -66,6 +66,10 @@ namespace DalaWeb.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AbonentCredit abonentCredit)
         {
+            abonentCredit.PaymentForMonth = (abonentCredit.Price - abonentCredit.PrePayment) / (abonentCredit.Term - abonentCredit.PaidMonths);
+            abonentCredit.PaidForTheEntirePeriod = abonentCredit.PrePayment + abonentCredit.PaidMonths * abonentCredit.PaymentForMonth;
+            abonentCredit.FinishDate = abonentCredit.StartDate.AddMonths(abonentCredit.Term);
+            
             if (ModelState.IsValid)
             {
                 abonentCreditRepository.Insert(abonentCredit);

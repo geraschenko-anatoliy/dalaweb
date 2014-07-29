@@ -25,16 +25,17 @@
         <tr>
             <td>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.DateWhereCreated)
+                    @Html.LabelFor(model => model.StartDate)
                 </div>
             </td>
             <td>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.DateWhereCreated)
-                    @Html.ValidationMessageFor(model => model.DateWhereCreated)
+                    @Html.EditorFor(model => model.StartDate)
+                    @Html.ValidationMessageFor(model => model.StartDate)
                 </div>
             </td>
         </tr>
+    @*    @Html.HiddenFor(model => model.FinishDate, new { Value = Model.StartDate.AddMonths(Model.Term).ToShortDateString()})*@
         <tr>
             <td>
                 <div class="editor-label">
@@ -48,7 +49,7 @@
                 </div>
             </td>
         </tr>
-        <tr>
+        @*<tr>
             <td>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.PaidForTheEntirePeriod)
@@ -60,7 +61,8 @@
                     @Html.ValidationMessageFor(model => model.PaidForTheEntirePeriod)
                 </div>
             </td>
-        </tr>
+        </tr>*@
+        @*@Html.HiddenFor(model => model.PaidForTheEntirePeriod, new { Value = Model.PrePayment + Model.PaidMonths * Model.PaymentForMonth})*@
         <tr>
             <td>
                 <div class="editor-label">
@@ -100,7 +102,7 @@
                 </div>
             </td>
         </tr>
-        <tr>
+        @*<tr>
             <td>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.PaymentForMonth)
@@ -112,8 +114,10 @@
                     @Html.ValidationMessageFor(model => model.PaymentForMonth)
                 </div>
             </td>
-        </tr>
-        <tr>
+        </tr>*@
+        @*@Html.HiddenFor(model => model.PaymentForMonth, new { Value = (Model.Price - Model.PrePayment)/(Model.Term-Model.PaidMonths)})
+        @Html.HiddenFor(model => model.PaidForTheEntirePeriod, new { Value = Model.PrePayment + Model.PaidMonths * Model.PaymentForMonth })*@
+         <tr>
             <td>
                 @Html.Hidden("FullyPaid", "false")
                 <div class="editor-label">

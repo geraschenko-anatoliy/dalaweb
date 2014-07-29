@@ -336,6 +336,8 @@
     <Content Include="Views\AbonentService\Remove.cshtml" />
     <Content Include="Views\Abonent\DeletedDetails.cshtml" />
     <Content Include="Views\Abonent\DeletedIndex.cshtml" />
+    <Content Include="Views\Service\Archive.cshtml" />
+    <None Include="Views\AbonentService\Archive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

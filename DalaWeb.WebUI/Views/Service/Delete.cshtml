@@ -6,60 +6,67 @@
 
 <h2>Удаление</h2>
 
-<h3>Вы действительно хотите удалить @Model.Name?</h3>
-<table>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.ServiceCompany.Name)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.ServiceCompany.Name)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Name)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Name)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Price)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Price)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Type)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Type)
-            </div>
-        </td>
-    </tr>
-</table>
+<h3>Вы действительно хотите удалить Model.Name?</h3>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <table>
+        @Html.HiddenFor(model => model.ServiceId)
+        @Html.HiddenFor(model => model.Name)
+        @Html.HiddenFor(model => model.CompanyId)
+        @Html.HiddenFor(model => model.Type)
+
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.ServiceCompany.Name)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.ServiceCompany.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Name)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Price)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Price)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Type)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Type)
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
     <p>
         <input type="submit" value="Удалить" /> |
         @Html.ActionLink("Вернуться", "Index")

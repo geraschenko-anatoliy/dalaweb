@@ -24,20 +24,28 @@ namespace DalaWeb.Domain.Entities.Credits
         [Display(Name = "Дата открытия")]
         [Column(TypeName = "Date")]
 
-        public DateTime DateWhereCreated { get; set; }
+        public DateTime StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "Дата закрытия")]
+        [Column(TypeName = "Date")]
+        public DateTime FinishDate { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DefaultValue(0)]
+        [Range(0, double.MaxValue, ErrorMessage = "Необходимо ввести положительное значение")]
         [Display(Name = "Предоплата")]
-        public decimal PrePayment { get; set; }
+        public double PrePayment { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DefaultValue(0)]
+        [Range(0, double.MaxValue, ErrorMessage = "Необходимо ввести положительное значение")]
         [Display(Name = "Общая сумма проплат")]
-        public decimal PaidForTheEntirePeriod { get; set; }
+        public double PaidForTheEntirePeriod { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DefaultValue(0)]
+        [Range(0, 100, ErrorMessage = "Необходимо ввести положительное значение")]
         [Display(Name = "Оплачено месяцев")]
         public int PaidMonths { get; set; }
 
@@ -46,13 +54,14 @@ namespace DalaWeb.Domain.Entities.Credits
         [Display(Name = "Срок")]
         public int Term { get; set; }
 
-        [Range(0.01, double.MaxValue, ErrorMessage = "Необходимо ввести положительное значение")]
+        [Range(0, double.MaxValue, ErrorMessage = "Необходимо ввести положительное значение")]
         [Display(Name = "Общая сумма кредита")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         [Required(ErrorMessage = "*")]
         [Display(Name = "Сумма в месяц")]
-        public decimal PaymentForMonth { get; set; }
+        public double PaymentForMonth { get; set; }
         [DefaultValue(false)]
+        [Display(Name = "Полностью оплачен")]
         public bool FullyPaid { get; set; }
         [Display(Name = "Комментарий")]
         public string Comment { get; set; }

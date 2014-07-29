@@ -86,6 +86,42 @@
     <Compile Include="Migrations\201407251138258_not-null-address-house.Designer.cs">
       <DependentUpon>201407251138258_not-null-address-house.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407280744286_int-prices.cs" />
+    <Compile Include="Migrations\201407280744286_int-prices.Designer.cs">
+      <DependentUpon>201407280744286_int-prices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407280756023_terms.cs" />
+    <Compile Include="Migrations\201407280756023_terms.Designer.cs">
+      <DependentUpon>201407280756023_terms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407280834388_times.cs" />
+    <Compile Include="Migrations\201407280834388_times.Designer.cs">
+      <DependentUpon>201407280834388_times.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407280845104_dates.cs" />
+    <Compile Include="Migrations\201407280845104_dates.Designer.cs">
+      <DependentUpon>201407280845104_dates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407282046399_date-datetime.cs" />
+    <Compile Include="Migrations\201407282046399_date-datetime.Designer.cs">
+      <DependentUpon>201407282046399_date-datetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407290824022_double-price-values.cs" />
+    <Compile Include="Migrations\201407290824022_double-price-values.Designer.cs">
+      <DependentUpon>201407290824022_double-price-values.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407291208177_archival-services.cs" />
+    <Compile Include="Migrations\201407291208177_archival-services.Designer.cs">
+      <DependentUpon>201407291208177_archival-services.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407291319089_no-suspended-services.cs" />
+    <Compile Include="Migrations\201407291319089_no-suspended-services.Designer.cs">
+      <DependentUpon>201407291319089_no-suspended-services.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407292213305_all-double-prices.cs" />
+    <Compile Include="Migrations\201407292213305_all-double-prices.Designer.cs">
+      <DependentUpon>201407292213305_all-double-prices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,6 +152,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407251138258_not-null-address-house.resx">
       <DependentUpon>201407251138258_not-null-address-house.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407280744286_int-prices.resx">
+      <DependentUpon>201407280744286_int-prices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407280756023_terms.resx">
+      <DependentUpon>201407280756023_terms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407280834388_times.resx">
+      <DependentUpon>201407280834388_times.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407280845104_dates.resx">
+      <DependentUpon>201407280845104_dates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407282046399_date-datetime.resx">
+      <DependentUpon>201407282046399_date-datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407290824022_double-price-values.resx">
+      <DependentUpon>201407290824022_double-price-values.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407291208177_archival-services.resx">
+      <DependentUpon>201407291208177_archival-services.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407291319089_no-suspended-services.resx">
+      <DependentUpon>201407291319089_no-suspended-services.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407292213305_all-double-prices.resx">
+      <DependentUpon>201407292213305_all-double-prices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

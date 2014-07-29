@@ -30,10 +30,15 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Index()
         {
-            var services = serviceRepository.Get().Include(s => s.ServiceCompany);
+            var services = serviceRepository.Get().Include(s => s.ServiceCompany).Where(s => s.Archival ==false);
             return View(services.ToList());
         }
 
+        public ActionResult Archive()
+        {
+            var services = serviceRepository.Get().Include(s => s.ServiceCompany).Where(x => x.Archival == true);
+            return View(services.ToList());
+        }
         //
         // GET: /Service/Details/5
 
@@ -134,13 +139,28 @@ namespace DalaWeb.WebUI.Controllers
         //
         // POST: /Service/Delete/5
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(Service service)
         {
-            serviceRepository.Delete(id);
-            unitOfWork.Save();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                service.Archival = true;
+                serviceRepository.Update(service);
+                //unitOfWork.Save();
+
+                var abonentServices = unitOfWork.AbonentServiceRepository.Get().Where(x => x.Service.ServiceId == service.ServiceId).Where(x=> x.isOff == false);
+                foreach (var abonentService in abonentServices)
+                {
+                    abonentService.isOff = true;
+                    unitOfWork.AbonentServiceRepository.Update(abonentService);
+                }
+
+                unitOfWork.Save();
+
+                return RedirectToAction("Index");
+            }
+            return View(service);
         }
 
         protected override void Dispose(bool disposing)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,13 +19,17 @@ namespace DalaWeb.Domain.Entities.Services
         [Display(Name = "Сервис")]
         public string Name { get; set; }
         [Required(ErrorMessage = "*")]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter a positive price")]
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter a positive price")]
         [Display(Name = "Цена")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         [Required(ErrorMessage = "*")]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter a positive price")]
         [Display(Name = "Тип сервиса")]
         public int Type { get; set; }
+
+        [DefaultValue(false)]
+        [Display(Name = "Статус")]
+        public bool Archival { get; set; }
+
         public virtual ServiceCompany ServiceCompany { get; set; }
         public virtual ICollection<AbonentService> AbonentServices { get; set; }
 

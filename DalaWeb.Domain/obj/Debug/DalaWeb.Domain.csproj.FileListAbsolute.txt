@@ -13,3 +13,13 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.pdb
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.notnulladdresshouse.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csprojResolveAssemblyReference.cache
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.intprices.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.terms.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.times.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.dates.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.datedatetime.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.doublepricevalues.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.archivalservices.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.nosuspendedservices.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.alldoubleprices.resources

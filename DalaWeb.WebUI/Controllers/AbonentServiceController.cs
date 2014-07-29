@@ -36,6 +36,14 @@ namespace DalaWeb.WebUI.Controllers
                 .Where(x=> x.isOff == false)
                 .ToList());
         }
+        public ActionResult Archive()
+        {
+            return View(abonentServiceRepository.Get()
+                .Include(x => x.Service)
+                .Include(x => x.Abonent)
+                .Where(x => x.isOff == true)
+                .ToList());
+        }
 
         //
         // GET: /AbonentService/Details/5

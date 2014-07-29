@@ -15,7 +15,10 @@
             Кредит
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateWhereCreated)
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PrePayment)
@@ -51,7 +54,10 @@
                 @Html.DisplayFor(modelItem => item.Credit.Name)
             </td>
             <td>
-                @item.DateWhereCreated.ToString("d")
+                @item.StartDate.ToString("d")
+            </td>
+            <td>
+                @item.FinishDate.ToString("d")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PrePayment)

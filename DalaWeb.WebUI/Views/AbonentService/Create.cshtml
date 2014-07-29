@@ -6,7 +6,7 @@
 <script type="text/javascript">
     var addressGetServicesPath = "@Url.Action("GetServices", "AbonentService")";
 </script>
-
+<script src="~/Scripts/DropDownHelpers/ServiceDropdown.js"></script>
     @*<script type="text/javascript">
         $(document).ready(function () {
             $("#CompanyId").change(function () {
@@ -45,7 +45,7 @@
         @Html.Hidden("isOff", false)
 
         <div class="editor-label">
-            @Html.NameFor(model => model.Service.ServiceCompany.Name)
+            @Html.LabelFor(model => model.Service.ServiceCompany.Name)
         </div>
         <div class="editor-field">
             @Html.DropDownList("CompanyId", string.Empty)

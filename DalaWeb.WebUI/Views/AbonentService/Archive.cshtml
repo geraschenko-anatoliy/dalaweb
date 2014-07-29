@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Services.AbonentService>
+
+@{
+    ViewBag.Title = "Архив";
+}
+
+<h2>Услуги в архиве</h2>
+<h3>@Html.ActionLink("Активные услуги", "Index")</h3>
+<table>
+    <tr>
+        <th>
+            Номер
+        </th>
+        <th>
+            Имя
+        </th>
+        <th>
+            Сервис компания
+        </th>
+        <th>
+            Сервис
+        </th>
+        <th>
+            Дата подключения
+        </th>
+        <th>
+            Дата отключения
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abonent.AbonentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abonent.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.ServiceCompany.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.Name)
+            </td>
+            <td>
+                @item.StartDate.ToShortDateString()
+            </td>
+            <td>
+                @item.FinishDate.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.Price)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Функции
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Детальнее</a></li>
+                        <li><a href="@Url.Action("Remove", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Удалить</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

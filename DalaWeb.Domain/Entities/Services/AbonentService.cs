@@ -19,23 +19,22 @@ namespace DalaWeb.Domain.Entities.Services
 
         [Required]
         [DefaultValue(false)]
-        [Display(Name = "Услуга приостановлена?")]
-        public bool isSuspended { get; set; }
-        [Required]
-        [DefaultValue(false)]
         [Display(Name = "Услуга отключена?")]
         public bool isOff { get; set; }
 
         public virtual Abonent Abonent { get; set; }
         public virtual Service Service { get; set; }
 
+        
         [Required]
-        [Key, Column(Order = 2, TypeName = "Date")]
+        //[Key, Column(Order = 2, TypeName = "Date")]
+        
+        [Key, Column(Order = 2)]
         [Display(Name = "Дата подключения")]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "Дата отключения")]
-        [Column(TypeName = "Date")]
+        //[Column(TypeName = "Date")]
         public DateTime FinishDate { get; set; }
     }
 }
