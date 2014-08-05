@@ -30,9 +30,6 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @*@Html.ActionLink("Редактировать", "Edit", new { id=item.StreetId }) |
-                    @Html.ActionLink("Детальнее", "Details", new { id=item.StreetId }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id=item.StreetId })*@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Функции
@@ -41,7 +38,6 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="@Url.Action("Edit", new { id = item.StreetId })">Редактировать</a></li>
                         <li><a href="@Url.Action("Details", new { id = item.StreetId })">Детальнее</a></li>
-                        <li><a href="@Url.Action("Delete", new { id = item.StreetId })">Удалить</a></li>
                     </ul>
                 </div>
             </td>

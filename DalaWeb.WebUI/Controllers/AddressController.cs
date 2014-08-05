@@ -105,7 +105,7 @@ namespace DalaWeb.WebUI.Controllers
             SelectList CityIds = new SelectList(cityRepository.Get(), "CityId", "Name", abonent.Address.CityId);
             ViewBag.Cities = CityIds;
 
-            SelectList StreetIds = new SelectList(streetRepository.Get(), "StreetId", "Name", abonent.Address.StreetId);
+            SelectList StreetIds = new SelectList(streetRepository.Get().Where(x => x.CityId == abonent.Address.CityId), "StreetId", "Name", abonent.Address.StreetId);
             ViewBag.Streets = StreetIds;
 
             return View(address);

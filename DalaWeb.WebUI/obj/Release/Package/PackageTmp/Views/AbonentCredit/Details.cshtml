@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.AbonentCredit
+﻿@model DalaWeb.Domain.Entities.Credits.AbonentCredit
 
 @{
     ViewBag.Title = "Кредиты. Детальнее";
@@ -10,12 +10,12 @@
     <tr>
         <td>
             <div class="display-label">
-                @Html.DisplayNameFor(model => model.DateWhereCreated)
+                @Html.DisplayNameFor(model => model.StartDate)
             </div>
         </td>
         <td>
             <div class="display-field">
-                @Html.DisplayFor(model => model.DateWhereCreated)
+                @Html.DisplayFor(model => model.StartDate)
             </div>
         </td>
     </tr>

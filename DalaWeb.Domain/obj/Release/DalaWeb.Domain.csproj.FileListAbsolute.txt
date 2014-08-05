@@ -12,3 +12,14 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.tripleprimarykey.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.differentStates.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.differentStates1.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.adddeletedusers.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.notnulladdresshouse.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.intprices.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.terms.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.times.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.dates.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.datedatetime.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.doublepricevalues.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.archivalservices.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.nosuspendedservices.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.alldoubleprices.resources

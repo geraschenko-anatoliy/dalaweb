@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.AbonentService
+﻿@model DalaWeb.Domain.Entities.Services.AbonentService
 
 @{
     ViewBag.Title = "Услуги";
@@ -11,9 +11,8 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    @*@Html.Hidden("AbonentId", (int)@ViewBag.AbonentId)*@
     @Html.Hidden("AbonentId", Model.AbonentId)
-        <table>
+    <table>
         <tr>
             <td>
                 <div class="editor-label">

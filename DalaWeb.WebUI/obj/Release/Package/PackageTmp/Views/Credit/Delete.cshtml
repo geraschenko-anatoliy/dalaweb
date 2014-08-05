@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Credit
+﻿@model DalaWeb.Domain.Entities.Credits.Credit
 
 @{
     ViewBag.Title = "Кредиты. Удаление";
@@ -8,10 +8,11 @@
 
 <h3>Вы действительно хотите удалить кредит "@Model.Name"?</h3>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Удалить"  /> |
+        <input type="submit" value="Удалить" /> |
         @Html.ActionLink("Вернуться", "Index")
     </p>
 }

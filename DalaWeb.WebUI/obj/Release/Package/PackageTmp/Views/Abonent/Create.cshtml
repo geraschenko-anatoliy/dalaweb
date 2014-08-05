@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Abonent
+﻿@model DalaWeb.Domain.Entities.Abonents.Abonent
 
 @{
     ViewBag.Title = "Создание";
@@ -6,70 +6,71 @@
 
 <h2>Создание абонента</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
-<table>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Name)
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Telephone)
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Telephone)
-                @Html.ValidationMessageFor(model => model.Telephone)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.INN)
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.INN)
-                @Html.ValidationMessageFor(model => model.INN)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.NumberOfInhabitants)
-            </div>
-        </td>
-        <td>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.NumberOfInhabitants)
-                @Html.ValidationMessageFor(model => model.NumberOfInhabitants)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <input type="submit" value="Создать" class="btn btn-default"/>
-        </td>
-    </tr>
-</table>
+
+    <table>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Telephone)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Telephone)
+                    @Html.ValidationMessageFor(model => model.Telephone)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.INN)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.INN)
+                    @Html.ValidationMessageFor(model => model.INN)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NumberOfInhabitants)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NumberOfInhabitants)
+                    @Html.ValidationMessageFor(model => model.NumberOfInhabitants)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Создать" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
 }
 
 <div>

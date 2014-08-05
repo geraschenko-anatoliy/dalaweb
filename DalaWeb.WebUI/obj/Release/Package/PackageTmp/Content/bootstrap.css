@@ -6179,3 +6179,9 @@ a.badge:focus {
  {
      text-align: center;
  }
+
+
+.column-title {
+    text-align: center;
+    font-weight: bold;
+}

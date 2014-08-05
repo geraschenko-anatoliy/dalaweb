@@ -5,31 +5,10 @@
 }
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script src="~/Scripts/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+    var addressGetStreetPath = "@Url.Action("GetStreets", "Address")";
+</script>
 <script src="~/Scripts/DropDownHelpers/AddressDropdown.js"></script>
-@*<script type="text/javascript">
-    $(document).ready(function () {
-        $("#CityId").change(function () {
-            $("#StreetId").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("GetStreets")',
-                dataType: 'json',
-                data: { cityId: $("#CityId").val() },
-                success: function (streets) {
-                    $.each(streets, function (i, street) {
-                        $("#StreetId").append('<option value="' + street.Value + '">' +
-                         street.Text + '</option>');
-                    });
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
-                }
-            });
-            return false;
-        })
-    });
-</script>*@
-
 
 <h2>Редактировать</h2>
 

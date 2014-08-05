@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Service
+﻿@model DalaWeb.Domain.Entities.Services.Service
 
 @{
     ViewBag.Title = "Создание";
@@ -6,13 +6,14 @@
 
 <h2>Создать</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Сервис</legend>
-
+        @Html.Hidden("Archival", false)
         <div class="editor-label">
             @Html.LabelFor(model => model.CompanyId, "Сервис компания")
         </div>

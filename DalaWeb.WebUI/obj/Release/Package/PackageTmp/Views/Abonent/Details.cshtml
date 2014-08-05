@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Abonent
+﻿@model DalaWeb.Domain.Entities.Abonents.Abonent
 
 @{
     ViewBag.Title = "Детальнее";
@@ -57,6 +57,6 @@
     </tr>
 </table>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id=Model.AbonentId }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.AbonentId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

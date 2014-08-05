@@ -1,7 +1,7 @@
 ﻿@model System.DateTime?
 
 <div class="editor-field">
-    @Html.TextBox("", String.Format("{0:mm/dd/yyyy}", (Model == DateTime.MinValue) ? null : Model), new { @class = "datepicker" })
+    @Html.TextBox("", String.Format("{0:yyyy/MM/dd}", (Model == DateTime.MinValue) ? null : Model), new { @class = "datepicker" })
 </div>
 
 <script type="text/javascript">
@@ -9,13 +9,9 @@
         $("#@ViewData.ModelMetadata.PropertyName").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yyyy/mm/dd',
-            gotoCurrent: true,
-            format: 'yyyy/mm/dd'
+            dateFormat: 'yyyy/MM/dd',
+            format: 'yyyy/MM/dd',
+            autoclose: true
         });
     });
-    @*$("#@ViewData.ModelMetadata.PropertyName").datepicker('setDate', Date.now);
-    $("#@ViewData.ModelMetadata.PropertyName").datepicker('update');
-    $("#@ViewData.ModelMetadata.PropertyName").val('');*@
-
 </script>

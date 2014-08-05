@@ -1,0 +1,239 @@
+﻿@model DalaWeb.Domain.Entities.Abonents.Abonent
+
+@{
+    ViewBag.Title = "Удаленные абоненты";
+}
+
+<h1>Информационная страница удаленного абонента @Model.Name</h1>
+
+<table>
+    <tr>
+        <td>
+            <h2>Общая информация</h2>
+            <table>
+                @Html.HiddenFor(model => model.AbonentId)
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.Name)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.DisplayNameFor(model => model.AbonentNumber)
+                        </div>
+                    </td>
+                    <td align="center">
+                        @if (!String.IsNullOrEmpty(Model.AbonentNumber))
+                        {
+                            <div class="editor-field">
+                                @Model.AbonentNumber
+                            </div>
+                        }
+                        else
+                        {
+                            <span style="font-size: 16px; align-content: center" class="label label-info">Адрес не добавлен</span>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.DisplayNameFor(model => model.Telephone)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.Telephone)
+                            @Html.ValidationMessageFor(model => model.Telephone)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.DisplayNameFor(model => model.INN)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.INN)
+                            @Html.ValidationMessageFor(model => model.INN)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.DisplayNameFor(model => model.NumberOfInhabitants)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.NumberOfInhabitants)
+                            @Html.ValidationMessageFor(model => model.NumberOfInhabitants)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            Адрес
+                        </div>
+                    </td>
+                    @if (Model.Address != null)
+                    {
+                        <td>
+                            @ViewBag.City @ViewBag.Street @Model.Address.House
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="label label-warning">Адрес указан не был</span>
+                        </td>
+                    }
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <h2>Сервисы</h2>
+            @if (Model.AbonentServices.Any())
+            {
+                <table>
+                    <tr>
+                        <td>
+                            <div class="column-title">
+                                Название
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-title">
+                                Цена
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-title">
+                                Тип
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-title">
+                                Поставщик
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-title">
+                                Дата подключения
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-title">
+                                Статус
+                            </div>
+                        </td>
+                    </tr>
+                    @foreach (var item in Model.AbonentServices)
+                    {
+                        <tr>
+                            <td>
+                                @item.Service.Name
+                            </td>
+                            <td>
+                                @item.Service.Price.ToString()
+                            </td>
+                            <td>
+                                @item.Service.ToString()
+                            </td>
+                            <td>
+                                @item.Service.ServiceCompany.Name
+                            </td>
+                            <td>
+                                @item.StartDate.ToShortDateString()
+                            </td>
+                            <td>
+                                @if (@item.isOff)
+                                {
+                                    <span class="label label-warning">Отключено</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-success">Подключено</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <h2>Кредиты</h2>
+            @if (Model.AbonentCredits.Any())
+            {
+                <table>
+                    <tr>
+                        <td>
+                            <div class="column-title">
+                                Название
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-title">
+                                Сумма
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column-title">
+                                Статус
+                            </div>
+                        </td>
+                    </tr>
+                    @foreach (var item in Model.AbonentCredits.Where(i => i.AbonentId == Model.AbonentId))
+                    {
+                        <tr>
+                            <td>
+                                @item.Credit.Name
+                            </td>
+                            <td>
+                                @item.Price.ToString()
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @if (@item.FullyPaid)
+                                {
+                                    <span class="label label-warning">Погашен</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-success">Активный</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+
+        </td>
+
+    </tr>
+</table>
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,119 @@
+﻿@model DalaWeb.WebUI.ViewModels.DeletedAbonentIndexViewModel
+
+@{
+    ViewBag.Title = "Удаленные абоненты";
+}
+
+<h2>Удаленные абоненты</h2>
+
+<p>
+    @Html.ActionLink("Главная", "Index")
+</p>
+<table>
+    <tr>
+        <th>
+            <div class="column-title">
+                Номер
+            </div>
+        </th>
+        <th>
+            <div class="column-title">
+                Имя
+            </div>
+        </th>
+        <th>
+            <div class="column-title">
+                ИНН
+            </div>
+        </th>
+        <th>
+            <div class="column-title">
+                Телефон
+            </div>
+        </th>
+        <th>
+            <div class="column-title">
+                Число жителей
+            </div>
+        </th>
+        <th>
+            <div class="column-title">
+                Город
+            </div>
+        </th>
+        <th>
+            <div class="column-title">
+                Улица
+            </div>
+        </th>
+        <th>
+            <div class="column-title">
+                Дом
+            </div>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.abonents)
+    {
+        <tr>
+            <td>
+                @if (item.Address == null)
+                {
+                    <span class="label label-important">Адрес не добавлен</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.AbonentNumber)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.INN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfInhabitants)
+            </td>
+            @if (item.Address != null)
+            {
+                <td>
+                    @Model.cities.Where(x => x.CityId == item.Address.CityId).Select(x => x.Name).FirstOrDefault()
+                </td>
+                <td>
+                    @Model.streets.Where(x => x.StreetId == item.Address.StreetId).Select(x => x.Name).FirstOrDefault()
+                </td>
+                <td>
+                    @item.Address.House
+                </td>
+            }
+            else
+            {
+                <td>
+                    <span class="label label-important">Город не указан</span>
+                </td>
+                <td>
+                    <span class="label label-important">Улица не указана</span>
+                </td>
+                <td>
+                    <span class="label label-important">Дом не указан</span>
+                </td>
+            }
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Функции
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("DeletedDetails", new { id = item.AbonentId })">Детальнее</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>

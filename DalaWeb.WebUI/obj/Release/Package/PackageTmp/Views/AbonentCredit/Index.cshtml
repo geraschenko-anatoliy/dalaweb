@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DalaWeb.Domain.Entities.AbonentCredit>
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Credits.AbonentCredit>
 
 @{
     ViewBag.Title = "Главная";
@@ -15,7 +15,10 @@
             Кредит
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateWhereCreated)
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PrePayment)
@@ -41,52 +44,56 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abonent.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Credit.Name)
-        </td>
-        <td>
-            @item.DateWhereCreated.ToString("d")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrePayment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaidForTheEntirePeriod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaidMonths)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Term)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaymentForMonth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comment)
-        </td>
-        <td>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Функции
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="@Url.Action("Edit", new { abonentId = item.AbonentId, creditId = item.CreditId })">Редактировать</a></li>
-                    <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, creditId = item.CreditId })">Детальнее</a></li>
-                    <li><a href="@Url.Action("Delete", new { abonentId = item.AbonentId, creditId = item.CreditId })">Удалить</a></li>
-                </ul>
-            </div>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abonent.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credit.Name)
+            </td>
+            <td>
+                @item.StartDate.ToString("d")
+            </td>
+            <td>
+                @item.FinishDate.ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrePayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidForTheEntirePeriod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidMonths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Term)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentForMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Функции
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("Edit", new { abonentId = item.AbonentId, creditId = item.CreditId })">Редактировать</a></li>
+                        <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, creditId = item.CreditId })">Детальнее</a></li>
+                        <li><a href="@Url.Action("Delete", new { abonentId = item.AbonentId, creditId = item.CreditId })">Удалить</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>

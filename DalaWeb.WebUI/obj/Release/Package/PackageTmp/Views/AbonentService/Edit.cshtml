@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.AbonentService
+﻿@model DalaWeb.Domain.Entities.Services.AbonentService
 
 @{
     ViewBag.Title = "Редактирование";
@@ -6,15 +6,13 @@
 
 <h2>Редактирование</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    @*@Html.Hidden("AbonentId", (int)@ViewBag.AbonentId)
-    @Html.Hidden("ServiceId", (int)@ViewBag.ServiceId)*@
     @Html.HiddenFor(model => model.AbonentId)
     @Html.HiddenFor(model => model.ServiceId)
-
-            <table>
+    <table>
         <tr>
             <td>
                 <div class="editor-label">
@@ -53,18 +51,16 @@
                 }
                 else
                 {
-                <div class="editor-field">
-                    <span class="label label-info">Сервис отключен</span>
-                    @Html.DisplayFor(model => model.FinishDate)
-                    @Html.ValidationMessageFor(model => model.FinishDate)
-                </div>
+                    <div class="editor-field">
+                        <span class="label label-info">Сервис отключен</span>
+                        @Html.DisplayFor(model => model.FinishDate)
+                        @Html.ValidationMessageFor(model => model.FinishDate)
+                    </div>
                 }
             </td>
         </tr>
         <tr>
-            <td>
-
-            </td>
+            <td></td>
             <td>
                 <p>
                     <input type="submit" value="Сохранить" />
@@ -78,6 +74,17 @@
     @Html.ActionLink("Вернуться", "Index")
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#@ViewData.ModelMetadata.PropertyName").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yyyy/MM/dd',
+            format: 'yyyy/MM/dd'
+        });
+    });
+</script>
 }

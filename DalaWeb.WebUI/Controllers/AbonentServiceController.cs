@@ -42,6 +42,7 @@ namespace DalaWeb.WebUI.Controllers
                 .Include(x => x.Service)
                 .Include(x => x.Abonent)
                 .Where(x => x.isOff == true)
+                .OrderBy(x => x.FinishDate)
                 .ToList());
         }
 
@@ -69,7 +70,7 @@ namespace DalaWeb.WebUI.Controllers
             ViewBag.AbonentName = unitOfWork.AbonentRepository.GetById(abonentId).Name;
             ViewBag.AbonentId = abonentId;
             ViewBag.FinishDate = DateTime.MinValue;
-            ViewBag.ServiceId = new SelectList(serviceRepository.Get(), "ServiceId", "Name");
+            //ViewBag.ServiceId = new SelectList(serviceRepository.Get().Where(x => x.Archival == false), "ServiceId", "Name");
             ViewBag.CompanyId = new SelectList(unitOfWork.ServiceCompanyRepository.Get(), "CompanyId", "Name");
             return View();
         }
@@ -90,7 +91,8 @@ namespace DalaWeb.WebUI.Controllers
                 return RedirectToAction("Edit", "Abonent", new { id = abonentService.AbonentId });
             }
 
-            ViewBag.ServiceId = new SelectList(serviceRepository.Get(), "SerivceId", "Сервис");
+            //ViewBag.ServiceId = new SelectList(serviceRepository.Get().Where(x => x.Archival == false), "SerivceId", "Сервис");
+            ViewBag.CompanyId = new SelectList(unitOfWork.ServiceCompanyRepository.Get(), "CompanyId", "Name");
             return View(abonentService);
         }
 
@@ -178,7 +180,7 @@ namespace DalaWeb.WebUI.Controllers
         {
             List<SelectListItem> services = new List<SelectListItem>();
 
-            foreach (var item in unitOfWork.ServiceRepository.Get().Where(x => x.CompanyId == companyId))
+            foreach (var item in unitOfWork.ServiceRepository.Get().Where(x => x.CompanyId == companyId).Where(x => x.Archival == false))
             {
                 services.Add(new SelectListItem { Text = item.Name, Value = item.ServiceId.ToString() });
             }

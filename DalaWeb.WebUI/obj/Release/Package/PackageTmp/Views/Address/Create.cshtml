@@ -1,42 +1,24 @@
-﻿@model DalaWeb.Domain.Entities.Address
+﻿@model DalaWeb.Domain.Entities.Addresses.Address
 
 @{
     ViewBag.Title = "Создание";
 }
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#CityId").change(function () {
-            $("#StreetId").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("GetStreets")',
-                dataType: 'json',
-                data: { cityId: $("#CityId").val() },
-                success: function (streets) {
-                    $.each(streets, function (i, street) {
-                        $("#StreetId").append('<option value="' + street.Value + '">' +
-                         street.Text + '</option>');
-                    });
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
-                }
-            });
-            return false;
-        })
-    });
+    var addressGetStreetPath = "@Url.Action("GetStreets", "Address")";
 </script>
 
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+<script src="~/Scripts/DropDownHelpers/AddressDropdown.js"></script>
 <h2>Создать</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    @Html.Hidden("AbonentId", (int)ViewBag.AbonentId)    
+    @Html.Hidden("AbonentId", (int)ViewBag.AbonentId)
     <fieldset>
         <legend>Адрес</legend>
 
@@ -44,7 +26,6 @@
             Город
         </div>
         <div class="editor-field">
-            @*@Html.DropDownList("CityId", (SelectList)ViewBag.CityId)*@
             @Html.DropDownList("CityId", string.Empty)
             @Html.ValidationMessageFor(model => model.CityId)
         </div>
@@ -53,7 +34,7 @@
             Улица
         </div>
         <div class="editor-field">
-            @Html.DropDownList("StreetId", new SelectList(string.Empty, "Value", "Text")) 
+            @Html.DropDownList("StreetId", new SelectList(string.Empty, "Value", "Text"))
             @Html.ValidationMessageFor(model => model.StreetId)
         </div>
 
@@ -63,9 +44,10 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.House)
             @Html.ValidationMessageFor(model => model.House)
+            @Html.ValidationMessage("MyDropDownListKey")
         </div>
         <p>
-            <input type="submit" value="Создать" class="btn btn-default"/>
+            <input type="submit" value="Создать" class="btn btn-default" />
         </p>
     </fieldset>
 }

@@ -1,66 +1,110 @@
-﻿@model DalaWeb.Domain.Entities.Service
+﻿@model DalaWeb.Domain.Entities.Services.Service
 
 @{
     ViewBag.Title = "Сервисы";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#FinishDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yyyy/MM/dd',
+            format: 'yyyy/MM/dd',
+            autoclose: true
+        });
+    });
+</script>
+
 <h2>Удаление</h2>
 
-<h3>Вы действительно хотите удалить @Model.Name?</h3>
-<table>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.ServiceCompany.Name)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.ServiceCompany.Name)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Name)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Name)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Price)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Price)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Type)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Type)
-            </div>
-        </td>
-    </tr>
-</table>
-@using (Html.BeginForm()) {
+<h3>Вы действительно хотите удалить Model.Name?</h3>
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
+    <table>
+        @Html.HiddenFor(model => model.ServiceId)
+        @Html.HiddenFor(model => model.Name)
+        @Html.HiddenFor(model => model.CompanyId)
+        @Html.HiddenFor(model => model.Type)
+        @Html.HiddenFor(model => model.Price)
+
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.ServiceCompany.Name)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.ServiceCompany.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Name)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Price)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Price)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Type)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Model.ToString()
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    Дата удаления
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBox("FinishDate", String.Format("{0:yyyy/MM/dd}", DateTime.Now), new { @class = "datepicker" })
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
     <p>
         <input type="submit" value="Удалить" /> |
         @Html.ActionLink("Вернуться", "Index")
     </p>
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#@ViewData.ModelMetadata.PropertyName").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yyyy/MM/dd',
+            format: 'yyyy/MM/dd'
+        });
+    });
+</script>

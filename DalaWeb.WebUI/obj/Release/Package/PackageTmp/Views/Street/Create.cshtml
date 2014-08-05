@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.Street
+﻿@model DalaWeb.Domain.Entities.Addresses.Street
 
 @{
     ViewBag.Title = "Создание улицы";
@@ -6,7 +6,8 @@
 
 <h2>Создание улицы</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 

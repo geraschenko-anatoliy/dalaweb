@@ -74,6 +74,17 @@
     @Html.ActionLink("Вернуться", "Index")
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#@ViewData.ModelMetadata.PropertyName").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yyyy/MM/dd',
+            format: 'yyyy/MM/dd'
+        });
+    });
+</script>
 }

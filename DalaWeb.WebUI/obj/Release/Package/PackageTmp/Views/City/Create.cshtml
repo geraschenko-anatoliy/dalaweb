@@ -1,4 +1,4 @@
-﻿@model DalaWeb.Domain.Entities.City
+﻿@model DalaWeb.Domain.Entities.Addresses.City
 
 @{
     ViewBag.Title = "Создание города";
@@ -6,7 +6,8 @@
 
 <h2>Создание города</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
