@@ -27,7 +27,7 @@
         <legend>Сервис</legend>
 
         @Html.HiddenFor(model => model.ServiceId)
-        @Html.HiddenFor(model => model.Archival)
+        @Html.HiddenFor(model => model.isOff)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CompanyId, "Сервис компания")
@@ -85,15 +85,3 @@
 @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
-
-@*<script type="text/javascript">
-    $(document).ready(function () {
-        $().datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'yyyy/MM/dd',
-            format: 'yyyy/MM/dd',
-            autoclose: true
-        });
-    });
-</script>*@

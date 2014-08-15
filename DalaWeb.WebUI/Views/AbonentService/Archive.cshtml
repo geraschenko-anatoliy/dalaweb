@@ -50,10 +50,10 @@
                 @Html.DisplayFor(modelItem => item.Service.Name)
             </td>
             <td>
-                @item.StartDate.ToShortDateString()
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @item.FinishDate.ToShortDateString()
+                @Html.DisplayFor(modelItem => item.FinishDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Service.Price)
@@ -72,5 +72,4 @@
             </td>
         </tr>
     }
-
 </table>

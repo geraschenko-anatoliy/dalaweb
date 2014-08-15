@@ -52,6 +52,9 @@
     <Compile Include="Entities\Abonents\Abonent.cs" />
     <Compile Include="Entities\Addresses\City.cs" />
     <Compile Include="Entities\Addresses\Street.cs" />
+    <Compile Include="Entities\Counters\Counter.cs" />
+    <Compile Include="Entities\Counters\CounterValues.cs" />
+    <Compile Include="Entities\Counters\Stamp.cs" />
     <Compile Include="Entities\Credits\AbonentCredit.cs" />
     <Compile Include="Entities\Addresses\Address.cs" />
     <Compile Include="Entities\Credits\Credit.cs" />
@@ -122,6 +125,70 @@
     <Compile Include="Migrations\201407292213305_all-double-prices.Designer.cs">
       <DependentUpon>201407292213305_all-double-prices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408070918448_counters.cs" />
+    <Compile Include="Migrations\201408070918448_counters.Designer.cs">
+      <DependentUpon>201408070918448_counters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408070943037_countersIsOff.cs" />
+    <Compile Include="Migrations\201408070943037_countersIsOff.Designer.cs">
+      <DependentUpon>201408070943037_countersIsOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071258564_service-counters-rel.cs" />
+    <Compile Include="Migrations\201408071258564_service-counters-rel.Designer.cs">
+      <DependentUpon>201408071258564_service-counters-rel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071302340_service-counter-rel1.cs" />
+    <Compile Include="Migrations\201408071302340_service-counter-rel1.Designer.cs">
+      <DependentUpon>201408071302340_service-counter-rel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071309057_abonent-counter-rel.cs" />
+    <Compile Include="Migrations\201408071309057_abonent-counter-rel.Designer.cs">
+      <DependentUpon>201408071309057_abonent-counter-rel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071314196_no-type-in-counter.cs" />
+    <Compile Include="Migrations\201408071314196_no-type-in-counter.Designer.cs">
+      <DependentUpon>201408071314196_no-type-in-counter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408071938115_a1.cs" />
+    <Compile Include="Migrations\201408071938115_a1.Designer.cs">
+      <DependentUpon>201408071938115_a1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408072118144_date-counter555.cs" />
+    <Compile Include="Migrations\201408072118144_date-counter555.Designer.cs">
+      <DependentUpon>201408072118144_date-counter555.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408072118396_date-counter5.cs" />
+    <Compile Include="Migrations\201408072118396_date-counter5.Designer.cs">
+      <DependentUpon>201408072118396_date-counter5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408120901466_datetimeToDateInStamps.cs" />
+    <Compile Include="Migrations\201408120901466_datetimeToDateInStamps.Designer.cs">
+      <DependentUpon>201408120901466_datetimeToDateInStamps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408121303351_isOffForStamp.cs" />
+    <Compile Include="Migrations\201408121303351_isOffForStamp.Designer.cs">
+      <DependentUpon>201408121303351_isOffForStamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408121740222_Service-Archival-To-isOff.cs" />
+    <Compile Include="Migrations\201408121740222_Service-Archival-To-isOff.Designer.cs">
+      <DependentUpon>201408121740222_Service-Archival-To-isOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408140927321_initial-value-for-new-counter.cs" />
+    <Compile Include="Migrations\201408140927321_initial-value-for-new-counter.Designer.cs">
+      <DependentUpon>201408140927321_initial-value-for-new-counter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408142007176_db-gen-countervalues.cs" />
+    <Compile Include="Migrations\201408142007176_db-gen-countervalues.Designer.cs">
+      <DependentUpon>201408142007176_db-gen-countervalues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408151007233_dbgen-none.cs" />
+    <Compile Include="Migrations\201408151007233_dbgen-none.Designer.cs">
+      <DependentUpon>201408151007233_dbgen-none.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408151008447_dbgen-identity.cs" />
+    <Compile Include="Migrations\201408151008447_dbgen-identity.Designer.cs">
+      <DependentUpon>201408151008447_dbgen-identity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -179,6 +246,54 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407292213305_all-double-prices.resx">
       <DependentUpon>201407292213305_all-double-prices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408070918448_counters.resx">
+      <DependentUpon>201408070918448_counters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408070943037_countersIsOff.resx">
+      <DependentUpon>201408070943037_countersIsOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071258564_service-counters-rel.resx">
+      <DependentUpon>201408071258564_service-counters-rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071302340_service-counter-rel1.resx">
+      <DependentUpon>201408071302340_service-counter-rel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071309057_abonent-counter-rel.resx">
+      <DependentUpon>201408071309057_abonent-counter-rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071314196_no-type-in-counter.resx">
+      <DependentUpon>201408071314196_no-type-in-counter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408071938115_a1.resx">
+      <DependentUpon>201408071938115_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408072118144_date-counter555.resx">
+      <DependentUpon>201408072118144_date-counter555.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408072118396_date-counter5.resx">
+      <DependentUpon>201408072118396_date-counter5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408120901466_datetimeToDateInStamps.resx">
+      <DependentUpon>201408120901466_datetimeToDateInStamps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408121303351_isOffForStamp.resx">
+      <DependentUpon>201408121303351_isOffForStamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408121740222_Service-Archival-To-isOff.resx">
+      <DependentUpon>201408121740222_Service-Archival-To-isOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408140927321_initial-value-for-new-counter.resx">
+      <DependentUpon>201408140927321_initial-value-for-new-counter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408142007176_db-gen-countervalues.resx">
+      <DependentUpon>201408142007176_db-gen-countervalues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408151007233_dbgen-none.resx">
+      <DependentUpon>201408151007233_dbgen-none.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408151008447_dbgen-identity.resx">
+      <DependentUpon>201408151008447_dbgen-identity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,65 +6,74 @@
 
 <h2>Предоставляемые услуги</h2>
 <h3>@Html.ActionLink("Архив услуг", "Archive")</h3>
-<table>
-    <tr>
-        <th>
-            Номер
-        </th>
-        <th>
-            Имя
-        </th>
-        <th>
-            Сервис компания
-        </th>
-        <th>
-            Сервис
-        </th>
-        <th>
-            Дата подключения
-        </th>
-        <th>
-            Цена
-        </th>
-        <th>
-
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+@if (Model.Any())
+{
+    <table>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Abonent.AbonentNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Abonent.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.ServiceCompany.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.Name)
-            </td>
-            <td>
-                @item.StartDate.ToShortDateString()
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.Price)
-            </td>
-            <td>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Функции
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Детальнее</a></li>
-                        <li><a href="@Url.Action("Remove", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Удалить</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-    }
+            <th>
+                Номер
+            </th>
+            <th>
+                Имя
+            </th>
+            <th>
+                Сервис компания
+            </th>
+            <th>
+                Сервис
+            </th>
+            <th>
+                Дата подключения
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
 
-</table>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abonent.AbonentNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abonent.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.ServiceCompany.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Price)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Функции
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Детальнее</a></li>
+                            <li><a href="@Url.Action("Remove", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Отключить</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>
+        Список абонентских услуг пуст
+    </p>
+}
+

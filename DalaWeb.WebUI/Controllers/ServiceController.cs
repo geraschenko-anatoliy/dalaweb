@@ -19,7 +19,6 @@ namespace DalaWeb.WebUI.Controllers
         private IRepository<Service> serviceRepository;
         private IRepository<ServiceCompany> serviceCompanyRepository;
         private IRepository<AbonentService> abonentServiceRepository;
-       
 
         public ServiceController(IUnitOfWork unitOfWork, IUnitOfWork unitOfWork2)
         {
@@ -34,13 +33,13 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Index()
         {
-            var services = serviceRepository.Get().Include(s => s.ServiceCompany).Where(s => s.Archival ==false);
+            var services = serviceRepository.Get().Include(s => s.ServiceCompany).Where(s => s.isOff == false);
             return View(services.ToList());
         }
 
         public ActionResult Archive()
         {
-            var services = serviceRepository.Get().Include(s => s.ServiceCompany).Where(x => x.Archival == true);
+            var services = serviceRepository.Get().Include(s => s.ServiceCompany).Where(x => x.isOff == true);
             return View(services.ToList());
         }
         //
@@ -62,12 +61,7 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(serviceCompanyRepository.Get(), "CompanyId", "Name");
-            List<SelectListItem> items = new List<SelectListItem>();
-
-            items.Add(new SelectListItem() { Text = "По абоненту", Value = "1", Selected = false });
-            items.Add(new SelectListItem() { Text = "По проживающим", Value = "2", Selected = false });
-            items.Add(new SelectListItem() { Text = "По счетчику", Value = "3", Selected = false });
-            ViewBag.Type = new SelectList(items, "Value", "Text");
+            ViewBag.Type = getServiceTypes(null);
             return View();
         }
 
@@ -86,14 +80,6 @@ namespace DalaWeb.WebUI.Controllers
             }
 
             ViewBag.CompanyId = new SelectList(serviceCompanyRepository.Get(), "CompanyId", "Name", service.CompanyId);
-            
-            //List<SelectListItem> items = new List<SelectListItem>();
-            //items.Add(new SelectListItem() { Text = "По абоненту", Value = "1", Selected = false });
-            //items.Add(new SelectListItem() { Text = "По проживающим", Value = "2", Selected = false });
-            //items.Add(new SelectListItem() { Text = "По счетчику", Value = "3", Selected = false });
-
-            //ViewBag.Type = new SelectList(items, "Type", "Тип услуги", service.Type);
-
             ViewBag.Type = getServiceTypes(service);
             return View(service);
         }
@@ -104,20 +90,15 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Edit(int id = 0)
         {
             Service service = serviceRepository.GetById(id);
-            tempServicePrice = service.Price;
+
+            if (service.isOff)
+                return RedirectToAction("Archive");
+            Session["tempServicePrice"] = service.Price;
             if (service == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CompanyId = new SelectList(serviceCompanyRepository.Get(), "CompanyId", "Name", service.CompanyId);
-            
-            //List<SelectListItem> items = new List<SelectListItem>();
-            //items.Add(new SelectListItem() { Text = "По абоненту", Value = "1", Selected = false });
-            //items.Add(new SelectListItem() { Text = "По проживающим", Value = "2", Selected = false });
-            //items.Add(new SelectListItem() { Text = "По счетчику", Value = "3", Selected = false });
-
-            //ViewBag.Type = new SelectList(items, "Type", "Тип услуги", service.Type);
-
             ViewBag.Type = getServiceTypes(service);
 
             return View(service);
@@ -129,17 +110,11 @@ namespace DalaWeb.WebUI.Controllers
             items.Add(new SelectListItem() { Text = "По абоненту", Value = "1", Selected = false });
             items.Add(new SelectListItem() { Text = "По проживающим", Value = "2", Selected = false });
             items.Add(new SelectListItem() { Text = "По счетчику", Value = "3", Selected = false });
-
-            //SelectList result = new SelectList(items);
-
-            //ViewBag.Type = new SelectList(result, "Type", "Тип услуги", service.Type);
-
-            SelectList result = new SelectList(items, "Value", "Text", service.Type);
-
+            SelectList result = (service == null) ? new SelectList(items, "Value", "Text") : new SelectList(items, "Value", "Text", service.Type);
             return result;
         }
 
-        private static double tempServicePrice;
+
 
         //
         // POST: /Service/Edit/5
@@ -154,7 +129,8 @@ namespace DalaWeb.WebUI.Controllers
                 ModelState.AddModelError("Type", "Выберите тип услуги");
             if (ModelState.IsValid)
             {
-                if (tempServicePrice != service.Price)
+                double tempServicePrice = double.Parse(Session["tempServicePrice"].ToString());
+                if ( tempServicePrice != service.Price)
                 {
                     serviceRepository.Update(service);
                     var abonentServices = abonentServiceRepository.Get().Where(x => x.Service.ServiceId == service.ServiceId).Where(x => x.isOff == false);
@@ -167,8 +143,8 @@ namespace DalaWeb.WebUI.Controllers
                         newService.Type = service.Type;
                         newService.ServiceId = 0;
                         serviceRepository.Insert(newService);
-                        
-                        service.Archival = true;
+
+                        service.isOff = true;
                         service.Price = tempServicePrice;
                         serviceRepository.Update(service);
 
@@ -228,7 +204,7 @@ namespace DalaWeb.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                service.Archival = true;
+                service.isOff = true;
                 serviceRepository.Update(service);
 
                 var abonentServices = unitOfWork.AbonentServiceRepository.Get().Where(x => x.Service.ServiceId == service.ServiceId).Where(x=> x.isOff == false);

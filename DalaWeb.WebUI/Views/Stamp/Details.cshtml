@@ -1,0 +1,63 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Stamp
+
+@{
+    ViewBag.Title = "Пломбы. Детальнее";
+}
+
+<h2>Детальнее</h2>
+
+<table>
+    <tr>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Counter.Name)
+            </div>
+        </th>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Counter.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+        </th>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </div>
+        </th>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.StartDate)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </div>
+        </th>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.FinishDate)
+            </div>
+        </td>
+    </tr>
+</table>
+
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.StampId }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

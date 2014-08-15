@@ -30,6 +30,10 @@ namespace DalaWeb.WebUI
                 .AddChildRoute<ServiceController>("Сервисы", c => c.Index())
                 .AddChildRoute<AbonentServiceController>("Пользователи", c => c.Index());
 
+            routes.MapNavigationRoute<CounterController>("Счетчики", c => c.Delete(0))
+                .AddChildRoute<CounterController>("Счетчики", c => c.Index())
+                .AddChildRoute<CounterValuesController>("Показания", c => c.Index())
+                .AddChildRoute<CounterController>("Пользователи", c => c.Details(0));
         }
     }
 }

@@ -143,9 +143,12 @@
     <Compile Include="Controllers\AbonentServiceController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\CounterController.cs" />
+    <Compile Include="Controllers\CounterValuesController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
     <Compile Include="Controllers\ServiceCompanyController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\StampController.cs" />
     <Compile Include="Controllers\StreetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -317,7 +320,6 @@
     <Content Include="Views\Street\Create.cshtml" />
     <Content Include="Views\Street\Edit.cshtml" />
     <Content Include="Views\Street\Delete.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\ServiceCompany\Index.cshtml" />
     <Content Include="Views\ServiceCompany\Details.cshtml" />
@@ -338,6 +340,24 @@
     <Content Include="Views\Abonent\DeletedIndex.cshtml" />
     <Content Include="Views\Service\Archive.cshtml" />
     <None Include="Views\AbonentService\Archive.cshtml" />
+    <Content Include="Views\Counter\Index.cshtml" />
+    <Content Include="Views\Counter\Details.cshtml" />
+    <Content Include="Views\Counter\Create.cshtml" />
+    <Content Include="Views\Counter\Edit.cshtml" />
+    <Content Include="Views\Counter\Delete.cshtml" />
+    <Content Include="Views\Stamp\Index.cshtml" />
+    <Content Include="Views\Stamp\Details.cshtml" />
+    <Content Include="Views\Stamp\Create.cshtml" />
+    <Content Include="Views\Stamp\Edit.cshtml" />
+    <Content Include="Views\Stamp\Delete.cshtml" />
+    <Content Include="Views\CounterValues\Index.cshtml" />
+    <Content Include="Views\CounterValues\Details.cshtml" />
+    <Content Include="Views\CounterValues\Create.cshtml" />
+    <Content Include="Views\CounterValues\Edit.cshtml" />
+    <Content Include="Views\CounterValues\Delete.cshtml" />
+    <Content Include="Views\Counter\Archive.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Stamp\Archive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

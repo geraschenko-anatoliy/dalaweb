@@ -1,0 +1,63 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Counter
+
+@{
+    ViewBag.Title = "";
+}
+
+<h2>Создание счетчика для абонента @ViewBag.AbonentName</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Counter</legend>
+
+        @Html.Hidden("isOff", false)
+        @Html.HiddenFor(model => model.AbonentId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ServiceId, (SelectList)ViewBag.Services, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.ServiceId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InitialValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InitialValue)
+            @Html.ValidationMessageFor(model => model.InitialValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

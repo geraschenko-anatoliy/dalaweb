@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DalaWeb.Domain.Entities.Counters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -28,10 +29,11 @@ namespace DalaWeb.Domain.Entities.Services
 
         [DefaultValue(false)]
         [Display(Name = "Статус")]
-        public bool Archival { get; set; }
+        public bool isOff { get; set; }
 
         public virtual ServiceCompany ServiceCompany { get; set; }
         public virtual ICollection<AbonentService> AbonentServices { get; set; }
+        public virtual ICollection<Counter> Counters { get; set; }
 
         public override string ToString()
         {

@@ -6,6 +6,128 @@
 
 <h1>Информационная страница абонента @Model.Name</h1>
 
+@helper RenderService(IEnumerable<DalaWeb.Domain.Entities.Services.AbonentService> items)
+{
+    <table>
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
+                Тип
+            </th>
+            <th>
+                Поставщик
+            </th>
+            <th>
+                Дата подключения
+            </th>
+            <th>
+                Счетчик
+            </th>
+            <th>
+                Пломба
+            </th>
+            <th>
+                Статус
+            </th>
+        </tr>
+        @foreach (var item in items)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Service.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Service.Price.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Service.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Service.ServiceCompany.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.StartDate.ToShortDateString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
+                </td>
+
+
+                @{
+            if (item.Service.Type == 3)
+            {
+
+                DalaWeb.Domain.Entities.Counters.Counter counter = item.Service.Counters.Where(x => x.AbonentId == item.AbonentId).Where(x => x.isOff == false).FirstOrDefault();
+
+                if (counter != null)
+                {
+                    <td>
+                        @Html.ActionLink(counter.Name, "Details", "Counter", new { id = counter.CounterId }, null)
+                    </td>
+                    <td>
+
+                        @if (!counter.Stamps.Where(s => s.isOff == false).Any())
+                        {
+                            @Html.ActionLink("Добавить пломбу", "Create", "Stamp", new { counterId = counter.CounterId }, null)
+                        }
+                        else
+                        {
+                            @Html.ActionLink(counter.Stamps.Where(s => s.isOff == false).LastOrDefault().Name, "Details", "Stamp", new { id = counter.Stamps.Where(s => s.isOff == false).LastOrDefault().StampId }, null)
+                        }
+                    </td>
+                }
+                else
+                {
+                    DalaWeb.Domain.Entities.Counters.Counter LastCounter = item.Service.Counters.Where(x => x.AbonentId == item.AbonentId).Where(x => x.isOff == true).LastOrDefault();
+                    <td>
+                        @if (LastCounter == null)
+                        {
+                            @Html.ActionLink("Подключить счетчик", "Create", "Counter", new { abonentId = Model.AbonentId, serviceId = item.Service.ServiceId, StartDate = item.StartDate }, null)
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Подключить счетчик", "Create", "Counter", new { abonentId = Model.AbonentId, serviceId = item.Service.ServiceId, StartDate = LastCounter.FinishDate.AddDays(1.0) }, null)
+                        }
+                    </td>
+                    <td>
+                        <p>
+                            ---
+                        </p>
+                    </td>
+                }
+
+            }
+            else
+            {
+                <td>
+                    <p>
+                        ---
+                    </p>
+                </td>
+                    <td>
+                        <p>
+                            ---
+                        </p>
+                    </td>
+            }
+                }
+
+                <td>
+                    @if (@item.isOff)
+                    {
+                        <span class="label label-warning">Отключено</span>
+                    }
+                    else
+                    {
+                        <span class="label label-success">Подключено</span>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
 <table>
     <tr>
         <td>
@@ -126,61 +248,7 @@
             @Html.ActionLink("Добавить сервис", "Create", "AbonentService", new { abonentId = Model.AbonentId }, null)
             @if (Model.AbonentServices.Any())
             {
-                <table>
-                    <tr>
-                        <td>
-                            <b>Название</b>
-                        </td>
-                        <td>
-                            <b>Цена</b>
-                        </td>
-                        <td>
-                            <b>Тип</b>
-                        </td>
-                        <td>
-                            <b>Поставщик</b>
-                        </td>
-                        <td>
-                            <b>
-                                Дата подключения
-                            </b>
-                        </td>
-                        <td>
-                            <b>Статус</b>
-                        </td>
-                    </tr>
-                    @foreach (var item in Model.AbonentServices)
-                    {
-                        <tr>
-                            <td>
-                                @Html.ActionLink(item.Service.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                            </td>
-                            <td>
-                                @Html.ActionLink(item.Service.Price.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                            </td>
-                            <td>
-                                @Html.ActionLink(item.Service.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                            </td>
-                            <td>
-                                @Html.ActionLink(item.Service.ServiceCompany.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                            </td>
-                            <td>
-                                @Html.ActionLink(item.StartDate.ToShortDateString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                            </td>
-
-                            <td>
-                                @if (@item.isOff)
-                                {
-                                    <span class="label label-warning">Отключено</span>
-                                }
-                                else
-                                {
-                                    <span class="label label-success">Подключено</span>
-                                }
-                            </td>
-                        </tr>
-                    }
-                </table>
+                @RenderService(Model.AbonentServices.OrderBy(x => x.Service.Type))
             }
         </td>
     </tr>

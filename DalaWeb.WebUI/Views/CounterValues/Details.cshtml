@@ -1,0 +1,29 @@
+﻿@model DalaWeb.Domain.Entities.Counters.CounterValues
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CounterValues</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Counter.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Counter.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Value)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Value)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

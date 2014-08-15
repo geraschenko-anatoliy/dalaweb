@@ -24,7 +24,6 @@ namespace DalaWeb.Domain.Concrete
         {
             IQueryable<TEntity> query = dbSet;
             return query.ToList().AsQueryable();
-            //return query.ToList().AsQueryable().AsNoTracking();
         }
 
         public virtual TEntity GetById(object id)
@@ -60,35 +59,9 @@ namespace DalaWeb.Domain.Concrete
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            //dbSet.Attach(entityToUpdate);
-            ////context.Entry().CurrentValues.SetValues(entityToUpdate);
-            ////db.Entry(v).CurrentValues.SetValues(model);
-            //context.Entry(entityToUpdate).State = EntityState.Modified;
-
             var entry = this.context.Entry(entityToUpdate);
             this.dbSet.Attach(entityToUpdate);
             entry.State = EntityState.Modified;
         }
-
-        //public virtual void Update(TEntity entity) 
-        //{
-        //    if (entity == null) {
-        //        throw new ArgumentException("Cannot add a null entity.");
-        //    }
-
-        //    var entry = context.Entry<TEntity>(entity);
-
-        //    if (entry.State == EntityState.Detached) {
-        //        var set = context.Set<TEntity>();
-        //        TEntity attachedEntity = set.Local.SingleOrDefault(e => e == entity);  // You need to have access to key
-
-        //        if (attachedEntity != null) {
-        //            var attachedEntry = context.Entry(attachedEntity);
-        //            attachedEntry.CurrentValues.SetValues(entity);
-        //        } else {
-        //            entry.State = EntityState.Modified; // This should attach entity
-        //        }
-        //    }
-        //}
     }
 }

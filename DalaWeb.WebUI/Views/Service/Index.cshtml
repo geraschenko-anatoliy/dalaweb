@@ -9,6 +9,8 @@
 <p>
     @Html.ActionLink("Создать новый", "Create")
 </p>
+@if (Model.Any())
+{ 
 <table>
     <tr>
         <th>
@@ -42,9 +44,6 @@
                 @item.ToString()
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.ServiceId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.ServiceId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ServiceId })*@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Функции
@@ -61,3 +60,10 @@
     }
 
 </table>
+}
+else
+{
+    <p>
+        Список сервисов пуст
+    </p>
+}

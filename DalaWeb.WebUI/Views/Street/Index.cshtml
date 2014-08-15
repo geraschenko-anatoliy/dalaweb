@@ -9,6 +9,8 @@
 <p>
     @Html.ActionLink("Создать новую", "Create")
 </p>
+@if (Model.Any())
+{ 
 <table>
     <tr>
         <th>
@@ -43,5 +45,11 @@
             </td>
         </tr>
     }
-
 </table>
+}
+else
+{
+    <p>
+        Список улиц пуст
+    </p>
+}

@@ -88,6 +88,11 @@ namespace DalaWeb.WebUI.Controllers
         {
             Abonent abonent = abonentRepository.GetById(id);
 
+            foreach (var counter in abonent.Counters)
+            {
+                counter.Stamps = unitOfWork.StampRepository.Get().Where(x => x.CounterId == counter.CounterId).ToList();
+            }
+
             if (abonent == null)
             {
                 return HttpNotFound();

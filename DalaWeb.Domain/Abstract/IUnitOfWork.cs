@@ -1,6 +1,7 @@
 ﻿using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Entities.Abonents;
 using DalaWeb.Domain.Entities.Addresses;
+using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Services;
 using System;
@@ -27,5 +28,10 @@ namespace DalaWeb.Domain.Abstract
         IRepository<AbonentService> AbonentServiceRepository { get; }
         IRepository<Service> ServiceRepository { get; }
         IRepository<ServiceCompany> ServiceCompanyRepository { get; }
+
+        IRepository<Counter> CounterRepository { get; }
+        IRepository<CounterValues> CounterValuesRepository { get; }
+        IRepository<Stamp> StampRepository { get; }
+
     }
 }

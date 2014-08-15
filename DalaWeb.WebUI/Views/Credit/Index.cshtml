@@ -9,6 +9,8 @@
 <p>
     @Html.ActionLink("Создать новый", "Create")
 </p>
+@if (Model.Any())
+{ 
 <table>
     <tr>
         <th>
@@ -40,3 +42,10 @@
     }
 
 </table>
+}
+else
+{
+    <p>
+        Список кредитов пуст
+    </p>
+}

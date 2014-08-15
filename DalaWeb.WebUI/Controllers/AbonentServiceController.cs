@@ -180,7 +180,7 @@ namespace DalaWeb.WebUI.Controllers
         {
             List<SelectListItem> services = new List<SelectListItem>();
 
-            foreach (var item in unitOfWork.ServiceRepository.Get().Where(x => x.CompanyId == companyId).Where(x => x.Archival == false))
+            foreach (var item in unitOfWork.ServiceRepository.Get().Where(x => x.CompanyId == companyId).Where(x => x.isOff == false))
             {
                 services.Add(new SelectListItem { Text = item.Name, Value = item.ServiceId.ToString() });
             }

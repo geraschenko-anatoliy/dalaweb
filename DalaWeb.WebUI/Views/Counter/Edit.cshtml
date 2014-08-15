@@ -1,0 +1,131 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Counter
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.CounterId)
+    @Html.HiddenFor(model => model.AbonentId)
+    @Html.HiddenFor(model => model.ServiceId)
+    @Html.HiddenFor(model => model.Name)
+    <table>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.Name, new { @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AbonentId)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.AbonentId, (SelectList)ViewBag.Abonents, new { disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.AbonentId)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ServiceId)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.ServiceId, (SelectList)ViewBag.Services, new { disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.ServiceId)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.InitialValue)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.InitialValue)
+                    @Html.ValidationMessageFor(model => model.InitialValue)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.StartDate)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.StartDate)
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    Пломба
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @if (Model.Stamps.Where(x => x.isOff == false).Count() == 0)
+                    {
+                        @Html.ActionLink("Добавить пломбу", "Create", "Stamp", new { counterId = Model.CounterId }, null)
+                    }
+                    else
+                    {
+                        DalaWeb.Domain.Entities.Counters.Stamp Stamp = Model.Stamps.Where(x => x.isOff == false).LastOrDefault();
+                        @Html.ActionLink(Stamp.Name, "Details", "Stamp", new { id = Stamp.StampId }, null)
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Функции
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="@Url.Action("Edit", "Stamp", new { id = Stamp.StampId })">Редактировать</a></li>
+                                <li><a href="@Url.Action("Details", "Stamp", new { id = Stamp.StampId })">Детальнее</a></li>
+                                <li><a href="@Url.Action("Delete", "Stamp", new { id = Stamp.StampId })">Отключить</a></li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </td>
+        </tr>
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

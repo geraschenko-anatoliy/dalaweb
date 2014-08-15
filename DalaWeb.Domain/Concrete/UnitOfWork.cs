@@ -2,6 +2,7 @@
 using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Entities.Abonents;
 using DalaWeb.Domain.Entities.Addresses;
+using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Services;
 using System;
@@ -27,6 +28,40 @@ namespace DalaWeb.Domain.Concrete
         private Repository<Service> serviceRepository;
         private Repository<AbonentService> abonentServiceRepository;
 
+        private Repository<Counter> counterRepository;
+        private Repository<CounterValues> counterValuesRepository;
+        private Repository<Stamp> stampRepository;
+
+
+        public IRepository<Stamp> StampRepository
+        {
+            get
+            {
+                if (this.stampRepository == null)
+                    this.stampRepository = new Repository<Stamp>(context);
+                return stampRepository;
+            }
+        }
+
+        public IRepository<CounterValues> CounterValuesRepository
+        {
+            get
+            {
+                if (this.counterValuesRepository == null)
+                    this.counterValuesRepository = new Repository<CounterValues>(context);
+                return counterValuesRepository;
+            }
+        }
+
+        public IRepository<Counter> CounterRepository
+        {
+            get
+            {
+                if (this.counterRepository == null)
+                    this.counterRepository = new Repository<Counter>(context);
+                return counterRepository;
+            }
+        }
 
         public IRepository<AbonentService> AbonentServiceRepository
         {

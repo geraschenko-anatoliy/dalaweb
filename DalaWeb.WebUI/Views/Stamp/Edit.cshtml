@@ -1,0 +1,57 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Stamp
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Stamp</legend>
+
+        @Html.HiddenFor(model => model.StampId)
+        @Html.HiddenFor(model => model.CounterId)
+        @Html.HiddenFor(model => model.FinishDate)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Counter.Name)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CounterId", (SelectList)ViewBag.Counters, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.CounterId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

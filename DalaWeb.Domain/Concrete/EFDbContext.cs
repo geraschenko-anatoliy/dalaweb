@@ -10,6 +10,8 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DalaWeb.Domain.Entities.Counters;
+using System.Data.Metadata.Edm;
 
 namespace DalaWeb.Domain.Concrete
 {
@@ -26,15 +28,14 @@ namespace DalaWeb.Domain.Concrete
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            //modelBuilder.Entity<Abonent>()
-            //             .HasMany(c => c.Services).WithMany(i => i.Abonents)
-            //             .Map(t => t.MapLeftKey("AbonentId")
-            //                 .MapRightKey("ServiceId")
-            //                 .ToTable("AbonentsServices"));
+        {       
         }
+
+        public DbSet<Counter> Counters { get; set; }
+
+        public DbSet<Stamp> Stamps { get; set; }
+
+        public DbSet<CounterValues> CounterValues { get; set; }
 
 
     }

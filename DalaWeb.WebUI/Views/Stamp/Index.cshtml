@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Counters.Stamp>
+
+@{
+    ViewBag.Title = "Пломбы";
+}
+<h2>Главная</h2>
+
+@Html.ActionLink("К отключенным", "Archive")
+
+@if (Model.Any())
+{ 
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Counter.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Counter.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @if (item.FinishDate == DateTime.MinValue)
+            {
+                <span class="label label-success">Активная</span>
+            }
+            else
+            { 
+                @Html.DisplayFor(modelItem => item.FinishDate)
+            }
+        </td>
+        <td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Функции
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="@Url.Action("Edit", new { id = item.StampId })">Редактировать</a></li>
+                    <li><a href="@Url.Action("Details", new { id = item.StampId })">Детальнее</a></li>
+                    <li><a href="@Url.Action("Delete", new { id = item.StampId })">Удалить</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
+}
+else
+{
+    <p>
+        Список пломб пуст
+    </p>
+}

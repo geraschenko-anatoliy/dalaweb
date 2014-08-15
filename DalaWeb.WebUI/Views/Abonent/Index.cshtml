@@ -10,7 +10,9 @@
     @Html.ActionLink("Создать абонента", "Create")
     @Html.ActionLink("Просмотреть удаленных", "DeletedIndex")
 </p>
-<table>
+@if (Model.abonents.Any())
+{
+    <table>
     <tr>
         <th>
             Номер
@@ -104,3 +106,4 @@
         </tr>
     }
 </table>
+}
