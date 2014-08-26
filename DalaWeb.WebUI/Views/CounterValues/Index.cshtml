@@ -1,13 +1,30 @@
 ﻿@model IEnumerable<DalaWeb.Domain.Entities.Counters.CounterValues>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Показания счетчиков";
 }
 
-<h2>Index</h2>
+
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#ServiceName").change(function () {
+            console.log("Тип сообщения: %s. Обычное сообщение", "log")
+            var selected = $(this).find('option:selected').text();
+            var tableSelector = "#infobody"; @*// <-change this if you put a class or id on your table*@
+            var $table = $(tableSelector);
+            $table.find("tr").hide().filter(function () { return $.trim($(this).find("td:nth-child(4)").text()) == selected; }).show();
+        });
+    });
+</script>
+
+<h2>Показания счетчиков. Главная</h2>
+@Html.ActionLink("Импортировать показания", "Create")
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <b>Фильтровать счетчики</b> @Html.DropDownList("ServiceName", (SelectList)ViewBag.ServiceName, new {style = "width: 40 px; font-size: 14px; height: 30px" })
 </p>
 <table>
     <tr>
@@ -17,23 +34,32 @@
         <th>
             @Html.DisplayNameFor(model => model.Value)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Counter.Service.Name)
+        </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Counter.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Value)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+    <tbody id="infobody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Counter.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Counter.Service.Name)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+

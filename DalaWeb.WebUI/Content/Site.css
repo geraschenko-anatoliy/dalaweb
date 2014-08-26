@@ -27,9 +27,10 @@ textarea {
     min-height: 75px;
 }
 
-/*.editor-label {
+.editor-label {
     margin: 1em 0 0 0;
-}*/
+    font-weight: bold;
+}
 
 .editor-field {
     margin: 0.5em 0 0 0;

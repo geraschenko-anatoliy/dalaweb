@@ -25,7 +25,7 @@ namespace DalaWeb.WebUI
                 .AddChildRoute<CreditController>("Кредиты", c => c.Index())
                 .AddChildRoute<AbonentCreditController>("Пользователи", c => c.Index());
 
-            routes.MapNavigationRoute<ServiceCompanyController>("Сервисы", c => c.Delete(0))
+            routes.MapNavigationRoute<ServiceCompanyController>("Сервисы", c => c.Details(0))
                 .AddChildRoute<ServiceCompanyController>("Компании", c => c.Index())
                 .AddChildRoute<ServiceController>("Сервисы", c => c.Index())
                 .AddChildRoute<AbonentServiceController>("Пользователи", c => c.Index());

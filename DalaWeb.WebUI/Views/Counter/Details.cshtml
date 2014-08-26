@@ -1,10 +1,10 @@
 ﻿@model DalaWeb.Domain.Entities.Counters.Counter
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Счетчики";
 }
 
-<h2>Details</h2>
+<h2>Детальнее</h2>
 
 <table>
     <tr>
@@ -77,45 +77,89 @@
             </td>
             <td>
                 <div class="display-field">
-                    <table>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.StartDate)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FinishDate)
-                            </th>
-                        </tr>
-                        @foreach (var item in Model.Stamps.OrderBy(x => x.isOff))
-                        {
+                    @if (Model.Stamps.Any())
+                    {
+                        <table>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(model => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.StartDate)
-                                </td>
-                                <td>
-                                    @if (item.FinishDate == DateTime.MinValue)
-                                    {
-                                        <span class="label label-success">Активная</span>
-                                    }
-                                    else
-                                    {
-                                        @Html.DisplayFor(model => item.FinishDate)
-                                    }
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.StartDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FinishDate)
+                                </th>
                             </tr>
-                        }
-                    </table>
+                            @foreach (var item in Model.Stamps.OrderBy(x => x.isOff))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => item.StartDate)
+                                    </td>
+                                    <td>
+                                        @if (item.FinishDate == DateTime.MinValue)
+                                        {
+                                            <span class="label label-success">Активная</span>
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(model => item.FinishDate)
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <span class="label label-important">Активных пломб нет</span>
+                    }
                 </div>
             </td>
-
         </tr>
     }
+    <tr>
+        <td>
+            <div class="display-label">
+                Последние показания
+            </div>
+        </td>
+        <td>
+            @if (Model.CounterValues.Any())
+            {
+                <table>
+                    <tr>
+                        <th>
+                            Значение
+                        </th>
+                        <th>
+                            Дата снятия
+                        </th>
+                    </tr>
+
+                    @foreach (var cv in Model.CounterValues)
+                    {
+                        <tr>
+                            <td>
+                                @cv.Value
+                            </td>
+                            <td>
+                                @cv.Date.ToShortDateString()
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <span class="label label-info">Показаний пока нет</span>
+            }
+        </td>
+    </tr>
 </table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CounterId }) |

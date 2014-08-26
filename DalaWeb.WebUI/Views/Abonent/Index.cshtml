@@ -8,7 +8,7 @@
 
 <p>
     @Html.ActionLink("Создать абонента", "Create")
-    @Html.ActionLink("Просмотреть удаленных", "DeletedIndex")
+    @Html.ActionLink("Просмотреть отключенных", "DeletedIndex")
 </p>
 @if (Model.abonents.Any())
 {
@@ -99,7 +99,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="@Url.Action("Edit", new { id = item.AbonentId })">Редактировать</a></li>
                         <li><a href="@Url.Action("Details", new { id = item.AbonentId })">Детальнее</a></li>
-                        <li><a href="@Url.Action("Delete", new { id = item.AbonentId })">Удалить</a></li>
+                        <li><a href="@Url.Action("Delete", new { id = item.AbonentId })">Отключить</a></li>
                     </ul>
                 </div>
             </td>

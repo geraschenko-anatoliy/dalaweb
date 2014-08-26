@@ -8,11 +8,11 @@
 
 <table>
     <tr>
-        <th>
+        <td>
             <div class="display-label">
                 @Html.DisplayNameFor(model => model.Counter.Name)
             </div>
-        </th>
+        </td>
         <td>
             <div class="display-field">
                 @Html.DisplayFor(model => model.Counter.Name)
@@ -20,11 +20,11 @@
         </td>
     </tr>
     <tr>
-        <th>
+        <td>
             <div class="display-label">
                 @Html.DisplayNameFor(model => model.Name)
             </div>
-        </th>
+        </td>
         <td>
             <div class="display-field">
                 @Html.DisplayFor(model => model.Name)
@@ -32,11 +32,11 @@
         </td>
     </tr>
     <tr>
-        <th>
+        <td>
             <div class="display-label">
                 @Html.DisplayNameFor(model => model.StartDate)
             </div>
-        </th>
+        </td>
         <td>
             <div class="display-field">
                 @Html.DisplayFor(model => model.StartDate)
@@ -44,14 +44,21 @@
         </td>
     </tr>
     <tr>
-        <th>
+        <td>
             <div class="display-label">
                 @Html.DisplayNameFor(model => model.FinishDate)
             </div>
-        </th>
+        </td>
         <td>
             <div class="display-field">
-                @Html.DisplayFor(model => model.FinishDate)
+                @if (Model.FinishDate != DateTime.MinValue)
+                { 
+                    @Html.DisplayFor(model => model.FinishDate)
+                }
+                else
+                {
+                    <span class="label label-success">Активная</span>
+                }
             </div>
         </td>
     </tr>

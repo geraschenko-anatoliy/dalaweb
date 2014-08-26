@@ -18,7 +18,9 @@
 
 <h2>Удаление</h2>
 
-<h3>Вы действительно хотите удалить Model.Name?</h3>
+<h3>Вы действительно хотите удалить сервис "@Model.Name"?</h3>
+<h5>В этом случае все абоненты будут автоматически отключены, а сервис перемещен в архив.</h5>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -80,7 +82,7 @@
         <tr>
             <td>
                 <div class="display-label">
-                    Дата удаления
+                    Дата отключения
                 </div>
             </td>
             <td>
@@ -93,7 +95,7 @@
 
 
     <p>
-        <input type="submit" value="Удалить" /> |
+        <input type="submit" value="Отключить" /> |
         @Html.ActionLink("Вернуться", "Index")
     </p>
 }

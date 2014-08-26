@@ -9,6 +9,7 @@ using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
 using DalaWeb.Domain.Entities.Services;
+using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -67,7 +68,8 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Create(int abonentId)
         {
-            ViewBag.AbonentName = unitOfWork.AbonentRepository.GetById(abonentId).Name;
+            Abonent abonent = unitOfWork.AbonentRepository.Get().Where(x => x.AbonentId == abonentId).Include(x=>x.AbonentServices).FirstOrDefault();
+            ViewBag.AbonentName = abonent.Name;
             ViewBag.AbonentId = abonentId;
             ViewBag.FinishDate = DateTime.MinValue;
             //ViewBag.ServiceId = new SelectList(serviceRepository.Get().Where(x => x.Archival == false), "ServiceId", "Name");
@@ -176,13 +178,15 @@ namespace DalaWeb.WebUI.Controllers
             return View(abonentService);
         }
 
-        public JsonResult GetServices(int companyId)
+        public JsonResult GetServices(int companyId, int abonentId)
         {
+            var currentAbonentServices = abonentServiceRepository.Get().Where(x => x.AbonentId == abonentId).Where(x => x.isOff == false);
             List<SelectListItem> services = new List<SelectListItem>();
 
             foreach (var item in unitOfWork.ServiceRepository.Get().Where(x => x.CompanyId == companyId).Where(x => x.isOff == false))
             {
-                services.Add(new SelectListItem { Text = item.Name, Value = item.ServiceId.ToString() });
+                if (!currentAbonentServices.Where(x=>x.ServiceId == item.ServiceId).Any())
+                    services.Add(new SelectListItem { Text = item.Name, Value = item.ServiceId.ToString() });
             }
             return Json(new SelectList(services, "Value", "Text"));
         }

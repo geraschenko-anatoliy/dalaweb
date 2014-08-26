@@ -1,0 +1,44 @@
+﻿@model DalaWeb.WebUI.ViewModels.UploadFileStaticticsViewModel
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            Статистика импорта текущего файла
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    Номер
+                </th>
+                <th>
+                    Показания
+                </th>
+                <th>
+                    Добавлено в базу?
+                </th>
+                <th>
+                    Сообщение
+                </th>
+
+            </tr>
+            @foreach (var p in Model.counterStatistic)
+            {
+                <tr>
+                    <td>
+                        @p.counterName
+                    </td>
+                    <td>
+                        @p.counterValue
+                    </td>
+                    <td>
+                        @p.isSuccess
+                    </td>
+                    <td>
+                        @p.message
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

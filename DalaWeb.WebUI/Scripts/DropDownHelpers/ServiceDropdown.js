@@ -5,7 +5,7 @@
             type: 'POST',
             url: addressGetServicesPath,
             dataType: 'json',
-            data: { companyId: $("#CompanyId").val() },
+            data: { companyId: $("#CompanyId").val(), abonentId:  $("#AbonentId").val() },
             success: function (services) {
                 $.each(services, function (i, company) {
                     $("#ServiceId").append('<option value="' + company.Value + '">' +

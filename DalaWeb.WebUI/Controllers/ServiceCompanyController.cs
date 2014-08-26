@@ -100,27 +100,27 @@ namespace DalaWeb.WebUI.Controllers
         //
         // GET: /ServiceCompany/Delete/5
 
-        public ActionResult Delete(int id = 0)
-        {
-            ServiceCompany servicecompany = serviceCompanyRepository.GetById(id);
-            if (servicecompany == null)
-            {
-                return HttpNotFound();
-            }
-            return View(servicecompany);
-        }
+        //public ActionResult Delete(int id = 0)
+        //{
+        //    ServiceCompany servicecompany = serviceCompanyRepository.GetById(id);
+        //    if (servicecompany == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(servicecompany);
+        //}
 
-        //
-        // POST: /ServiceCompany/Delete/5
+        ////
+        //// POST: /ServiceCompany/Delete/5
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            serviceCompanyRepository.Delete(id);
-            unitOfWork.Save();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    serviceCompanyRepository.Delete(id);
+        //    unitOfWork.Save();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

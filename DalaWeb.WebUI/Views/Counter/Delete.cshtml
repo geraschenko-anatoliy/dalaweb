@@ -10,7 +10,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()    
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.CounterId)
     @Html.HiddenFor(model => model.AbonentId)
     @Html.HiddenFor(model => model.ServiceId)
@@ -18,37 +18,35 @@
     @Html.HiddenFor(model => model.isOff)
     @Html.HiddenFor(model => model.StartDate)
     @Html.HiddenFor(model => model.InitialValue)
-   
-<fieldset>
-    <legend>Counter</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
+    <fieldset>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Service.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Service.Name)
-    </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Service.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Service.Name)
+        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FinishDate)
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.FinishDate)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.FinishDate)
             @Html.ValidationMessageFor(model => model.FinishDate)
         </div>
 
-</fieldset>
+    </fieldset>
 
 
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Отключить" /> |
+        @Html.ActionLink("Вернуться", "Index")
     </p>
 }

@@ -36,7 +36,7 @@ namespace DalaWeb.Domain.Entities.Counters
         public string Name { get; set; }
         [Required]
         [Display(Name = "Значение счетчика")]
-        [Range(1, double.MaxValue, ErrorMessage = "Please enter a positive price")]
+        [Range(0, double.MaxValue, ErrorMessage = "Значение должно быть больше нуля")]
         public double InitialValue { get; set; }
         [DefaultValue(false)]
         public bool isOff { get; set; }

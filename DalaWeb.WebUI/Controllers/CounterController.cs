@@ -53,6 +53,7 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Details(int id = 0)
         {
             Counter counter = counterRepository.GetById(id);
+            counter.CounterValues = counterValuesRepository.Get().Where(x => x.CounterId == counter.CounterId).ToList();
             if (counter == null)
             {
                 return HttpNotFound();

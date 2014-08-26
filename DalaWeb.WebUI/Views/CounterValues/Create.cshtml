@@ -1,44 +1,35 @@
 ﻿@model DalaWeb.Domain.Entities.Counters.CounterValues
 
-@{
-    ViewBag.Title = "Create";
-}
+@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>*@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+
+@*<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"
+        type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"
+        type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+@*@using (Ajax.BeginForm("UploadFile",
+                        "CounterValues",
+                        new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "b", InsertionMode = InsertionMode.Replace }, 
+                        new { enctype = "multipart/form-data"}))*@
+
+@*@*<div id="b">
+    Тут будет нужная фраза - @Html.Partial("UploadFile")
+</div>*@
+
+@using (Html.BeginForm("UploadFile", "CounterValues", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{     
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>CounterValues</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CounterId, "Counter")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("CounterId", String.Empty)
-            @Html.ValidationMessageFor(model => model.CounterId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Value)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Value)
-            @Html.ValidationMessageFor(model => model.Value)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+    <input type="file" name="files" accept=".xlsx"><br>
+    @Html.DropDownList("ServiceId", (SelectList)ViewBag.ServiceId)
+    <br />
+    <input type="submit" value="Upload File to Server">
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
