@@ -6185,3 +6185,13 @@ a.badge:focus {
     text-align: center;
     font-weight: bold;
 }
+
+.display-label
+{
+    font-weight: bold;
+}
+
+/*.editor-label
+{
+    font-weight: bold;
+}*/

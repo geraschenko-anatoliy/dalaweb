@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DalaWeb.Domain.Entities.Counters;
 using System.Data.Metadata.Edm;
+using DalaWeb.Domain.Entities.Payments;
 
 namespace DalaWeb.Domain.Concrete
 {
@@ -27,15 +28,17 @@ namespace DalaWeb.Domain.Concrete
         public DbSet<Service> Services { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {       
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{       
+        //}
 
         public DbSet<Counter> Counters { get; set; }
 
         public DbSet<Stamp> Stamps { get; set; }
 
         public DbSet<CounterValues> CounterValues { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }
 
 
     }

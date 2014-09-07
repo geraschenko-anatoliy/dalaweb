@@ -33,7 +33,12 @@ namespace DalaWeb.WebUI
             routes.MapNavigationRoute<CounterController>("Счетчики", c => c.Delete(0))
                 .AddChildRoute<CounterController>("Счетчики", c => c.Index())
                 .AddChildRoute<CounterValuesController>("Показания", c => c.Index())
-                .AddChildRoute<CounterController>("Пользователи", c => c.Details(0));
+                .AddChildRoute<StampController>("Пломбы", c => c.Index());
+
+            routes.MapNavigationRoute<PaymentController>("Оплата", c => c.Delete(0))
+                .AddChildRoute<PaymentController>("Квитанции", c => c.Month())
+                .AddChildRoute<PaymentController>("Платежи", c => c.Index())
+                .AddChildRoute<PaymentController>("Массовое пополнение", c => c.Numerous());
         }
     }
 }

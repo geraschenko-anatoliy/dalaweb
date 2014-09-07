@@ -1,0 +1,50 @@
+﻿@model DalaWeb.Domain.Entities.Payments.Payment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Payment</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Abonent.AbonentNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Abonent.AbonentNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Balance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Balance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Comment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comment)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PaymentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

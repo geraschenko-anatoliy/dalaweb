@@ -1,0 +1,38 @@
+﻿@model DalaWeb.Domain.Entities.Payments.Payment
+
+@{
+    ViewBag.Title = "Открыть месяц";
+}
+
+<h2>Открыть месяц</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <div class="editor-field">
+        @Html.TextBox("date", String.Format("{0:yyyy/MM/dd}", DateTime.Now), new { @class = "datepicker" })
+        @Html.ValidationMessage("date")
+    </div>
+    <p>
+        <input type="submit" value="Открыть" />
+    </p>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yyyy/MM/dd',
+            format: 'yyyy/MM/dd',
+            autoclose: true
+        });
+    });
+</script>

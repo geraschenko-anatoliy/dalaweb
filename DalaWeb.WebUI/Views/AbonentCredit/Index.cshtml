@@ -4,6 +4,14 @@
     ViewBag.Title = "Главная";
 }
 
+@functions{
+
+    public string GetRuDate(DateTime date)
+    {
+        return date.ToString("D", System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU"));        
+    }
+}
+
 <h2>Список кредитов</h2>
 
 @if (Model.Any())
@@ -56,10 +64,10 @@
                 @Html.DisplayFor(modelItem => item.Credit.Name)
             </td>
             <td>
-                @item.StartDate.ToString("d")
+                @GetRuDate(item.StartDate)
             </td>
             <td>
-                @item.FinishDate.ToString("d")
+                @GetRuDate(item.FinishDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PrePayment)

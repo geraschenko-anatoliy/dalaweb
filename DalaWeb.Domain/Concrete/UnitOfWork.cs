@@ -4,6 +4,7 @@ using DalaWeb.Domain.Entities.Abonents;
 using DalaWeb.Domain.Entities.Addresses;
 using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
+using DalaWeb.Domain.Entities.Payments;
 using DalaWeb.Domain.Entities.Services;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,19 @@ namespace DalaWeb.Domain.Concrete
         private Repository<Counter> counterRepository;
         private Repository<CounterValues> counterValuesRepository;
         private Repository<Stamp> stampRepository;
+        
+        private Repository<Payment> paymentRepository;
 
+
+        public IRepository<Payment> PaymentRepository
+        {
+            get
+            {
+                if (this.paymentRepository == null)
+                    this.paymentRepository = new Repository<Payment>(context);
+                return paymentRepository;
+            }
+        }
 
         public IRepository<Stamp> StampRepository
         {

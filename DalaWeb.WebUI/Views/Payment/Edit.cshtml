@@ -1,0 +1,70 @@
+﻿@model DalaWeb.Domain.Entities.Payments.Payment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Payment</legend>
+
+        @Html.HiddenFor(model => model.PaymentId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AbonentId, "Abonent")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AbonentId", String.Empty)
+            @Html.ValidationMessageFor(model => model.AbonentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sum)
+            @Html.ValidationMessageFor(model => model.Sum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Balance)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Balance)
+            @Html.ValidationMessageFor(model => model.Balance)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

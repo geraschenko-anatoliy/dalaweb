@@ -1,0 +1,87 @@
+﻿@model List<DalaWeb.WebUI.ViewModels.ForPayment.NumerousViewModel>
+@{
+    ViewBag.Title = "Платежи";
+}
+
+<h2>Массовое пополнение</h2>
+
+@using (Html.BeginForm("Numerous", "Payment", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <table>
+        <tbody>
+            <tr>
+                <th>
+                    Номер абонента
+                </th>
+                <th>
+                    ФИО
+                </th>
+                <th>
+                    Баланс
+                </th>
+                <th>
+                    Сумма платежа
+                </th>
+            </tr>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                @Html.HiddenFor(modelItem => Model[i].AbonentId)
+                @Html.HiddenFor(modelItem => Model[i].AbonentName)
+                @Html.HiddenFor(modelItem => Model[i].AbonentNumber)
+                @Html.HiddenFor(modelItem => Model[i].Balance)
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[i].AbonentNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[i].AbonentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[i].Balance)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => Model[i].Sum)
+                        @Html.ValidationMessageFor(modelItem => Model[i])
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    
+                </td>
+                <td></td>
+                <td>Дата</td>
+                <td>
+                    @Html.TextBox("Date", String.Format("{0:yyyy/MM/dd}", ""), new { required = "required" })
+                    @Html.ValidationMessage("Date")
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <p>
+                        <input type="submit" value="Сохранить" />
+                    </p>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yyyy/MM/dd',
+            format: 'yyyy/MM/dd',
+            autoclose: true
+        });
+    });
+</script>

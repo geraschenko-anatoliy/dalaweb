@@ -99,7 +99,7 @@ namespace DalaWeb.WebUI.Controllers
                 };
                 counterValuesRepository.Insert(countervalue);
                 unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Abonent", new { id = counter.AbonentId});
             }
             ViewBag.Services = new SelectList(serviceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name", counter.ServiceId);
             ViewBag.AbonentName = abonentRepository.GetById(counter.AbonentId).Name;

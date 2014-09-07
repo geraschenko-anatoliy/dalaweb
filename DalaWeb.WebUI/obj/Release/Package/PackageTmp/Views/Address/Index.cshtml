@@ -1,4 +1,4 @@
-﻿@model DalaWeb.WebUI.ViewModels.AdressIndexViewModel
+﻿@model DalaWeb.WebUI.ViewModels.ForAddress.AdressIndexViewModel
 @{
     ViewBag.Title = "Главная";
 }
@@ -9,8 +9,9 @@
     @Html.ActionLink("Создать город", "Create", "City")
     @Html.ActionLink("Создать улицу", "Create", "Street")
 </p>
-
-<table>
+@if(Model.addresses.Any())
+{ 
+    <table>
     <tr>
         <th>
             Абонент
@@ -24,7 +25,6 @@
         <th>
             Дом
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model.addresses)
@@ -42,20 +42,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.House)
             </td>
-            <td>
-                @*<div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Функции
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="@Url.Action("Edit", new { id = item.AbonentId })">Редактировать</a></li>
-                            <li><a href="@Url.Action("Details", new { id = item.AbonentId })">Детальнее</a></li>
-                            <li><a href="@Url.Action("Delete", new { id = item.AbonentId })">Удалить</a></li>
-                        </ul>
-                    </div>*@
-            </td>
         </tr>
     }
 
 </table>
+}
+else
+{
+    <p>
+        Список адресов пуст
+    </p>
+}

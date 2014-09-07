@@ -8,12 +8,13 @@ using System.Web.Mvc;
 using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
-using DalaWeb.WebUI.ViewModels;
+using DalaWeb.WebUI.ViewModels.ForAddress;
 using DalaWeb.Domain.Entities.Addresses;
 using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    
     public class AddressController : Controller
     {
         private IUnitOfWork unitOfWork;

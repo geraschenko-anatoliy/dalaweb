@@ -1,6 +1,7 @@
 ﻿using DalaWeb.Domain.Entities.Addresses;
 using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
+using DalaWeb.Domain.Entities.Payments;
 using DalaWeb.Domain.Entities.Services;
 using System;
 using System.Collections.Generic;
@@ -39,5 +40,7 @@ namespace DalaWeb.Domain.Entities.Abonents
         public virtual ICollection<AbonentService> AbonentServices { get; set; }
         public virtual Address Address { get; set; }
         public virtual ICollection<Counter> Counters { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+
     }
 }

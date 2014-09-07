@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Counters.Counter>
+
+@{
+    ViewBag.Title = "Отключенные";
+}
+
+<h2>Счетчики</h2>
+
+@Html.ActionLink("К активным", "Index")
+
+@if (Model.Any())
+{ 
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Abonent.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abonent.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishDate)
+            </td>
+        </tr>
+    }
+    </table>
+}
+else
+{
+    <p>
+        Список счетчиков пуст
+    </p>
+}

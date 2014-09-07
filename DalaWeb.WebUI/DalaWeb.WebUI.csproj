@@ -147,6 +147,7 @@
     <Compile Include="Controllers\CounterController.cs" />
     <Compile Include="Controllers\CounterValuesController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ServiceCompanyController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\StampController.cs" />
@@ -163,9 +164,11 @@
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\ArrayAwareRoute.cs" />
-    <Compile Include="ViewModels\DeletedAbonentIndexViewModel.cs" />
-    <Compile Include="ViewModels\AddressIndexViewModel.cs" />
-    <Compile Include="ViewModels\AbonentIndexViewModel.cs" />
+    <Compile Include="ViewModels\ForPayment\NumerousViewModel.cs" />
+    <Compile Include="ViewModels\ForPayment\IndexViewModel.cs" />
+    <Compile Include="ViewModels\ForAbonent\DeletedIndexViewModel.cs" />
+    <Compile Include="ViewModels\ForAddress\AddressIndexViewModel.cs" />
+    <Compile Include="ViewModels\ForAbonent\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\body.css" />
@@ -238,7 +241,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\html5shiv.js" />
-    <Content Include="HtmlHelpers\Models\UploadCounterData.cshtml" />
     <None Include="Properties\PublishProfiles\Dala - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Dala - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -297,12 +299,6 @@
     <Content Include="Views\Address\Edit.cshtml" />
     <Content Include="Views\Address\Delete.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="Views\ExampleLayouts55\TBD.cshtml" />
-    <Content Include="Views\ExampleLayouts55\Starter.cshtml" />
-    <Content Include="Views\ExampleLayouts55\SignIn.cshtml" />
-    <Content Include="Views\ExampleLayouts55\Narrow.cshtml" />
-    <Content Include="Views\ExampleLayouts55\Marketing.cshtml" />
-    <Content Include="Views\ExampleLayouts55\Fluid.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Shared\Details.cshtml" />
     <Content Include="Views\Shared\Create.cshtml" />
@@ -361,9 +357,23 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Stamp\Archive.cshtml" />
     <Content Include="Views\CounterValues\UploadFile.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\OpenMonth.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Delete.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\double.cshtml" />
+    <Content Include="Views\Payment\All.cshtml" />
+    <Content Include="Views\Payment\Month.cshtml" />
+    <Content Include="Views\Payment\Filter.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\Recalculation.cshtml" />
+    <Content Include="Views\Payment\Numerous.cshtml" />
+    <Content Include="Views\Payment\ForAbonent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="HtmlHelpers\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

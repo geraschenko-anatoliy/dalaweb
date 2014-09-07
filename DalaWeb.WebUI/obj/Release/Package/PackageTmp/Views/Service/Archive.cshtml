@@ -5,7 +5,8 @@
 }
 
 <h2>Архив</h2>
-
+@if (Model.Any())
+{ 
 <table>
     <tr>
         <th>
@@ -39,9 +40,6 @@
                 @item.ToString()
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.ServiceId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.ServiceId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ServiceId })*@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Функции
@@ -56,5 +54,11 @@
             </td>
         </tr>
     }
-
 </table>
+}
+else
+{
+    <p>
+        Список архивных сервисов пуст
+    </p>
+}

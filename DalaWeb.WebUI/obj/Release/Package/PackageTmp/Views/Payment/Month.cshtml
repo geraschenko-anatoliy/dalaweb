@@ -1,0 +1,52 @@
+﻿@model DalaWeb.WebUI.ViewModels.ForPayment.IndexViewModel
+
+@{
+    ViewBag.Title = "Платежи";
+}
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+
+@using (Ajax.BeginForm("Filter", null, new AjaxOptions() { UpdateTargetId = "months" }, new { id = "ajaxform"}))
+{
+    <table>
+        <tr>
+            <td>
+                По номеру
+            </td>
+            <td>
+                По году
+            </td>
+            <td>
+                По месяцу
+            </td>
+            <td>
+                По типу
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownList("AbonentNumber", (SelectList)ViewBag.AbonentNumber)
+            </td>
+            <td>
+                @Html.DropDownList("Year", (SelectList)ViewBag.Year)
+            </td>
+            <td>
+                @Html.DropDownList("Month", (SelectList)ViewBag.Month)
+            </td>
+            <td>
+                @Html.DropDownList("PaymentType", (SelectList)ViewBag.PaymentType)
+            </td>
+            <td>
+                <input type="submit" value="Фильтр" />
+            </td>
+        </tr>
+    </table>
+}
+<div id="months">
+    <h3>
+        Настройте фильтр для отображения квитанций
+    </h3>
+</div>

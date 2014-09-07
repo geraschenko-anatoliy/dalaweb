@@ -94,6 +94,7 @@
     <Compile Include="Entities\Credits\AbonentCredit.cs" />
     <Compile Include="Entities\Addresses\Address.cs" />
     <Compile Include="Entities\Credits\Credit.cs" />
+    <Compile Include="Entities\Payments\Payment.cs" />
     <Compile Include="Entities\Services\AbonentService.cs" />
     <Compile Include="Entities\Services\Service.cs" />
     <Compile Include="Entities\Services\ServiceCompany.cs" />
@@ -225,6 +226,14 @@
     <Compile Include="Migrations\201408151008447_dbgen-identity.Designer.cs">
       <DependentUpon>201408151008447_dbgen-identity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408280842428_payments.cs" />
+    <Compile Include="Migrations\201408280842428_payments.Designer.cs">
+      <DependentUpon>201408280842428_payments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409011822115_addPaymentType.cs" />
+    <Compile Include="Migrations\201409011822115_addPaymentType.Designer.cs">
+      <DependentUpon>201409011822115_addPaymentType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -237,6 +246,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201407161010199_simpledate.resx">
       <DependentUpon>201407161010199_simpledate.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407161543221_normaldate.resx">
       <DependentUpon>201407161543221_normaldate.cs</DependentUpon>
@@ -330,6 +340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408151008447_dbgen-identity.resx">
       <DependentUpon>201408151008447_dbgen-identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408280842428_payments.resx">
+      <DependentUpon>201408280842428_payments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409011822115_addPaymentType.resx">
+      <DependentUpon>201409011822115_addPaymentType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

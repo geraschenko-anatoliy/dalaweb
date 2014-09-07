@@ -1,0 +1,48 @@
+﻿@model IQueryable<DalaWeb.Domain.Entities.Payments.Payment>
+
+@{
+    ViewBag.Title = "Платежи";
+}
+
+@functions{
+    public string PrintMonth(DateTime date)
+    {
+        return date.ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU"));
+    }
+}
+
+@if(Model.Any())
+{ 
+<h2>
+    Платежи абонента @Model.Last().Abonent.Name за @PrintMonth(Model.Last().Date) @Model.Last().Date.Year года
+</h2>
+
+<table>
+    <tr>
+        <th>
+            Дата
+        </th>
+        <th>
+            Сумма
+        </th>
+        <th>
+            Комментарий
+        </th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td align="center">@item.Date.ToShortDateString()</td>
+            <td align="center">@item.Sum</td>
+            <td align="center">@item.Comment</td>
+        </tr>
+    }
+</table>
+}
+else
+{
+    <p>
+        У абонента нет платежей в этом месяце
+    </p>
+}
+

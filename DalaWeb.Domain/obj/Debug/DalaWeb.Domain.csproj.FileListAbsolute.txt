@@ -32,10 +32,11 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.isOffForStamp.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.ServiceArchivalToisOff.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.initialvaluefornewcounter.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csproj.GenerateResource.Cache
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.dll
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.pdb
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.dbgencountervalues.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.dbgennone.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.dbgenidentity.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csprojResolveAssemblyReference.cache
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.payments.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.addPaymentType.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csproj.GenerateResource.Cache
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.dll
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.pdb

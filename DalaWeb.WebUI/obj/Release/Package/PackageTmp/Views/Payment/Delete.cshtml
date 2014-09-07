@@ -1,0 +1,73 @@
+﻿@model DalaWeb.Domain.Entities.Payments.Payment
+
+@{
+    ViewBag.Title = "Платежи";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно хотите удалить платеж?</h3>
+
+<table>
+    <tr>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Abonent.AbonentNumber)
+            </div>
+        </th>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Date)
+            </div>
+        </th>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Sum)
+            </div>
+        </th>
+        <th>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Balance)
+    </div>
+</th>
+        <th>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Comment)
+            </div>
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Abonent.AbonentNumber)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Date)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Sum)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Balance)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Comment)
+            </div>
+        </td>
+    </tr>
+</table>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}

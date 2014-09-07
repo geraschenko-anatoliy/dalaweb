@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Payments.Payment>
+
+@{
+    ViewBag.Title = "Платежи";
+}
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.js"></script> 
+
+<h2>Главная</h2>
+
+@Html.ActionLink("Создать платеж", "Create")
+
+@using (Ajax.BeginForm("All", new AjaxOptions() { UpdateTargetId = "infobody"}))
+{
+<table>
+    <tr>
+        <td>
+            По номеру
+        </td>
+        <td>
+            По году
+        </td>
+        <td>
+            По месяцу
+        </td>
+        <td>
+            По типу
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DropDownList("AbonentNumber", (SelectList)ViewBag.AbonentNumber)
+        </td>
+        <td>
+            @Html.DropDownList("Year", (SelectList)ViewBag.Year)
+        </td>
+        <td>
+            @Html.DropDownList("Month", (SelectList)ViewBag.Month)
+        </td>
+        <td>
+            @Html.DropDownList("PaymentType", (SelectList)ViewBag.PaymentType)
+        </td>
+        <td>
+            <input type="submit" value="Фильтр" />
+        </td>
+    </tr>
+</table>
+}
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Abonent.AbonentNumber)
+        </th>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="infobody">
+        @Html.Action("All")
+    </tbody>
+</table>
+

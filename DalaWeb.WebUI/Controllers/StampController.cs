@@ -64,11 +64,12 @@ namespace DalaWeb.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Stamp stamp)
         {
+            int abonentId = counterRepository.GetById(stamp.CounterId).AbonentId;
             if (ModelState.IsValid)
             {
                 stampRepository.Insert(stamp);
                 unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Abonent", new { id = abonentId});
             }
 
             ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", stamp.CounterId);

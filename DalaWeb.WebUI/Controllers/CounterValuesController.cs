@@ -13,7 +13,7 @@ using System.Data.OleDb;
 using System.Xml;
 using System.Configuration;
 using System.Data.SqlClient;
-using DalaWeb.WebUI.ViewModels;
+using DalaWeb.WebUI.ViewModels.ForAbonent;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -34,7 +34,13 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Index()
         {
             List<CounterValues> lastCounterValues = GetLastCounterValues();
-            ViewBag.ServiceName = new SelectList(unitOfWork.ServiceRepository.Get().Where(x => x.Type == 3).Select(x => x.Name));
+            List<string> selectListItems = new List<string>();
+            selectListItems.Add("Все");
+            foreach(var item in unitOfWork.ServiceRepository.Get().Where(x => x.Type == 3).Select(x => x.Name).ToList())
+            {
+                selectListItems.Add(item);
+            }
+            ViewBag.ServiceName = new SelectList(selectListItems);
             return View(lastCounterValues);
         }
 
@@ -267,6 +273,13 @@ namespace DalaWeb.WebUI.Controllers
                 {
                     AddWithError(data_counterNamesList, data_counterValuesList, data_isSuccessList, data_messagesList,
                                 counterName, value, "Текущие показания меньше предыдущих");
+                    return;
+                }
+
+                if (counter.CounterValues.Last().Date > date)
+                {
+                    AddWithError(data_counterNamesList, data_counterValuesList, data_isSuccessList, data_messagesList,
+                                counterName, value, "Импортируемая дата меньше существующей в базе");
                     return;
                 }
 

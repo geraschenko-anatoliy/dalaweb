@@ -1,0 +1,52 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Counter
+
+@{
+    ViewBag.Title = "Счетчики";
+}
+
+<h2>Отключение</h2>
+
+<h3>Вы действительно хотите отключить счетчик @Model.Name?</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CounterId)
+    @Html.HiddenFor(model => model.AbonentId)
+    @Html.HiddenFor(model => model.ServiceId)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.isOff)
+    @Html.HiddenFor(model => model.StartDate)
+    @Html.HiddenFor(model => model.InitialValue)
+
+    <fieldset>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Service.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Service.Name)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.FinishDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FinishDate)
+            @Html.ValidationMessageFor(model => model.FinishDate)
+        </div>
+
+    </fieldset>
+
+
+    <p>
+        <input type="submit" value="Отключить" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}
