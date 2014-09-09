@@ -40,3 +40,4 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csproj.GenerateResource.Cache
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.pdb
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csprojResolveAssemblyReference.cache

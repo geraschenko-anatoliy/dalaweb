@@ -4,68 +4,93 @@
     ViewBag.Title = "Платежи. Создание";
 }
 
-<h2>Создать</h2>
+<h2>Платеж</h2>
 
-@*Don't repeat if 'jquery-1.8.2.min.js' library already referenced in _Layout.cshtml*@
-<script src="~/Scripts/jquery-1.8.2.min.js"></script>
-<script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
-
-@*<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>*@
-<script src="YourJquery source path"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="~/Scripts/AutocompleteHepler.js"></script>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Кредит</legend>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Abonent.AbonentNumber)
+                </div>
+            </th>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBox("AbonentNumber")
+                    @Html.ValidationMessageFor(model => model.Abonent.AbonentNumber)
+                    @Html.ValidationMessage("AbonentNumber")
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Date)
+                </div>
+            </th>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Date)
+                    @Html.ValidationMessageFor(model => model.Date)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Type)
+                </div>
+            </th>
+            <td>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Type, (SelectList)ViewBag.PaymentTypes)
+                    @Html.ValidationMessageFor(model => model.Date)
+                </div>
+            </td>
+        </tr>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Abonent.AbonentNumber)
-        </div>
-        <div class="editor-field">
-            @Html.TextBox("AbonentNumber")
-            @Html.ValidationMessageFor(model => model.Abonent.AbonentNumber)
-        </div>
+        <tr>
+            <th>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Sum)
+                </div>
+            </th>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Sum)
+                    @Html.ValidationMessageFor(model => model.Sum)
+                </div>
+            </td>
+        </tr>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Date)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Date)
-            @Html.ValidationMessageFor(model => model.Date)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Type)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Type, (SelectList)ViewBag.PaymentTypes)
-            @Html.ValidationMessageFor(model => model.Date)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Sum)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Sum)
-            @Html.ValidationMessageFor(model => model.Sum)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Comment)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Comment)
-            @Html.ValidationMessageFor(model => model.Comment)
-        </div>
-
-        <p>
-            <input type="submit" value="Создать" class="btn btn-default" />
-        </p>
-    </fieldset>
+        <tr>
+            <th>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Comment)
+                </div>
+            </th>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Comment)
+                    @Html.ValidationMessageFor(model => model.Comment)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <p>
+                    <input type="submit" value="Создать" class="btn btn-default" />
+                </p>
+            </td>
+        </tr>
+    </table>
 }
 
 <div>

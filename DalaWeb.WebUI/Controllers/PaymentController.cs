@@ -164,14 +164,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(payment);
         }
 
-
-        public ActionResult Create()
-        {
-            ViewBag.PaymentTypes = new SelectList(paymentRepository.Get().Select(x => x.Type).Distinct());
-            return View();
-        }
-
-   
         private void CheckPaymentAbility(Abonent abonent, DateTime date)
         {
             if (!paymentRepository.Get().Where(x => x.AbonentId == abonent.AbonentId).Any())
@@ -193,6 +185,7 @@ namespace DalaWeb.WebUI.Controllers
         private bool CheckOpenMonthAbility(DateTime date)
         {
             if (paymentRepository.Get().Where(x => x.Date.Month == date.Month)
+                                       .Where(x=>x.Date.Year == date.Year)
                                        .Where(x => x.Type == "Платеж")
                                        .Any())
                 return true;
@@ -252,7 +245,7 @@ namespace DalaWeb.WebUI.Controllers
             paymentRepository.Insert(servicePayment);
             unitOfWork.Save();
         }
-        public void CalculateThirdTypeServicePayment(Abonent abonent, AbonentService aService, DateTime date, List<string> warnings)
+        public List<string> CalculateThirdTypeServicePayment(Abonent abonent, AbonentService aService, DateTime date, List<string> warnings)
         {
             CheckPaymentAbility(abonent, date);
 
@@ -265,20 +258,24 @@ namespace DalaWeb.WebUI.Controllers
 
             Counter aCounter = counters.Last();
             aCounter.CounterValues = counterValuesRepository.Get().Where(x => x.CounterId == aCounter.CounterId).ToList();
-            if (aCounter.CounterValues.Last().Date.Month != date.Month-1)
-                warnings.Add("У абонента" + abonent.AbonentNumber + " " + abonent.Name + " не обнаружено данных по счетчику" + aCounter.Name + " по услуге " + aService.Service.Name);
             
-            double valueForPayment;
-            
-            if (aCounter.CounterValues.Count<2)
+            double valueForPayment = 0;
+            if (aCounter.CounterValues.Last().Date.Month != date.Month - 1 || aCounter.CounterValues.Last().Date.Month != date.Month)
             {
-                valueForPayment = aCounter.CounterValues.ToList()[aCounter.CounterValues.Count - 1].Value - aCounter.InitialValue;
+                warnings.Add("У абонента" + abonent.AbonentNumber + " " + abonent.Name + " не обнаружено данных по счетчику" + aCounter.Name + " по услуге " + aService.Service.Name);
             }
             else
             {
-                valueForPayment = aCounter.CounterValues.ToList()[aCounter.CounterValues.Count - 1].Value - aCounter.CounterValues.ToList()[aCounter.CounterValues.Count - 2].Value; 
+                if (aCounter.CounterValues.Count<2)
+                {
+                    valueForPayment = aCounter.CounterValues.ToList()[aCounter.CounterValues.Count - 1].Value - aCounter.InitialValue;
+                }
+                else
+                {
+                    valueForPayment = aCounter.CounterValues.ToList()[aCounter.CounterValues.Count - 1].Value - aCounter.CounterValues.ToList()[aCounter.CounterValues.Count - 2].Value; 
+                }
             }
-
+           
             Payment servicePayment = new Payment()
             {
                 AbonentId = abonent.AbonentId,
@@ -290,6 +287,8 @@ namespace DalaWeb.WebUI.Controllers
             };
             paymentRepository.Insert(servicePayment);
             unitOfWork.Save();
+
+            return warnings;
         }
            
         public ActionResult OpenMonth()
@@ -333,7 +332,7 @@ namespace DalaWeb.WebUI.Controllers
                             }
                         case 3:
                             {
-                                CalculateThirdTypeServicePayment(abonent, aService, date, warnings);
+                                warnings = CalculateThirdTypeServicePayment(abonent, aService, date, warnings);
                                 break;
                             }
                     }
@@ -341,11 +340,40 @@ namespace DalaWeb.WebUI.Controllers
                 }
                 unitOfWork.Save();                                                                              
             }
-            return RedirectToAction("Index");
+
+            IQueryable<Payment> payments = paymentRepository.Get().Include(x => x.Abonent);
+
+            payments = payments.Where(x => x.Date.Year == date.Year);
+            payments = payments.Where(x => x.Date.Month == date.Month);
+
+            return View("OpenMonthSummary", new OpenMonthSummaryViewModel(warnings, payments.ToList()));
+        }
+        public PartialViewResult CheckMonthOpenAbility(DateTime? date)
+        {
+            Dictionary<string, int> result = new Dictionary<string, int>();
+
+            foreach (var item in  unitOfWork.ServiceRepository.Get().Where(x=>x.Type == 3))
+            {
+                List<CounterValues> counterValuesNumber = counterValuesRepository.Get().Where(x => x.Date.Month == date.Value.Month)
+                                                 .Where(x => x.Counter.ServiceId == item.ServiceId)
+                                                 .ToList();
+                if (counterValuesNumber.Any())
+                {
+                    result.Add(item.Name, counterValuesNumber.Count);
+                }
+                else
+                {
+                    result.Add(item.Name, 0);
+                }
+            }
+            return PartialView(result);        
         }
 
-        //
-        // POST: /Payment/Create
+        public ActionResult Create()
+        {
+            ViewBag.PaymentTypes = new SelectList(paymentRepository.Get().Select(x => x.Type).Distinct());
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -378,25 +406,7 @@ namespace DalaWeb.WebUI.Controllers
             return View(payment);
         }
 
-        public PartialViewResult Recalculation(int? abonentId)
-        {
-            double balance = 0;
-            foreach (var payment in paymentRepository.Get().Where(x=>x.AbonentId == abonentId))
-            {
-                if (payment.Type == "Платеж")
-                {
-                    payment.Balance = balance - payment.Sum;
-                    balance = payment.Balance;
-                }
-                else
-                {
-                    payment.Balance = balance + payment.Sum;
-                    balance = payment.Balance;
-                }        
-            }
-            unitOfWork.Save();
-            return PartialView(balance);
-        }
+        
 
         public ActionResult Numerous()
         {
@@ -440,16 +450,26 @@ namespace DalaWeb.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int id = 0)
-        {
-            Payment payment = paymentRepository.GetById(id);
-            if (payment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(payment);
-        }
 
+        public PartialViewResult Recalculation(int? abonentId)
+        {
+            double balance = 0;
+            foreach (var payment in paymentRepository.Get().Where(x=>x.AbonentId == abonentId))
+            {
+                if (payment.Type == "Платеж")
+                {
+                    payment.Balance = balance - payment.Sum;
+                    balance = payment.Balance;
+                }
+                else
+                {
+                    payment.Balance = balance + payment.Sum;
+                    balance = payment.Balance;
+                }        
+            }
+            unitOfWork.Save();
+            return PartialView(balance);
+        }
         ////
         //// POST: /Payment/Delete/5
         public JsonResult AutoCompleteAbonentNumber(string term)
@@ -459,7 +479,15 @@ namespace DalaWeb.WebUI.Controllers
                           select new { r.AbonentNumber }).Distinct();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult Delete(int id = 0)
+        {
+            Payment payment = paymentRepository.GetById(id);
+            if (payment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(payment);
+        }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -3,26 +3,57 @@
 @{
     ViewBag.Title = "Открыть месяц";
 }
-
 <h2>Открыть месяц</h2>
+
+@*<table>
+    <thead>
+        <tr>
+            <td>
+                Проверить возможность
+            </td>
+            <td>
+                @using (Ajax.BeginForm("CheckMonthOpenAbility", new AjaxOptions() { UpdateTargetId = "counter_values" }))
+                {
+                    @Html.TextBox("date1", String.Format("{0:MM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.ValidationMessage("date1")
+                    <input type="submit" value="Проверить" />
+                }
+            </td>
+        </tr>
+    </thead>
+    <tbody id="counter_values"></tbody>
+</table>*@
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
-    <div class="editor-field">
-        @Html.TextBox("date", String.Format("{0:yyyy/MM/dd}", DateTime.Now), new { @class = "datepicker" })
-        @Html.ValidationMessage("date")
-    </div>
-    <p>
-        <input type="submit" value="Открыть" />
-    </p>
 
+    <table>
+        <tr>
+            <td>
+                Выбрать дату
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBox("date", String.Format("{0:MM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.ValidationMessage("date")
+                </div>
+            </td>
+            </tr>
+        <tr>
+            <td></td>
+            <td>
+                <p>
+                    <input type="submit" value="Открыть" />
+                </p>
+            </td>
+        </tr>
+    </table>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться", "Index")
 </div>
 
 <script type="text/javascript">
@@ -30,8 +61,9 @@
         $("#date").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yyyy/MM/dd',
-            format: 'yyyy/MM/dd',
+            format: "mm-yyyy",
+            viewMode: "months",
+            minViewMode: "months",
             autoclose: true
         });
     });

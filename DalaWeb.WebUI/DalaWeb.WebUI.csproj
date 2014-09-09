@@ -164,11 +164,13 @@
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\ArrayAwareRoute.cs" />
+    <Compile Include="ViewModels\ForCounterValues\UploadFileStaticticsViewModel.cs" />
     <Compile Include="ViewModels\ForPayment\NumerousViewModel.cs" />
     <Compile Include="ViewModels\ForPayment\IndexViewModel.cs" />
     <Compile Include="ViewModels\ForAbonent\DeletedIndexViewModel.cs" />
     <Compile Include="ViewModels\ForAddress\AddressIndexViewModel.cs" />
     <Compile Include="ViewModels\ForAbonent\IndexViewModel.cs" />
+    <Compile Include="ViewModels\ForPayment\OpenMonthSummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\body.css" />
@@ -180,6 +182,9 @@
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\TableCSSCode.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -236,10 +241,14 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\AutocompleteHepler.js" />
     <Content Include="Scripts\DropDownHelpers\AddressDropdown.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\html5shiv.js" />
     <None Include="Properties\PublishProfiles\Dala - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Dala - Web Deploy.pubxml" />
@@ -370,6 +379,8 @@
     <Content Include="Views\Payment\Recalculation.cshtml" />
     <Content Include="Views\Payment\Numerous.cshtml" />
     <Content Include="Views\Payment\ForAbonent.cshtml" />
+    <Content Include="Views\Payment\CheckMonthOpenAbility.cshtml" />
+    <Content Include="Views\Payment\OpenMonthSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

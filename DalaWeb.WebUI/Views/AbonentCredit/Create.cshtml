@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <table>
+    <table class="table table-hover">
         <tr>
             <td>
                 <div class="editor-label">
@@ -35,7 +35,7 @@
                 </div>
             </td>
         </tr>
-    @*    @Html.HiddenFor(model => model.FinishDate, new { Value = Model.StartDate.AddMonths(Model.Term).ToShortDateString()})*@
+        @*    @Html.HiddenFor(model => model.FinishDate, new { Value = Model.StartDate.AddMonths(Model.Term).ToShortDateString()})*@
         <tr>
             <td>
                 <div class="editor-label">
@@ -50,18 +50,18 @@
             </td>
         </tr>
         @*<tr>
-            <td>
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.PaidForTheEntirePeriod)
-                </div>
-            </td>
-            <td>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.PaidForTheEntirePeriod)
-                    @Html.ValidationMessageFor(model => model.PaidForTheEntirePeriod)
-                </div>
-            </td>
-        </tr>*@
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PaidForTheEntirePeriod)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PaidForTheEntirePeriod)
+                        @Html.ValidationMessageFor(model => model.PaidForTheEntirePeriod)
+                    </div>
+                </td>
+            </tr>*@
         @*@Html.HiddenFor(model => model.PaidForTheEntirePeriod, new { Value = Model.PrePayment + Model.PaidMonths * Model.PaymentForMonth})*@
         <tr>
             <td>
@@ -103,21 +103,21 @@
             </td>
         </tr>
         @*<tr>
-            <td>
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.PaymentForMonth)
-                </div>
-            </td>
-            <td>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.PaymentForMonth)
-                    @Html.ValidationMessageFor(model => model.PaymentForMonth)
-                </div>
-            </td>
-        </tr>*@
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PaymentForMonth)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PaymentForMonth)
+                        @Html.ValidationMessageFor(model => model.PaymentForMonth)
+                    </div>
+                </td>
+            </tr>*@
         @*@Html.HiddenFor(model => model.PaymentForMonth, new { Value = (Model.Price - Model.PrePayment)/(Model.Term-Model.PaidMonths)})
-        @Html.HiddenFor(model => model.PaidForTheEntirePeriod, new { Value = Model.PrePayment + Model.PaidMonths * Model.PaymentForMonth })*@
-         <tr>
+            @Html.HiddenFor(model => model.PaidForTheEntirePeriod, new { Value = Model.PrePayment + Model.PaidMonths * Model.PaymentForMonth })*@
+        <tr>
             <td>
                 @Html.Hidden("FullyPaid", "false")
                 <div class="editor-label">

@@ -3,10 +3,15 @@
 @{
     ViewBag.Title = "Платежи";
 }
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<h2>Главная</h2>
+
+@Html.ActionLink("Открыть месяц", "OpenMonth")
+
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.js"></script>
+@*<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.js"></script>*@
 
 @using (Ajax.BeginForm("Filter", null, new AjaxOptions() { UpdateTargetId = "months" }, new { id = "ajaxform"}))
 {

@@ -9,43 +9,43 @@
     @Html.ActionLink("Создать город", "Create", "City")
     @Html.ActionLink("Создать улицу", "Create", "Street")
 </p>
-@if(Model.addresses.Any())
-{ 
-    <table>
-    <tr>
-        <th>
-            Абонент
-        </th>
-        <th>
-            Город
-        </th>
-        <th>
-            Улица
-        </th>
-        <th>
-            Дом
-        </th>
-    </tr>
-
-    @foreach (var item in Model.addresses)
-    {
+@if (Model.addresses.Any())
+{
+    <table class="table table-hover">
         <tr>
-            <td>
-                @item.Abonent.Name
-            </td>
-            <td>
-                @Model.cities.Where(x => x.CityId == item.CityId).Select(x => x.Name).FirstOrDefault()
-            </td>
-            <td>
-                @Model.streets.Where(x => x.StreetId == item.StreetId).Select(x => x.Name).FirstOrDefault()
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.House)
-            </td>
+            <th>
+                Абонент
+            </th>
+            <th>
+                Город
+            </th>
+            <th>
+                Улица
+            </th>
+            <th>
+                Дом
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.addresses)
+        {
+            <tr>
+                <td>
+                    @item.Abonent.Name
+                </td>
+                <td>
+                    @Model.cities.Where(x => x.CityId == item.CityId).Select(x => x.Name).FirstOrDefault()
+                </td>
+                <td>
+                    @Model.streets.Where(x => x.StreetId == item.StreetId).Select(x => x.Name).FirstOrDefault()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.House)
+                </td>
+            </tr>
+        }
+
+    </table>
 }
 else
 {

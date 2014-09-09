@@ -1,0 +1,20 @@
+﻿@model Dictionary<string, int> 
+
+@foreach(var item in Model)
+{
+    <tr>
+        <td>
+            @item.Key
+        </td>
+        <td>
+            @if(item.Value == 0)
+            {
+                <span class="alert-error">Нет данных</span>
+            }
+            else
+            {
+                @item.Value
+            }
+        </td>
+    </tr>
+}

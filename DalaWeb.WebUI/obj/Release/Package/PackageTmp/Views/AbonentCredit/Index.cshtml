@@ -15,98 +15,98 @@
 <h2>Список кредитов</h2>
 
 @if (Model.Any())
-{ 
-    <table>
-    <tr>
-        <th>
-            Абонент
-        </th>
-        <th>
-            Кредит
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FinishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrePayment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaidForTheEntirePeriod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaidMonths)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Term)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentForMonth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comment)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+{
+    <table class="table table-hover">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Abonent.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Credit.Name)
-            </td>
-            <td>
-                @GetRuDate(item.StartDate)
-            </td>
-            <td>
-                @GetRuDate(item.FinishDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrePayment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaidForTheEntirePeriod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaidMonths)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Term)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentForMonth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
-            <td>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Функции
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="@Url.Action("Edit", new { abonentId = item.AbonentId, creditId = item.CreditId })">Редактировать</a></li>
-                        <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, creditId = item.CreditId })">Детальнее</a></li>
-                        <li><a href="@Url.Action("Delete", new { abonentId = item.AbonentId, creditId = item.CreditId })">Удалить</a></li>
-                    </ul>
-                </div>
-            </td>
+            <th>
+                Абонент
+            </th>
+            <th>
+                Кредит
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrePayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidForTheEntirePeriod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidMonths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Term)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentForMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abonent.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credit.Name)
+                </td>
+                <td>
+                    @GetRuDate(item.StartDate)
+                </td>
+                <td>
+                    @GetRuDate(item.FinishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrePayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidForTheEntirePeriod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidMonths)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Term)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentForMonth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Функции
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="@Url.Action("Edit", new { abonentId = item.AbonentId, creditId = item.CreditId })">Редактировать</a></li>
+                            <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, creditId = item.CreditId })">Детальнее</a></li>
+                            <li><a href="@Url.Action("Delete", new { abonentId = item.AbonentId, creditId = item.CreditId })">Удалить</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
 }
 else
 {

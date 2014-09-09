@@ -49,17 +49,29 @@ textarea {
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error {
+/*.field-validation-error {
     color: #f00;
-}
+}*/
 
 .field-validation-valid {
     display: none;
 }
 
-.input-validation-error {
+/*.input-validation-error {
     border: 1px solid #f00;
     background-color: #fee;
+}*/
+
+.input-validation-error{ 
+    background: pink; 
+    border: 1px solid red; 
+}
+
+
+.field-validation-error{ 
+    color: red; 
+    font-weight: bold; 
+
 }
 
 .validation-summary-errors {
@@ -69,4 +81,8 @@ textarea {
 
 .validation-summary-valid {
     display: none;
+}
+
+.centerAlign {
+   text-align: center;
 }

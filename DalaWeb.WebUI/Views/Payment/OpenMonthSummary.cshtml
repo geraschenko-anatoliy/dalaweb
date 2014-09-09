@@ -1,0 +1,71 @@
+﻿@model DalaWeb.WebUI.ViewModels.ForPayment.OpenMonthSummaryViewModel
+
+<div >
+    <h3 class='centerAlign'>Открытие месяца @Model.payments.Last().Date.Month @Model.payments.Last().Date.Year</h3>
+</div>
+
+<table class="table table-hover" >
+    <caption>
+        <h2>
+            Начисленные платежи
+        </h2>
+    </caption>
+
+    <tbody>
+        <tr>
+            <th>
+                Номер абонента
+            </th>
+            <th>
+                Дата
+            </th>
+            <th>
+                Сумма
+            </th>
+            <th>
+                Комментарий
+            </th>
+        </tr>
+
+        @foreach (var item in Model.payments)
+        {
+            <tr>
+                <td>
+                    @item.Abonent.AbonentNumber
+                </td>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Sum
+                </td>
+                <td>
+                    @item.Comment
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<table class="table table-hover">
+    <caption>
+        <h3>
+            Сообщения о ошибках
+        </h3>
+    </caption>
+    <tbody>
+        @foreach (var item in Model.warnings)
+        {
+            <tr>
+                <td>
+                    @item
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink("К платежам", "Index")
+@Html.ActionLink("К квитанциям", "Month")
+
+    
