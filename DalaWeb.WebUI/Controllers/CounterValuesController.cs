@@ -14,6 +14,11 @@ using System.Xml;
 using System.Configuration;
 using System.Data.SqlClient;
 using DalaWeb.WebUI.ViewModels.ForAbonent;
+using DalaWeb.WebUI.ViewModels.ForCounterValues;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using System.Globalization;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -36,7 +41,7 @@ namespace DalaWeb.WebUI.Controllers
             List<CounterValues> lastCounterValues = GetLastCounterValues();
             List<string> selectListItems = new List<string>();
             selectListItems.Add("Все");
-            foreach(var item in unitOfWork.ServiceRepository.Get().Where(x => x.Type == 3).Select(x => x.Name).ToList())
+            foreach(var item in unitOfWork.ServiceRepository.Get().Where(x => x.Type == 3).Where(x=>x.isOff==false).Select(x => x.Name).ToList())
             {
                 selectListItems.Add(item);
             }
@@ -46,7 +51,7 @@ namespace DalaWeb.WebUI.Controllers
 
         List<CounterValues> GetLastCounterValues()
         {
-            var counterValues = counterValuesRepository.Get().Include(c => c.Counter).Include(c => c.Counter.Service);
+            var counterValues = counterValuesRepository.Get().Include(c => c.Counter).Include(c => c.Counter.Service).Where(x=>x.Counter.Service.isOff == false);
             List<CounterValues> lastCounterValues = new List<CounterValues>();
             foreach (CounterValues cv in counterValues)
             {
@@ -68,15 +73,11 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(countervalues);
         }
-
-
         public ActionResult Create()
         {
-            ViewBag.ServiceId = new SelectList(unitOfWork.ServiceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name");
+            ViewBag.ServiceId = new SelectList(unitOfWork.ServiceRepository.Get().Where(x => x.isOff == false).Where(x => x.Type == 3), "ServiceId", "Name");
             return View();
         }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CounterValues countervalues)
@@ -102,8 +103,6 @@ namespace DalaWeb.WebUI.Controllers
             ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.CounterId);
             return View(countervalues);
         }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CounterValues countervalues)
@@ -117,8 +116,6 @@ namespace DalaWeb.WebUI.Controllers
             ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.CounterId);
             return View(countervalues);
         }
-
-
         public ActionResult Delete(int id = 0)
         {
             CounterValues countervalues = counterValuesRepository.GetById(id);
@@ -128,8 +125,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(countervalues);
         }
-
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -151,81 +146,31 @@ namespace DalaWeb.WebUI.Controllers
 
             foreach (var file in files)
             {
-                DataSet ds = new DataSet();
-                if (Request.Files["files"].ContentLength > 0)
+                if (file.ContentLength > 0)
                 {
-                    string fileExtension = System.IO.Path.GetExtension(Request.Files["files"].FileName);
+                    //string filePath = Path.Combine(HttpContext.Server.MapPath("../Uploads"),
+                    //                               Path.GetFileName(file.FileName));
+                    //string filePath = Path.Combine(HttpContext.Server.MapPath("/"),
+                    //           Path.GetFileName(file.FileName));
+                    //file.SaveAs(filePath);
 
-                    if (fileExtension == ".xls" || fileExtension == ".xlsx")
-                    {
-                        string fileLocation = Server.MapPath("~/Content/") + Request.Files["files"].FileName;
-                        if (System.IO.File.Exists(fileLocation))
-                        {
-                            System.IO.File.Delete(fileLocation);
-                        }
-                        Request.Files["files"].SaveAs(fileLocation);
-                        string excelConnectionString = string.Empty;
+                    var fileName = Path.GetFileName(file.FileName);
 
-                        excelConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
-                        fileLocation + ";Extended Properties=\"Excel 12.0 Macro;HDR=Yes;IMEX=2\"";
-                        if (fileExtension == ".xlsx")
-                        {
-                            excelConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
-                            fileLocation + ";Extended Properties=\"Excel 12.0 Macro;HDR=Yes;IMEX=2\"";
-                        }
+                    const int blockSize = 256;
+                    int bytesNum;
+                    byte[] buffer = new byte[blockSize];
+                    MemoryStream ms = new MemoryStream();
 
-                        OleDbConnection excelConnection = new OleDbConnection(excelConnectionString);
-                        excelConnection.Open();
+                    while ((bytesNum = file.InputStream.Read(buffer, 0, blockSize)) > 0)
+                        ms.Write(buffer, 0, bytesNum);
 
-
-                        DataTable dt = new DataTable();
-
-                        dt = excelConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                        //if (dt == null)
-                        //{
-                        //    //return View();
-                        //    return;
-                        //}
-
-                        String[] excelSheets = new String[dt.Rows.Count];
-                        int t = 0;
-                        //excel data saves in temp file here.
-                        foreach (DataRow row in dt.Rows)
-                        {
-                            excelSheets[t] = row["TABLE_NAME"].ToString();
-                            t++;
-                        }
-                        OleDbConnection excelConnection1 = new OleDbConnection(excelConnectionString);
-
-                        string query = string.Format("Select * from [{0}]", excelSheets[0]);
-                        using (OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, excelConnection1))
-                        {
-                            dataAdapter.Fill(ds);
-                        }
-
-                        excelConnection.Close();
-                    }
-
-                    //for xml files
-                    //if (fileExtension.ToString().ToLower().Equals(".xml"))
-                    //{
-                    //    string fileLocation = Server.MapPath("~/Content/") + Request.Files["FileUpload"].FileName;
-                    //    if (System.IO.File.Exists(fileLocation))
-                    //    {
-                    //        System.IO.File.Delete(fileLocation);
-                    //    }
-
-                    //    Request.Files["FileUpload"].SaveAs(fileLocation);
-                    //    XmlTextReader xmlreader = new XmlTextReader(fileLocation);
-                    //    // DataSet ds = new DataSet();
-                    //    ds.ReadXml(xmlreader);
-                    //    xmlreader.Close();
-                    //}
+                    Stream ImportStream = ms;
+                    DataTable dt =  getDataTableFromExcel(ImportStream);
 
                     IQueryable<Counter> counters = counterRepository.Get().Include(c => c.CounterValues);
                     List<CounterValues> lastCounterValues = GetLastCounterValues();
 
-                    for (int i = 4; i < ds.Tables[0].Rows.Count - 5; i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         InsertCounterValueToRepository(dataCounterNamesList,
                             dataCounterValuesList,
@@ -234,16 +179,50 @@ namespace DalaWeb.WebUI.Controllers
                             lastCounterValues,
                             counters,
                             serviceId,
-                            TryToParseInt(ds.Tables[0].Rows[i][0].ToString()).ToString(),
-                            TryToParseDouble(ds.Tables[0].Rows[i][2].ToString()),
-                            TryToParseDateTime(ds.Tables[0].Rows[i][1].ToString()));
+                            TryToParseInt(dt.Rows[i].ItemArray[0].ToString()).ToString(),
+                            TryToParseDouble(dt.Rows[i].ItemArray[2].ToString()),
+                            TryToParseDateTime(dt.Rows[i].ItemArray[1].ToString()));
                     }
 
                     unitOfWork.Save();
                 }
             }
+            
             return View(new UploadFileStaticticsViewModel(dataCounterNamesList, dataCounterValuesList, dataIsSuccessList, dataMessagesList));
         }
+
+
+
+        public static DataTable getDataTableFromExcel(Stream stream)
+        {
+            DataTable result = new DataTable();
+            using (var pck = new OfficeOpenXml.ExcelPackage())
+            {
+                if (stream != null)
+                    pck.Load(stream);
+
+                var ws = pck.Workbook.Worksheets.First();
+                DataTable tbl = new DataTable();
+                for (int i = 0; i < 8; i++)
+                    tbl.Columns.Add("");
+
+                var startRow = 6;
+                for (var rowNum = startRow; rowNum <= ws.Dimension.End.Row; rowNum++)
+                {
+                    var wsRow = ws.Cells[rowNum, 1, rowNum, ws.Dimension.End.Column];
+                    var row = tbl.NewRow();
+                    foreach (var cell in wsRow)
+                    {
+                        row[cell.Start.Column - 1] = cell.Value; //cell.text
+                    }
+                    tbl.Rows.Add(row);
+                }
+                result = tbl;
+            }
+            return result;
+        }
+
+
 
         private void InsertCounterValueToRepository(List<string> data_counterNamesList,
             List<double> data_counterValuesList,
@@ -272,14 +251,14 @@ namespace DalaWeb.WebUI.Controllers
                 if (counter.CounterValues.Last().Value >= value)
                 {
                     AddWithError(data_counterNamesList, data_counterValuesList, data_isSuccessList, data_messagesList,
-                                counterName, value, "Текущие показания меньше предыдущих");
+                                counterName, value, "Текущие показания меньше или равны предыдущим");
                     return;
                 }
 
                 if (counter.CounterValues.Last().Date > date)
                 {
                     AddWithError(data_counterNamesList, data_counterValuesList, data_isSuccessList, data_messagesList,
-                                counterName, value, "Импортируемая дата меньше существующей в базе");
+                                counterName, value, "Импортируемая дата меньше существующей в базе " + date.ToString() );
                     return;
                 }
 
@@ -361,8 +340,7 @@ namespace DalaWeb.WebUI.Controllers
         private static DateTime TryToParseDateTime(string value)
         {
             DateTime date;
-            bool result = DateTime.TryParse(value, out date);
-            if (result)
+            if (DateTime.TryParse(value, out date))
             {
                 return date;
             }
@@ -373,6 +351,7 @@ namespace DalaWeb.WebUI.Controllers
                 else
                     return DateTime.MinValue;
             }
+
         }
 
         protected override void Dispose(bool disposing)

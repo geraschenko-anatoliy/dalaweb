@@ -1,22 +1,22 @@
 ﻿@model DalaWeb.WebUI.ViewModels.ForPayment.IndexViewModel
 
 @{
-    ViewBag.Title = "Платежи";
+    ViewBag.Title = "Квитанции";
 }
 
-<h2>Главная</h2>
-
-@Html.ActionLink("Открыть месяц", "OpenMonth")
-
-@*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-@*<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.js"></script>*@
+
+<h2>
+    Главная
+    <a class="btn" title="Открыть месяц" href="@Url.Action("OpenMonth")">
+        <span class="icon-plus"></span>
+    </a> 
+</h2>
 
 @using (Ajax.BeginForm("Filter", null, new AjaxOptions() { UpdateTargetId = "months" }, new { id = "ajaxform"}))
 {
     <table>
-        <tr>
+        <tr class="text-center">
             <td>
                 По номеру
             </td>
@@ -44,14 +44,14 @@
             <td>
                 @Html.DropDownList("PaymentType", (SelectList)ViewBag.PaymentType)
             </td>
-            <td>
-                <input type="submit" value="Фильтр" />
+            <td valign="top">
+                <input type="submit" class="btn" value="Фильтр" />
             </td>
         </tr>
     </table>
 }
 <div id="months">
-    <h3>
+    <h3 class="text-center">
         Настройте фильтр для отображения квитанций
     </h3>
 </div>

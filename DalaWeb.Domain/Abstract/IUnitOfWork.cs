@@ -4,6 +4,7 @@ using DalaWeb.Domain.Entities.Addresses;
 using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Payments;
+using DalaWeb.Domain.Entities.PDFStorages;
 using DalaWeb.Domain.Entities.Services;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,9 @@ namespace DalaWeb.Domain.Abstract
         IRepository<Stamp> StampRepository { get; }
 
         IRepository<Payment> PaymentRepository { get; }
+        IRepository<PDFDocument> PDFDocumentRepository { get; }
+
+        IRepository<Tariff> TariffRepository { get; }
 
     }
 }

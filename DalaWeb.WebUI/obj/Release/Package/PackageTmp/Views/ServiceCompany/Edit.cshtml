@@ -1,8 +1,11 @@
 ﻿@model DalaWeb.Domain.Entities.Services.ServiceCompany
 
 @{
-    ViewBag.Title = "Редактирование";
+    ViewBag.Title = "Компании";
 }
+
+
+
 
 <h2>Редактирование</h2>
 
@@ -25,7 +28,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Сохранить" />
+            <input type="submit" class="btn" value="Сохранить" />
         </p>
     </fieldset>
 }
@@ -33,7 +36,3 @@
 <div>
     @Html.ActionLink("Вернуться", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

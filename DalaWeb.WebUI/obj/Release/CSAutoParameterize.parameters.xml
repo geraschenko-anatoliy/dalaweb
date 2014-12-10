@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="EFDbContext-Web.config Connection String" description="EFDbContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;Initial Catalog=DalaWebDataBase;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\DalaWebDataBase.mdf" tags="SqlConnectionString">
+  <parameter name="EFDbContext-Web.config Connection String" description="EFDbContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;Initial Catalog=DalaWebDataBase2;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\DalaWebDataBase2.mdf" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\geras_000\\documents\\visual\ studio\ 2013\\Projects\\DalaWeb\\DalaWeb\.WebUI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EFDbContext']/@connectionString" />
   </parameter>
 </parameters>

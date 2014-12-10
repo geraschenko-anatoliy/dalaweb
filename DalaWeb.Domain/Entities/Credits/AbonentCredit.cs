@@ -21,40 +21,40 @@ namespace DalaWeb.Domain.Entities.Credits
         public virtual Credit Credit { get; set; }
 
         [Required]
-        [Display(Name = "Дата открытия")]
+        [Display(Name = "Дата открытия"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "Date")]
 
         public DateTime StartDate { get; set; }
 
         [Required]
-        [Display(Name = "Дата закрытия")]
+        [Display(Name = "Дата закрытия"), DisplayFormat(DataFormatString="{0:dd/MM/yyyy}", ApplyFormatInEditMode=true )]
         [Column(TypeName = "Date")]
         public DateTime FinishDate { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DefaultValue(0)]
-        [Range(0, double.MaxValue, ErrorMessage = "Необходимо ввести положительное значение")]
+        [Range(0, double.MaxValue, ErrorMessage = "Введите положительное значение")]
         [Display(Name = "Предоплата")]
         public double PrePayment { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DefaultValue(0)]
-        [Range(0, double.MaxValue, ErrorMessage = "Необходимо ввести положительное значение")]
+        [Range(0, double.MaxValue, ErrorMessage = "Введите положительное значение")]
         [Display(Name = "Общая сумма проплат")]
         public double PaidForTheEntirePeriod { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DefaultValue(0)]
-        [Range(0, 100, ErrorMessage = "Необходимо ввести положительное значение")]
+        [Range(0, 100, ErrorMessage = "Введите положительное значение")]
         [Display(Name = "Оплачено месяцев")]
         public int PaidMonths { get; set; }
 
         [Required]
-        [Range(1, 100, ErrorMessage = "Необходимо ввести положительное значение")]
+        [Range(1, 100, ErrorMessage = "Введите положительное значение")]
         [Display(Name = "Срок")]
         public int Term { get; set; }
 
-        [Range(0, double.MaxValue, ErrorMessage = "Необходимо ввести положительное значение")]
+        [Range(0, double.MaxValue, ErrorMessage = "Введите положительное значение")]
         [Display(Name = "Общая сумма кредита")]
         public double Price { get; set; }
         [Required(ErrorMessage = "*")]

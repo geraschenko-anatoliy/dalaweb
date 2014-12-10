@@ -9,10 +9,10 @@
 @using (Html.BeginForm("UploadFile", "CounterValues", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {     
     @Html.AntiForgeryToken()
-    <input type="file" name="files" accept=".xlsx"><br>
+    <input type="file" name="files" value="Выбрать" accept=".xlsx"><br>
     @Html.DropDownList("ServiceId", (SelectList)ViewBag.ServiceId)
     <br />
-    <input type="submit" value="Загрузить файл">
+    <input type="submit" value="Загрузить">
 }
 <div>
     @Html.ActionLink("Вернуться", "Index")

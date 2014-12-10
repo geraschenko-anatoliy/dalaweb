@@ -3,53 +3,37 @@
 @{
     ViewBag.Title = "Показания счетчиков";
 }
+<script src="~/Scripts/DropDownHelpers/ServiceNameFilterDropDown.js"></script>
 
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#ServiceName").change(function () {
-            var selected = $(this).find('option:selected').text();
-            if (selected != "Все")
-            {
-                var tableSelector = "#infobody";
-                var $table = $(tableSelector);
-                $table.find("tr").hide().filter(function () { return $.trim($(this).find("td:nth-child(4)").text()) == selected; }).show();
-            }
-            else
-            {
-                var tableSelector = "#infobody";
-                var $table = $(tableSelector);
-                $table.find("tr").show();
-            }
-        });
-    });
-</script>
-
-<h2>Главная</h2>
-@Html.ActionLink("Импортировать показания", "Create")
-
+<h2>
+    Главная
+    <a class="btn" title="Импортировать показания" href="@Url.Action("Create")">
+        <span class="icon-plus"></span>
+    </a>
+</h2>
 <p>
     <b>Фильтровать счетчики</b> @Html.DropDownList("ServiceName", (SelectList)ViewBag.ServiceName)
 </p>
 @if (Model.Any())
 {
-    <table class="table table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Counter.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Value)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Counter.Service.Name)
-            </th>
-            <th></th>
-        </tr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Counter.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Counter.Service.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
         <tbody id="infobody">
             @foreach (var item in Model)
             {

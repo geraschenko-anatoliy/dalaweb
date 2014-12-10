@@ -5,6 +5,7 @@ using DalaWeb.Domain.Entities.Addresses;
 using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Payments;
+using DalaWeb.Domain.Entities.PDFStorages;
 using DalaWeb.Domain.Entities.Services;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,29 @@ namespace DalaWeb.Domain.Concrete
         private Repository<Stamp> stampRepository;
         
         private Repository<Payment> paymentRepository;
+        private Repository<PDFDocument> pdfDocumentRepository;
+        private Repository<Tariff> tariffRepository;
 
+        public IRepository<Tariff> TariffRepository
+        {
+            get
+            {
+                if (this.tariffRepository == null)
+                    this.tariffRepository = new Repository<Tariff>(context);
+                return tariffRepository;
+            }
+        }
+
+
+        public IRepository<PDFDocument> PDFDocumentRepository
+        {
+            get
+            {
+                if (this.pdfDocumentRepository == null)
+                    this.pdfDocumentRepository = new Repository<PDFDocument>(context);
+                return pdfDocumentRepository;
+            }
+        }
 
         public IRepository<Payment> PaymentRepository
         {
@@ -163,6 +186,7 @@ namespace DalaWeb.Domain.Concrete
         public void Save()
         {
             context.SaveChanges();
+
         }
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)

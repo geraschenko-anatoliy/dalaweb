@@ -4,18 +4,19 @@
     ViewBag.Title = "Платежи";
 }
 
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.js"></script> 
+@*<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
 
-<h2>Главная</h2>
-
-@Html.ActionLink("Создать платеж", "Create")
+<h2>
+    Главная
+    <a class="btn" title="Создать платеж" href="@Url.Action("Create")">
+        <span class="icon-plus"></span>
+    </a> 
+</h2>
 
 @using (Ajax.BeginForm("All", new AjaxOptions() { UpdateTargetId = "infobody" }))
 {
-    <table>
+    <table class="text-center">
         <tr>
             <td>
                 По номеру
@@ -44,13 +45,13 @@
             <td>
                 @Html.DropDownList("PaymentType", (SelectList)ViewBag.PaymentType)
             </td>
-            <td>
-                <input type="submit" value="Фильтр" />
+            <td valign="top">
+                <input type="submit" value="Фильтр" class="btn" />
             </td>
         </tr>
     </table>
 }
-<table class="table table-hover">
+<table class="table table-hover text-center">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Abonent.AbonentNumber)

@@ -31,4 +31,5 @@ namespace DalaWeb.WebUI.ViewModels.ForCounterValues
         }
 
     }
+
 }

@@ -1,0 +1,69 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Tariff
+
+@{
+    ViewBag.Title = "Тарифы";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.TarifId)
+    
+    <table class="table table-striped">
+        <caption>
+
+        </caption>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Service.Name)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Service.Name, new { @readonly = "readonly" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.LimitValue)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.LimitValue)
+                        @Html.ValidationMessageFor(model => model.LimitValue)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.OverPrice)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.OverPrice)
+                        @Html.ValidationMessageFor(model => model.OverPrice)
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="text-center">
+        <input type="submit" class="btn" value="Сохранить" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+

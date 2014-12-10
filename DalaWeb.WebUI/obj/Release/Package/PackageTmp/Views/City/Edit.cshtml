@@ -1,10 +1,10 @@
 ﻿@model DalaWeb.Domain.Entities.Addresses.City
 
 @{
-    ViewBag.Title = "Редактировать";
+    ViewBag.Title = "Города";
 }
 
-<h2>Редактировать</h2>
+<h2>Редактирование</h2>
 
 @using (Html.BeginForm())
 {
@@ -24,7 +24,7 @@
             @Html.ValidationMessageFor(model => model.Name)
         </div>
         <p>
-            <input type="submit" value="Сохранить" class="btn btn-default" />
+            <input type="submit" value="Сохранить" class="btn" />
         </p>
     </fieldset>
 }
@@ -33,6 +33,3 @@
     @Html.ActionLink("Вернуться", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

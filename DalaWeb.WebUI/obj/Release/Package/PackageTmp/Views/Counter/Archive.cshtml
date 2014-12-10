@@ -4,9 +4,12 @@
     ViewBag.Title = "Отключенные";
 }
 
-<h2>Счетчики</h2>
-
-@Html.ActionLink("К активным", "Index")
+<h2>
+    Счетчики
+    <a class="btn" href="@Url.Action("Index")">
+        <span class="icon-arrow-left"></span>
+    </a> 
+</h2>
 
 @if (Model.Any())
 {
@@ -54,6 +57,6 @@
 else
 {
     <p>
-        Список счетчиков пуст
+        Список отключенных счетчиков пуст
     </p>
 }

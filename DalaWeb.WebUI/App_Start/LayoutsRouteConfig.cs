@@ -23,12 +23,13 @@ namespace DalaWeb.WebUI
 
             routes.MapNavigationRoute<AbonentCreditController>("Кредиты", c => c.Delete(0, 0))
                 .AddChildRoute<CreditController>("Кредиты", c => c.Index())
-                .AddChildRoute<AbonentCreditController>("Пользователи", c => c.Index());
+                .AddChildRoute<AbonentCreditController>("Абоненты", c => c.Index());
 
             routes.MapNavigationRoute<ServiceCompanyController>("Сервисы", c => c.Details(0))
                 .AddChildRoute<ServiceCompanyController>("Компании", c => c.Index())
                 .AddChildRoute<ServiceController>("Сервисы", c => c.Index())
-                .AddChildRoute<AbonentServiceController>("Пользователи", c => c.Index());
+                .AddChildRoute<TariffController>("Тарифы", c => c.Index())
+                .AddChildRoute<AbonentServiceController>("Абоненты", c => c.Index());
 
             routes.MapNavigationRoute<CounterController>("Счетчики", c => c.Delete(0))
                 .AddChildRoute<CounterController>("Счетчики", c => c.Index())

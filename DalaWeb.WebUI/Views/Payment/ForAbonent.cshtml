@@ -11,35 +11,78 @@
     }
 }
 
-@if(Model.Any())
-{ 
-<h2>
-    Платежи абонента @Model.Last().Abonent.Name за @PrintMonth(Model.Last().Date) @Model.Last().Date.Year года
-</h2>
+@if (Model.Any())
+{
+    <h2>
+        Платежи абонента @Model.Last().Abonent.Name за @PrintMonth(Model.Last().Date) @Model.Last().Date.Year года
+    </h2>
 
-    
-    
-<table class="table table-hover">
-    <tr>
-        <th>
-            Дата
-        </th>
-        <th>
-            Сумма
-        </th>
-        <th>
-            Комментарий
-        </th>
-    </tr>
-    @foreach(var item in Model)
-    {
+    <table class="table table-hover">
         <tr>
-            <td align="center">@item.Date.ToShortDateString()</td>
-            <td align="center">@item.Sum</td>
-            <td align="center">@item.Comment</td>
+            <th>
+                Баланс на начало месяца
+            </th>
+            <th>
+                Сумма пополнений
+            </th>
+            <th>
+                Сумма списаний
+            </th>
+            <th>
+                Баланс на конец месяца
+            </th>
         </tr>
-    }
-</table>
+        <tr>
+            
+                @if (Model.First().Type == "Пополнение")
+                {
+                    <td>
+                        @((Model.First().Balance - Model.First().Sum).ToString("F2"))
+                    </td>
+                }   
+                else
+                {
+                    <td>
+                        @((Model.First().Balance + Model.First().Sum).ToString("F2"))
+                    </td>
+                }
+            <td>
+                @Model.Where(x => x.Type == "Пополнение").Select(x=>x.Sum).Sum().ToString("F2")
+            </td>
+            <td>
+                @Model.Where(x => x.Type == "Списание").Select(x => x.Sum).Sum().ToString("F2")
+            </td>
+            <td>
+                @Model.Last().Balance.ToString("F2")
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <h3>Подробная выписка по платежам</h3>
+    </p> 
+    
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Дата
+            </th>
+            <th>
+                Сумма
+            </th>
+            <th>
+                Комментарий
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td align="center">@item.Date.ToShortDateString()</td>
+                <td align="center">@item.Sum.ToString("F2")</td>
+                <td align="center">@item.Comment</td>
+            </tr>
+        }
+    </table>
 }
 else
 {
@@ -48,5 +91,5 @@ else
     </p>
 }
 
-@Html.ActionLink("Вернуться","Month")
+@Html.ActionLink("Вернуться", "Month")
 

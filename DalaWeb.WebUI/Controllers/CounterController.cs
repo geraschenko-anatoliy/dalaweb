@@ -42,6 +42,12 @@ namespace DalaWeb.WebUI.Controllers
             var counters = counterRepository.Get().Where(x => x.isOff == false).Include(x => x.CounterValues).Include(x => x.Stamps);
             return View(counters);
         }
+        //public ActionResult Index2()
+        //{
+        //    var counters = counterRepository.Get().Where(x => x.isOff == false).Include(x => x.CounterValues).Include(x => x.Stamps);
+        //    return new RazorPDF.PdfResult(counters, "Index");
+        //}
+
         public ActionResult Archive()
         {
             return View(counterRepository.Get().Where(x => x.isOff == true).Include(x => x.CounterValues));
@@ -53,6 +59,7 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Details(int id = 0)
         {
             Counter counter = counterRepository.GetById(id);
+
             counter.CounterValues = counterValuesRepository.Get().Where(x => x.CounterId == counter.CounterId).ToList();
             if (counter == null)
             {

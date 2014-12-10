@@ -4,59 +4,63 @@
     ViewBag.Title = "Главная";
 }
 
-<h2>Счетчики</h2>
-
-@Html.ActionLink("К отключенным", "Archive")
+<h2>
+    Счетчики
+    <a class="btn" href="@Url.Action("Archive")">
+        <span class="icon-trash"></span>
+    </a>
+</h2>
 
 @if (Model.Any())
-{ 
-    <table class="table table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Service.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Abonent.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.ActionLink(item.Name, "Details", new { id = item.CounterId }, null)
-                @*@Html.DisplayFor(modelItem => item.Name)*@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Abonent.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Функции
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="@Url.Action("Edit", new { id = item.CounterId })">Редактировать</a></li>
-                        <li><a href="@Url.Action("Details", new { id = item.CounterId })">Детальнее</a></li>
-                        <li><a href="@Url.Action("Delete", new { id = item.CounterId })">Отключить</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-    }
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Service.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Abonent.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Name, "Details", new { id = item.CounterId }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Abonent.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = item.CounterId })">
+                            <span class="icon-edit"></span>
+                        </a>
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { id = item.CounterId })">
+                            <span class="icon-info-sign"></span>
+                        </a>
+                        <a class="btn" title="Отключить" href="@Url.Action("Delete", new { id = item.CounterId })">
+                            <span class="icon-remove"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
 else

@@ -1,0 +1,65 @@
+﻿@model DalaWeb.Domain.Entities.Services.AbonentService
+
+@{
+    ViewBag.Title = "Сервисы абонента";
+}
+
+<h2>Временное отключение всех услуг абонента @ViewBag.AbonentName</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    @Html.Hidden("abonentId", (int)ViewBag.AbonentId)
+
+    <table class="table table-striped">
+        <tr>
+            <td>
+                Выбрать дату отключения
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBox("finishDate", String.Format("{0:dd/MMMM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.ValidationMessage("finishDate")
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Выбрать дату подключения
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBox("startDate", String.Format("{0:dd/MMMM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.ValidationMessage("startDate")
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <p>
+                    <input type="submit" class="btn" value="Отключить" />
+                </p>
+            </td>
+        </tr>
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            autoclose: true
+            //dateFormat: 'dd/MM/yyyy',
+            //format: 'dd/MM/yyyy'
+        });
+    });
+</script>

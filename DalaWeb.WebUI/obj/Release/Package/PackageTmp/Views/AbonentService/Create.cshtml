@@ -1,13 +1,13 @@
 ﻿@model DalaWeb.Domain.Entities.Services.AbonentService
 
 @{
-    ViewBag.Title = "Создание";
+    ViewBag.Title = "Сервисы абонента";
 }
 <script type="text/javascript">
     var addressGetServicesPath = "@Url.Action("GetServices", "AbonentService")";
 </script>
+
 <script src="~/Scripts/DropDownHelpers/ServiceDropdown.js"></script>
- 
 
 <h2>Создать</h2>
 
@@ -19,7 +19,7 @@
 
         <legend>Сервис для @ViewBag.AbonentName</legend>
         @Html.Hidden("AbonentId", (int)@ViewBag.AbonentId)
-        @Html.Hidden("FinishDate", (DateTime)@ViewBag.FinishDate)
+        @Html.Hidden("FinishDate", (DateTime)@DateTime.MinValue)
         @Html.Hidden("isOff", false)
 
         <div class="editor-label">
@@ -43,11 +43,10 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.StartDate)
-            @Html.ValidationMessageFor(model => model.StartDate)
+            @*@Html.ValidationMessageFor(model => model.StartDate)*@
         </div>
-
         <p>
-            <input type="submit" value="Создать" />
+            <input type="submit" class="btn" value="Создать" />
         </p>
     </fieldset>
 }

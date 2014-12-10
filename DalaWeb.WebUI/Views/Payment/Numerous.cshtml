@@ -3,7 +3,7 @@
     ViewBag.Title = "Платежи";
 }
 
-<h2>Массовое пополнение</h2>
+<h2 class="text-center">Массовое пополнение</h2>
 
 @using (Html.BeginForm("Numerous", "Payment", FormMethod.Post))
 {
@@ -45,7 +45,6 @@
                         @Html.ValidationMessageFor(modelItem => Model[i])
                     </td>
                 </tr>
-
             }
         </tbody>
         <tfoot>
@@ -60,18 +59,12 @@
                     @Html.ValidationMessage("Date")
                 </td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <p>
-                        <input type="submit" value="Сохранить" />
-                    </p>
-                </td>
-            </tr>
         </tfoot>
     </table>
+
+    <p class="text-center">
+        <input type="submit" class="btn" value="Сохранить" />
+    </p>
 }
 
 <script type="text/javascript">

@@ -1,7 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.Counters.Counter
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Счетчики";
 }
 
 <h2>Редактирование</h2>
@@ -94,19 +94,18 @@
                     }
                     else
                     {
-                        DalaWeb.Domain.Entities.Counters.Stamp Stamp = Model.Stamps.Where(x => x.isOff == false).LastOrDefault();
-                        @Html.ActionLink(Stamp.Name, "Details", "Stamp", new { id = Stamp.StampId }, null)
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                Функции
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("Edit", "Stamp", new { id = Stamp.StampId })">Редактировать</a></li>
-                                <li><a href="@Url.Action("Details", "Stamp", new { id = Stamp.StampId })">Детальнее</a></li>
-                                <li><a href="@Url.Action("Отключить", "Stamp", new { id = Stamp.StampId })">Отключить</a></li>
-                            </ul>
-                        </div>
+                        DalaWeb.Domain.Entities.Counters.Stamp item = Model.Stamps.Where(x => x.isOff == false).LastOrDefault();
+                        @Html.ActionLink(item.Name, "Details", "Stamp", new { id = item.StampId }, null)
+                        
+                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", "Stamp" , new { id = item.StampId })">
+                            <span class="icon-edit"></span>
+                        </a>
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", "Stamp", new { id = item.StampId })">
+                            <span class="icon-info-sign"></span>
+                        </a>
+                        <a class="btn" title="Отключить" href="@Url.Action("Delete", "Stamp", new { id = item.StampId })">
+                            <span class="icon-remove"></span>
+                        </a>
                     }
                 </div>
             </td>
@@ -115,7 +114,7 @@
             <td></td>
             <td>
                 <p>
-                    <input type="submit" value="Сохранить" />
+                    <input type="submit" class="btn" value="Сохранить" />
                 </p>
             </td>
         </tr>
@@ -125,7 +124,3 @@
 <div>
     @Html.ActionLink("Вернуться", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

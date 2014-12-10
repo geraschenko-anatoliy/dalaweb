@@ -86,13 +86,11 @@ namespace DalaWeb.WebUI.Controllers
             if (stamp.isOff)
                 return RedirectToAction("Archive");
 
-            ViewBag.Counters = new SelectList(counterRepository.Get(), "CounterId", "Name", stamp.CounterId);
-
             if (stamp == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", stamp.CounterId);
+            ViewBag.Counters = new SelectList(counterRepository.Get(), "CounterId", "Name", stamp.Counter.Name);
             return View(stamp);
         }
 

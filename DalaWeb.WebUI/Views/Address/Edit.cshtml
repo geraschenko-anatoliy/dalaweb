@@ -1,16 +1,15 @@
 ﻿@model DalaWeb.Domain.Entities.Addresses.Address
 
 @{
-    ViewBag.Title = "Редактирование";
+    ViewBag.Title = "Адреса";
 }
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.js"></script>
+
 <script type="text/javascript">
     var addressGetStreetPath = "@Url.Action("GetStreets", "Address")";
 </script>
 <script src="~/Scripts/DropDownHelpers/AddressDropdown.js"></script>
 
-<h2>Редактировать</h2>
+<h2>Редактирование</h2>
 
 @using (Html.BeginForm())
 {
@@ -47,16 +46,17 @@
         </div>
 
         <p>
-            <input type="submit" value="Сохранить" class="btn btn-default" />
+            <input type="submit" value="Сохранить" class="btn" />
         </p>
     </fieldset>
 }
 
 <div>
-    @*    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = Model.AbonentID }, null)*@
-    <button type="button" onclick="location.href='@Url.Action("Edit", "Abonent", new { id = Model.AbonentId })'" class="btn btn-default">Назад</button>
+    <button type="button" 
+            onclick="location.href='@Url.Action("Edit", "Abonent", new { id = Model.AbonentId })'" 
+            class="btn">
+        Назад
+    </button>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

@@ -96,32 +96,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(city);
         }
 
-        //
-        // GET: /City/Delete/5
-
-        //public ActionResult Delete(int id = 0)
-        //{
-        //    City city = cityRepository.GetById(id);
-
-        //    if (city == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(city);
-        //}
-
-        ////
-        //// POST: /City/Delete/5
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    cityRepository.Delete(id);
-        //    unitOfWork.Save();
-        //    return RedirectToAction("Index");
-        //}
-
         protected override void Dispose(bool disposing)
         {
             unitOfWork.Dispose();

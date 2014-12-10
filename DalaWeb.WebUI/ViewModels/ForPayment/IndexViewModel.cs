@@ -37,6 +37,7 @@ namespace DalaWeb.WebUI.ViewModels.ForPayment
                 {
                     foreach (var abonentId in payments.Where(x => x.Date.Year == year)
                                                                    .Where(x => x.Date.Month == month)
+                                                                   .Where(x=>x.Type == "Списание")
                                                                    .Select(x => x.AbonentId)
                                                                    .Distinct())
                     { 
@@ -44,6 +45,7 @@ namespace DalaWeb.WebUI.ViewModels.ForPayment
                         Payment tempPayment = new Payment();
                         foreach (var payment in payments.Where(x => x.Date.Year == year)
                                                                    .Where(x => x.Date.Month == month)
+                                                                   .Where(x => x.Type == "Списание")
                                                                    .Where(x => x.AbonentId == abonentId))
                         {
                             summ += payment.Sum;

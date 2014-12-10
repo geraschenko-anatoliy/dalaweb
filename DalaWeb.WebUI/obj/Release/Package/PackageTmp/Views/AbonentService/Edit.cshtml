@@ -1,7 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.Services.AbonentService
 
 @{
-    ViewBag.Title = "Редактирование";
+    ViewBag.Title = "Сервисы абонента";
 }
 
 <h2>Редактирование</h2>
@@ -63,7 +63,7 @@
             <td></td>
             <td>
                 <p>
-                    <input type="submit" value="Сохранить" />
+                    <input type="submit" class="btn" value="Сохранить" />
                 </p>
             </td>
         </tr>
@@ -74,9 +74,6 @@
     @Html.ActionLink("Вернуться", "Index")
 </div>
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
     $(document).ready(function () {
         $("#@ViewData.ModelMetadata.PropertyName").datepicker({

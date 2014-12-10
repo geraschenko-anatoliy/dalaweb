@@ -947,7 +947,7 @@ $.extend($.validator, {
 			if (val.param || val.depends) {
 				var keepRule = true;
 				switch (typeof val.depends) {
-					case "string":
+					case "string":alidator.messages
 						keepRule = !!$(val.depends, element.form).length;
 						break;
 					case "function":

@@ -71,8 +71,7 @@ namespace DalaWeb.WebUI.Controllers
             Abonent abonent = unitOfWork.AbonentRepository.Get().Where(x => x.AbonentId == abonentId).Include(x=>x.AbonentServices).FirstOrDefault();
             ViewBag.AbonentName = abonent.Name;
             ViewBag.AbonentId = abonentId;
-            ViewBag.FinishDate = DateTime.MinValue;
-            //ViewBag.ServiceId = new SelectList(serviceRepository.Get().Where(x => x.Archival == false), "ServiceId", "Name");
+            ViewBag.FinishDate = "01/01/1000";
             ViewBag.CompanyId = new SelectList(unitOfWork.ServiceCompanyRepository.Get(), "CompanyId", "Name");
             return View();
         }
@@ -82,10 +81,8 @@ namespace DalaWeb.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AbonentService abonentService)
         {
-            abonentService.FinishDate = DateTime.MinValue;
-            abonentService.StartDate = new DateTime(abonentService.StartDate.Year,
-                                                    abonentService.StartDate.Month,
-                                                    abonentService.StartDate.Day);
+            abonentService.FinishDate = new DateTime(1000, 1, 1);
+
             if (ModelState.IsValid)
             {
                 abonentServiceRepository.Insert(abonentService);
@@ -93,9 +90,47 @@ namespace DalaWeb.WebUI.Controllers
                 return RedirectToAction("Edit", "Abonent", new { id = abonentService.AbonentId });
             }
 
-            //ViewBag.ServiceId = new SelectList(serviceRepository.Get().Where(x => x.Archival == false), "SerivceId", "Сервис");
             ViewBag.CompanyId = new SelectList(unitOfWork.ServiceCompanyRepository.Get(), "CompanyId", "Name");
             return View(abonentService);
+        }
+
+        public ActionResult TemporaryDisableForAbonent(int abonentId)
+        {
+            ViewBag.AbonentName = unitOfWork.AbonentRepository.GetById(abonentId).Name;
+            ViewBag.AbonentId = abonentId;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TemporaryDisableForAbonent(int abonentId, DateTime finishDate, DateTime startDate)
+        {
+            var abonentServices = abonentServiceRepository.Get()
+                .Where(x => x.AbonentId == abonentId)
+                .Where(x => x.isOff == false);
+
+            foreach(AbonentService abonentService in abonentServices)
+            {
+                AbonentService futureAbonentService = new AbonentService()
+                {
+                    Abonent = abonentService.Abonent,
+                    AbonentId = abonentService.AbonentId,
+                    FinishDate = DateTime.MinValue,
+                    isOff = false,
+                    Service = abonentService.Service,
+                    ServiceId = abonentService.ServiceId,
+                    StartDate = startDate
+                };
+
+                abonentService.isOff = true;
+                abonentService.FinishDate = finishDate;
+
+                abonentServiceRepository.Insert(futureAbonentService);
+                abonentServiceRepository.Update(abonentService);
+            }
+
+            unitOfWork.Save();
+            return RedirectToAction("Edit","Abonent", new { id = abonentId });
         }
 
         //

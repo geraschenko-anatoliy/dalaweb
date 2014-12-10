@@ -1,0 +1,61 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Tariff
+
+@{
+    ViewBag.Title = "Тарифы";
+}
+
+<h2 class="text-center">Удаление</h2>
+
+<h3 class="text-center">Вы действительно хотите удалить этот тариф?</h3>
+<table class="table table-striped">
+    <caption>
+        Тарифы
+    </caption>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Service.Name)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Service.Name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.LimitValue)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.LimitValue)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.OverPrice)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.OverPrice)
+            </div>
+        </td>
+    </tr>
+</table>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p class="text-center">
+        <input type="submit" class="btn btn-danger" value="Удалить" />
+
+        <a class="btn" title="Вернуться" href="@Url.Action("Index")">
+            Вернуться
+        </a>
+    </p>
+}

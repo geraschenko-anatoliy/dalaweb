@@ -24,7 +24,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <table>
+    <table class="table table-striped">
         @Html.HiddenFor(model => model.ServiceId)
         @Html.HiddenFor(model => model.Name)
         @Html.HiddenFor(model => model.CompanyId)
@@ -99,14 +99,3 @@
         @Html.ActionLink("Вернуться", "Index")
     </p>
 }
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#@ViewData.ModelMetadata.PropertyName").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'yyyy/MM/dd',
-            format: 'yyyy/MM/dd'
-        });
-    });
-</script>

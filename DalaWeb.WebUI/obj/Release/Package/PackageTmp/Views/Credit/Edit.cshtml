@@ -1,7 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.Credits.Credit
 
 @{
-    ViewBag.Title = "Кредиты. Редактирование";
+    ViewBag.Title = "Кредиты";
 }
 
 <h2>Редактировать</h2>
@@ -24,15 +24,11 @@
             @Html.ValidationMessageFor(model => model.Name)
         </div>
         <p>
-            <input type="submit" value="Сохранить" class="btn btn-default" />
+            <input type="submit" value="Сохранить" class="btn" />
         </p>
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Вернуться", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<a class="btn" title="Вернуться" href="@Url.Action("Index")">
+    <span class="icon-arrow-left"></span>
+</a> 

@@ -1,73 +1,75 @@
 ﻿@model IEnumerable<DalaWeb.Domain.Entities.Services.AbonentService>
 
 @{
-    ViewBag.Title = "Главная";
+    ViewBag.Title = "Сервисы абонента";
 }
 
-<h2>Предоставляемые услуги</h2>
-<h3>@Html.ActionLink("Архив услуг", "Archive")</h3>
+<h2>
+    Предоставляемые услуги
+    <a class="btn" title="К отключенным" href="@Url.Action("Archive")">
+        <span class="icon-trash"></span>
+    </a>
+</h2>
 @if (Model.Any())
 {
-    <table class="table table-hover">
-        <tr>
-            <th>
-                Номер
-            </th>
-            <th>
-                Имя
-            </th>
-            <th>
-                Сервис компания
-            </th>
-            <th>
-                Сервис
-            </th>
-            <th>
-                Дата подключения
-            </th>
-            <th>
-                Цена
-            </th>
-            <th>
-
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Abonent.AbonentNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Abonent.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Service.ServiceCompany.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Service.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Service.Price)
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Функции
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Детальнее</a></li>
-                            <li><a href="@Url.Action("Remove", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Отключить</a></li>
-                        </ul>
-                    </div>
-                </td>
+                <th>
+                    Номер
+                </th>
+                <th>
+                    Имя
+                </th>
+                <th>
+                    Сервис компания
+                </th>
+                <th>
+                    Сервис
+                </th>
+                <th>
+                    Дата подключения
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th>
+                </th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Abonent.AbonentNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Abonent.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.ServiceCompany.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.Price)
+                    </td>
+                    <td>
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">
+                            <span class="icon-info-sign"></span>
+                        </a>
+                        <a class="btn" title="Отключить" href="@Url.Action("Edit", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">
+                            <span class="icon-remove"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
 else

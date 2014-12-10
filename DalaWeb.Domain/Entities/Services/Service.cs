@@ -20,7 +20,7 @@ namespace DalaWeb.Domain.Entities.Services
         [Display(Name = "Сервис")]
         public string Name { get; set; }
         [Required(ErrorMessage = "*")]
-        [Range(0, double.MaxValue, ErrorMessage = "Please enter a positive price")]
+        [Range(0, double.MaxValue, ErrorMessage = "Введите положительное значение")]
         [Display(Name = "Цена")]
         public double Price { get; set; }
         [Required(ErrorMessage = "*")]
@@ -34,6 +34,8 @@ namespace DalaWeb.Domain.Entities.Services
         public virtual ServiceCompany ServiceCompany { get; set; }
         public virtual ICollection<AbonentService> AbonentServices { get; set; }
         public virtual ICollection<Counter> Counters { get; set; }
+
+        public virtual ICollection<Tariff> Tariffs { get; set; }
 
         public override string ToString()
         {

@@ -4,11 +4,9 @@
     ViewBag.Title = "Платежи";
 }
 
-<h2>Удаление</h2>
+<h3 class="text-center">Вы действительно хотите удалить платеж?</h3>
 
-<h3>Вы действительно хотите удалить платеж?</h3>
-
-<table>
+<table class="table table-striped" >
     <tr>
         <th>
             <div class="display-label">
@@ -67,7 +65,7 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Удалить" /> |
+        <input type="submit" class="btn" value="Удалить" /> |
         @Html.ActionLink("Вернуться", "Index")
     </p>
 }

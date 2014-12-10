@@ -3,48 +3,54 @@
     ViewBag.Title = "Главная";
 }
 
-<h2>Адреса</h2>
+<h2>
+    Адреса
+    <a class="btn" title="Создать город"  href="@Url.Action("Create", "City")">
+        <span class="icon-plus"></span>
+    </a>
+    <a class="btn" title="Создать улицу" href="@Url.Action("DeletedIndex", "Street")">
+        <span class="icon-plus"></span>
+    </a>
+</h2>
 
-<p>
-    @Html.ActionLink("Создать город", "Create", "City")
-    @Html.ActionLink("Создать улицу", "Create", "Street")
-</p>
 @if (Model.addresses.Any())
 {
-    <table class="table table-hover">
-        <tr>
-            <th>
-                Абонент
-            </th>
-            <th>
-                Город
-            </th>
-            <th>
-                Улица
-            </th>
-            <th>
-                Дом
-            </th>
-        </tr>
-
-        @foreach (var item in Model.addresses)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-                    @item.Abonent.Name
-                </td>
-                <td>
-                    @Model.cities.Where(x => x.CityId == item.CityId).Select(x => x.Name).FirstOrDefault()
-                </td>
-                <td>
-                    @Model.streets.Where(x => x.StreetId == item.StreetId).Select(x => x.Name).FirstOrDefault()
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.House)
-                </td>
+                <th>
+                    Абонент
+                </th>
+                <th>
+                    Город
+                </th>
+                <th>
+                    Улица
+                </th>
+                <th>
+                    Дом
+                </th>
             </tr>
-        }
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model.addresses)
+            {
+                <tr>
+                    <td>
+                        @item.Abonent.Name
+                    </td>
+                    <td>
+                        @Model.cities.Where(x => x.CityId == item.CityId).Select(x => x.Name).FirstOrDefault()
+                    </td>
+                    <td>
+                        @Model.streets.Where(x => x.StreetId == item.StreetId).Select(x => x.Name).FirstOrDefault()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.House)
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
 else

@@ -4,106 +4,111 @@
     ViewBag.Title = "Главная";
 }
 
-<h2>Абоненты</h2>
+<h2>
+    Абоненты
+    <a class="btn" title="Создать абонента" href="@Url.Action("Create")" >
+        <span class="icon-plus"></span>
+    </a>
+    <a class="btn" title="Просмотреть отключенных" href="@Url.Action("DeletedIndex")">
+        <span class="icon-trash"></span>
+    </a>
+</h2>
 
-<p>
-    @Html.ActionLink("Создать абонента", "Create")
-    @Html.ActionLink("Просмотреть отключенных", "DeletedIndex")
-</p>
 @if (Model.abonents.Any())
 {
-    <table class="table table-hover">
-        <tr>
-            <th>
-                Номер
-            </th>
-            <th>
-                Имя
-            </th>
-            <th>
-                ИНН
-            </th>
-            <th>
-                Телефон
-            </th>
-            <th>
-                Число жителей
-            </th>
-            <th>
-                Город
-            </th>
-            <th>
-                Улица
-            </th>
-            <th>
-                Дом
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model.abonents)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-                    @if (item.Address == null)
+                <th>
+                    Номер
+                </th>
+                <th>
+                    Имя
+                </th>
+                <th>
+                    ИНН
+                </th>
+                <th>
+                    Телефон
+                </th>
+                <th>
+                    Число жителей
+                </th>
+                <th>
+                    Город
+                </th>
+                <th>
+                    Улица
+                </th>
+                <th>
+                    Дом
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.abonents)
+            {
+                <tr>
+                    <td>
+                        @if (item.Address == null)
+                        {
+                            <span class="label label-important">Добавьте адрес</span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.AbonentNumber)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.INN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfInhabitants)
+                    </td>
+                    @if (item.Address != null)
                     {
-                        <span class="label label-important">Добавьте адрес</span>
+                        <td>
+                            @Model.cities.Where(x => x.CityId == item.Address.CityId).Select(x => x.Name).FirstOrDefault()
+                        </td>
+                        <td>
+                            @Model.streets.Where(x => x.StreetId == item.Address.StreetId).Select(x => x.Name).FirstOrDefault()
+                        </td>
+                        <td>
+                            @item.Address.House
+                        </td>
                     }
                     else
                     {
-                        @Html.DisplayFor(modelItem => item.AbonentNumber)
+                        <td>
+                            <i class="icon-warning-sign"></i>
+                        </td>
+                        <td>
+                            <i class="icon-warning-sign"></i>
+                        </td>
+                        <td>
+                            <i class="icon-warning-sign"></i>
+                        </td>
                     }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.INN)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumberOfInhabitants)
-                </td>
-                @if (item.Address != null)
-                {
                     <td>
-                        @Model.cities.Where(x => x.CityId == item.Address.CityId).Select(x => x.Name).FirstOrDefault()
+                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = item.AbonentId })">
+                            <span class="icon-edit"></span>
+                        </a>
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { id = item.AbonentId })">
+                            <span class="icon-info-sign"></span>
+                        </a>
+                        <a class="btn" title="Отключить" href="@Url.Action("Delete", new { id = item.AbonentId })">
+                            <span class="icon-remove"></span>
+                        </a>
                     </td>
-                    <td>
-                        @Model.streets.Where(x => x.StreetId == item.Address.StreetId).Select(x => x.Name).FirstOrDefault()
-                    </td>
-                    <td>
-                        @item.Address.House
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <span class="label label-important">Город не указан</span>
-                    </td>
-                    <td>
-                        <span class="label label-important">Улица не указана</span>
-                    </td>
-                    <td>
-                        <span class="label label-important">Дом не указан</span>
-                    </td>
-                }
-                <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Функции
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="@Url.Action("Edit", new { id = item.AbonentId })">Редактировать</a></li>
-                            <li><a href="@Url.Action("Details", new { id = item.AbonentId })">Детальнее</a></li>
-                            <li><a href="@Url.Action("Delete", new { id = item.AbonentId })">Отключить</a></li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-        }
+                </tr>
+            }
+        </tbody>
     </table>
 }

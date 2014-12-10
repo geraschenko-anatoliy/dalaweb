@@ -5,38 +5,25 @@
 }
 <h2>Открыть месяц</h2>
 
-@*<table>
-    <thead>
-        <tr>
-            <td>
-                Проверить возможность
-            </td>
-            <td>
-                @using (Ajax.BeginForm("CheckMonthOpenAbility", new AjaxOptions() { UpdateTargetId = "counter_values" }))
-                {
-                    @Html.TextBox("date1", String.Format("{0:MM/yyyy}", DateTime.Now), new { @class = "datepicker" })
-                    @Html.ValidationMessage("date1")
-                    <input type="submit" value="Проверить" />
-                }
-            </td>
-        </tr>
-    </thead>
-    <tbody id="counter_values"></tbody>
-</table>*@
-
 @using (Html.BeginForm())
 {
+        <p class="text-center">
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <table>
+        @Html.ValidationSummary(true)
+    </p>
+
+    
+    if (!ViewBag.HasErrors)
+    { 
+    <table class="table table-striped">
         <tr>
             <td>
                 Выбрать дату
             </td>
             <td>
                 <div class="editor-field">
-                    @Html.TextBox("date", String.Format("{0:MM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.TextBox("date", String.Format("{0:MMMM-yyyy}", DateTime.Now), new { @class = "datepicker" })
                     @Html.ValidationMessage("date")
                 </div>
             </td>
@@ -45,11 +32,19 @@
             <td></td>
             <td>
                 <p>
-                    <input type="submit" value="Открыть" />
+                    <input type="submit" class="btn" value="Открыть" />
                 </p>
             </td>
         </tr>
     </table>
+    }
+    else
+    {
+        <p class="text-center" > 
+            @Html.ActionLink("Добавить платежи", "Create", "Payment") |
+            @Html.ActionLink("Добавить адрес", "Index", "Abonent")
+        </p> 
+    }
 }
 
 <div>
@@ -59,9 +54,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#date").datepicker({
+            language: 'ru',
             changeMonth: true,
             changeYear: true,
-            format: "mm-yyyy",
+            format: "MM yyyy",
             viewMode: "months",
             minViewMode: "months",
             autoclose: true

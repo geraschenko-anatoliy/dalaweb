@@ -1,0 +1,56 @@
+﻿@model DalaWeb.Domain.Entities.Counters.Tariff
+
+@{
+    ViewBag.Title = "Тарифы";
+}
+
+<h2>Детальнее</h2>
+
+<table class="table table-striped">
+    <caption>
+
+    </caption>
+    <tbody>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Service.Name)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Service.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.LimitValue)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.LimitValue)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.OverPrice)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.OverPrice)
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.TarifId }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

@@ -8,9 +8,8 @@
     var addressGetStreetPath = "@Url.Action("GetStreets", "Address")";
 </script>
 
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.js"></script>
 <script src="~/Scripts/DropDownHelpers/AddressDropdown.js"></script>
+
 <h2>Создать</h2>
 
 @using (Html.BeginForm())
@@ -47,7 +46,7 @@
             @Html.ValidationMessage("MyDropDownListKey")
         </div>
         <p>
-            <input type="submit" value="Создать" class="btn btn-default" />
+            <input type="submit" value="Создать" class="btn" />
         </p>
     </fieldset>
 }
@@ -55,7 +54,3 @@
 <div>
     @Html.ActionLink("Назад", "Edit", "Abonent", new { id = (int)ViewBag.AbonentId }, null)
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

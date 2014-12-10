@@ -79,10 +79,10 @@
                 <div class="display-field">
                     @if (Model.Stamps.Any())
                     {
-                        <table>
+                        <table class="table table-striped">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Name)
+                                    Номер пломбы
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.StartDate)
@@ -131,7 +131,7 @@
         <td>
             @if (Model.CounterValues.Any())
             {
-                <table>
+                <table class="table table-striped">
                     <tr>
                         <th>
                             Значение
@@ -162,6 +162,7 @@
     </tr>
 </table>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.CounterId }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.CounterId })
+    @Html.ActionLink("Отключить", "Delete", new { id = Model.CounterId })
     @Html.ActionLink("Вернуться", "Index")
 </p>

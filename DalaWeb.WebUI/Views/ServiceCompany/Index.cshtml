@@ -4,48 +4,47 @@
     ViewBag.Title = "Сервис компании";
 }
 
-<h2>Главная</h2>
+<h2>
+    Главная
+    <a class="btn" title="Создать компанию" href="@Url.Action("Create")">
+        <span class="icon-plus"></span>
+    </a>
+</h2>
 
-<p>
-    @Html.ActionLink("Создать новую", "Create")
-</p>
 @if (Model.Any())
 {
-    <table class="table table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Функции
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="@Url.Action("Edit", new { id = item.CompanyId })">Редактировать</a></li>
-                            <li><a href="@Url.Action("Details", new { id = item.CompanyId })">Детальнее</a></li>
-                            @*<li><a href="@Url.Action("Delete", new { id = item.CompanyId })">Удалить</a></li>*@
-                        </ul>
-                    </div>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
             </tr>
-        }
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = item.CompanyId })">
+                            <span class="icon-edit"></span>
+                        </a>
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { id = item.CompanyId })">
+                            <span class="icon-info-sign"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
 else
 {
-    <p>
+    <p class="text-center">
         Список сервис компаний пуст
     </p>
 }

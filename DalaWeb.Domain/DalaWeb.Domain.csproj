@@ -91,148 +91,50 @@
     <Compile Include="Entities\Counters\Counter.cs" />
     <Compile Include="Entities\Counters\CounterValues.cs" />
     <Compile Include="Entities\Counters\Stamp.cs" />
+    <Compile Include="Entities\Counters\Tariff.cs" />
     <Compile Include="Entities\Credits\AbonentCredit.cs" />
     <Compile Include="Entities\Addresses\Address.cs" />
     <Compile Include="Entities\Credits\Credit.cs" />
     <Compile Include="Entities\Payments\Payment.cs" />
+    <Compile Include="Entities\PDFStorages\PDFDocument.cs" />
     <Compile Include="Entities\Services\AbonentService.cs" />
     <Compile Include="Entities\Services\Service.cs" />
     <Compile Include="Entities\Services\ServiceCompany.cs" />
-    <Compile Include="Migrations\201407161010199_simpledate.cs" />
-    <Compile Include="Migrations\201407161010199_simpledate.Designer.cs">
-      <DependentUpon>201407161010199_simpledate.cs</DependentUpon>
+    <Compile Include="Migrations\201411231635123_PDFStorage.cs" />
+    <Compile Include="Migrations\201411231635123_PDFStorage.Designer.cs">
+      <DependentUpon>201411231635123_PDFStorage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407161543221_normaldate.cs" />
-    <Compile Include="Migrations\201407161543221_normaldate.Designer.cs">
-      <DependentUpon>201407161543221_normaldate.cs</DependentUpon>
+    <Compile Include="Migrations\201411231915157_PDFStorateFieldRename.cs" />
+    <Compile Include="Migrations\201411231915157_PDFStorateFieldRename.Designer.cs">
+      <DependentUpon>201411231915157_PDFStorateFieldRename.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407161939166_tripleprimarykey.cs" />
-    <Compile Include="Migrations\201407161939166_tripleprimarykey.Designer.cs">
-      <DependentUpon>201407161939166_tripleprimarykey.cs</DependentUpon>
+    <Compile Include="Migrations\201411232311595_datetime2todatetime.cs" />
+    <Compile Include="Migrations\201411232311595_datetime2todatetime.Designer.cs">
+      <DependentUpon>201411232311595_datetime2todatetime.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407171038469_differentStates.cs" />
-    <Compile Include="Migrations\201407171038469_differentStates.Designer.cs">
-      <DependentUpon>201407171038469_differentStates.cs</DependentUpon>
+    <Compile Include="Migrations\201411232312372_datetime2todatetime2.cs" />
+    <Compile Include="Migrations\201411232312372_datetime2todatetime2.Designer.cs">
+      <DependentUpon>201411232312372_datetime2todatetime2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407171039536_differentStates1.cs" />
-    <Compile Include="Migrations\201407171039536_differentStates1.Designer.cs">
-      <DependentUpon>201407171039536_differentStates1.cs</DependentUpon>
+    <Compile Include="Migrations\201411232312590_datetime2todatetime21.cs" />
+    <Compile Include="Migrations\201411232312590_datetime2todatetime21.Designer.cs">
+      <DependentUpon>201411232312590_datetime2todatetime21.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407231028340_add-deleted-users.cs" />
-    <Compile Include="Migrations\201407231028340_add-deleted-users.Designer.cs">
-      <DependentUpon>201407231028340_add-deleted-users.cs</DependentUpon>
+    <Compile Include="Migrations\201411251315108_Tariffs.cs" />
+    <Compile Include="Migrations\201411251315108_Tariffs.Designer.cs">
+      <DependentUpon>201411251315108_Tariffs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407251138258_not-null-address-house.cs" />
-    <Compile Include="Migrations\201407251138258_not-null-address-house.Designer.cs">
-      <DependentUpon>201407251138258_not-null-address-house.cs</DependentUpon>
+    <Compile Include="Migrations\201411251900179_AddTimeStampToPDF.cs" />
+    <Compile Include="Migrations\201411251900179_AddTimeStampToPDF.Designer.cs">
+      <DependentUpon>201411251900179_AddTimeStampToPDF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407280744286_int-prices.cs" />
-    <Compile Include="Migrations\201407280744286_int-prices.Designer.cs">
-      <DependentUpon>201407280744286_int-prices.cs</DependentUpon>
+    <Compile Include="Migrations\201411271017488_ServiceInTariffs.cs" />
+    <Compile Include="Migrations\201411271017488_ServiceInTariffs.Designer.cs">
+      <DependentUpon>201411271017488_ServiceInTariffs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407280756023_terms.cs" />
-    <Compile Include="Migrations\201407280756023_terms.Designer.cs">
-      <DependentUpon>201407280756023_terms.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407280834388_times.cs" />
-    <Compile Include="Migrations\201407280834388_times.Designer.cs">
-      <DependentUpon>201407280834388_times.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407280845104_dates.cs" />
-    <Compile Include="Migrations\201407280845104_dates.Designer.cs">
-      <DependentUpon>201407280845104_dates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407282046399_date-datetime.cs" />
-    <Compile Include="Migrations\201407282046399_date-datetime.Designer.cs">
-      <DependentUpon>201407282046399_date-datetime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407290824022_double-price-values.cs" />
-    <Compile Include="Migrations\201407290824022_double-price-values.Designer.cs">
-      <DependentUpon>201407290824022_double-price-values.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407291208177_archival-services.cs" />
-    <Compile Include="Migrations\201407291208177_archival-services.Designer.cs">
-      <DependentUpon>201407291208177_archival-services.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407291319089_no-suspended-services.cs" />
-    <Compile Include="Migrations\201407291319089_no-suspended-services.Designer.cs">
-      <DependentUpon>201407291319089_no-suspended-services.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407292213305_all-double-prices.cs" />
-    <Compile Include="Migrations\201407292213305_all-double-prices.Designer.cs">
-      <DependentUpon>201407292213305_all-double-prices.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408070918448_counters.cs" />
-    <Compile Include="Migrations\201408070918448_counters.Designer.cs">
-      <DependentUpon>201408070918448_counters.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408070943037_countersIsOff.cs" />
-    <Compile Include="Migrations\201408070943037_countersIsOff.Designer.cs">
-      <DependentUpon>201408070943037_countersIsOff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408071258564_service-counters-rel.cs" />
-    <Compile Include="Migrations\201408071258564_service-counters-rel.Designer.cs">
-      <DependentUpon>201408071258564_service-counters-rel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408071302340_service-counter-rel1.cs" />
-    <Compile Include="Migrations\201408071302340_service-counter-rel1.Designer.cs">
-      <DependentUpon>201408071302340_service-counter-rel1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408071309057_abonent-counter-rel.cs" />
-    <Compile Include="Migrations\201408071309057_abonent-counter-rel.Designer.cs">
-      <DependentUpon>201408071309057_abonent-counter-rel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408071314196_no-type-in-counter.cs" />
-    <Compile Include="Migrations\201408071314196_no-type-in-counter.Designer.cs">
-      <DependentUpon>201408071314196_no-type-in-counter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408071938115_a1.cs" />
-    <Compile Include="Migrations\201408071938115_a1.Designer.cs">
-      <DependentUpon>201408071938115_a1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408072118144_date-counter555.cs" />
-    <Compile Include="Migrations\201408072118144_date-counter555.Designer.cs">
-      <DependentUpon>201408072118144_date-counter555.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408072118396_date-counter5.cs" />
-    <Compile Include="Migrations\201408072118396_date-counter5.Designer.cs">
-      <DependentUpon>201408072118396_date-counter5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408120901466_datetimeToDateInStamps.cs" />
-    <Compile Include="Migrations\201408120901466_datetimeToDateInStamps.Designer.cs">
-      <DependentUpon>201408120901466_datetimeToDateInStamps.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408121303351_isOffForStamp.cs" />
-    <Compile Include="Migrations\201408121303351_isOffForStamp.Designer.cs">
-      <DependentUpon>201408121303351_isOffForStamp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408121740222_Service-Archival-To-isOff.cs" />
-    <Compile Include="Migrations\201408121740222_Service-Archival-To-isOff.Designer.cs">
-      <DependentUpon>201408121740222_Service-Archival-To-isOff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408140927321_initial-value-for-new-counter.cs" />
-    <Compile Include="Migrations\201408140927321_initial-value-for-new-counter.Designer.cs">
-      <DependentUpon>201408140927321_initial-value-for-new-counter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408142007176_db-gen-countervalues.cs" />
-    <Compile Include="Migrations\201408142007176_db-gen-countervalues.Designer.cs">
-      <DependentUpon>201408142007176_db-gen-countervalues.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408151007233_dbgen-none.cs" />
-    <Compile Include="Migrations\201408151007233_dbgen-none.Designer.cs">
-      <DependentUpon>201408151007233_dbgen-none.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408151008447_dbgen-identity.cs" />
-    <Compile Include="Migrations\201408151008447_dbgen-identity.Designer.cs">
-      <DependentUpon>201408151008447_dbgen-identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408280842428_payments.cs" />
-    <Compile Include="Migrations\201408280842428_payments.Designer.cs">
-      <DependentUpon>201408280842428_payments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201409011822115_addPaymentType.cs" />
-    <Compile Include="Migrations\201409011822115_addPaymentType.Designer.cs">
-      <DependentUpon>201409011822115_addPaymentType.cs</DependentUpon>
+    <Compile Include="Migrations\201411272207392_noServiceInPayments.cs" />
+    <Compile Include="Migrations\201411272207392_noServiceInPayments.Designer.cs">
+      <DependentUpon>201411272207392_noServiceInPayments.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,108 +146,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407161010199_simpledate.resx">
-      <DependentUpon>201407161010199_simpledate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411231635123_PDFStorage.resx">
+      <DependentUpon>201411231635123_PDFStorage.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161543221_normaldate.resx">
-      <DependentUpon>201407161543221_normaldate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411231915157_PDFStorateFieldRename.resx">
+      <DependentUpon>201411231915157_PDFStorateFieldRename.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161939166_tripleprimarykey.resx">
-      <DependentUpon>201407161939166_tripleprimarykey.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411232311595_datetime2todatetime.resx">
+      <DependentUpon>201411232311595_datetime2todatetime.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407171038469_differentStates.resx">
-      <DependentUpon>201407171038469_differentStates.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411232312372_datetime2todatetime2.resx">
+      <DependentUpon>201411232312372_datetime2todatetime2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407171039536_differentStates1.resx">
-      <DependentUpon>201407171039536_differentStates1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411232312590_datetime2todatetime21.resx">
+      <DependentUpon>201411232312590_datetime2todatetime21.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407231028340_add-deleted-users.resx">
-      <DependentUpon>201407231028340_add-deleted-users.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411251315108_Tariffs.resx">
+      <DependentUpon>201411251315108_Tariffs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407251138258_not-null-address-house.resx">
-      <DependentUpon>201407251138258_not-null-address-house.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411251900179_AddTimeStampToPDF.resx">
+      <DependentUpon>201411251900179_AddTimeStampToPDF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407280744286_int-prices.resx">
-      <DependentUpon>201407280744286_int-prices.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411271017488_ServiceInTariffs.resx">
+      <DependentUpon>201411271017488_ServiceInTariffs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407280756023_terms.resx">
-      <DependentUpon>201407280756023_terms.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407280834388_times.resx">
-      <DependentUpon>201407280834388_times.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407280845104_dates.resx">
-      <DependentUpon>201407280845104_dates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407282046399_date-datetime.resx">
-      <DependentUpon>201407282046399_date-datetime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407290824022_double-price-values.resx">
-      <DependentUpon>201407290824022_double-price-values.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407291208177_archival-services.resx">
-      <DependentUpon>201407291208177_archival-services.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407291319089_no-suspended-services.resx">
-      <DependentUpon>201407291319089_no-suspended-services.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407292213305_all-double-prices.resx">
-      <DependentUpon>201407292213305_all-double-prices.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408070918448_counters.resx">
-      <DependentUpon>201408070918448_counters.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408070943037_countersIsOff.resx">
-      <DependentUpon>201408070943037_countersIsOff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408071258564_service-counters-rel.resx">
-      <DependentUpon>201408071258564_service-counters-rel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408071302340_service-counter-rel1.resx">
-      <DependentUpon>201408071302340_service-counter-rel1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408071309057_abonent-counter-rel.resx">
-      <DependentUpon>201408071309057_abonent-counter-rel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408071314196_no-type-in-counter.resx">
-      <DependentUpon>201408071314196_no-type-in-counter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408071938115_a1.resx">
-      <DependentUpon>201408071938115_a1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408072118144_date-counter555.resx">
-      <DependentUpon>201408072118144_date-counter555.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408072118396_date-counter5.resx">
-      <DependentUpon>201408072118396_date-counter5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408120901466_datetimeToDateInStamps.resx">
-      <DependentUpon>201408120901466_datetimeToDateInStamps.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408121303351_isOffForStamp.resx">
-      <DependentUpon>201408121303351_isOffForStamp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408121740222_Service-Archival-To-isOff.resx">
-      <DependentUpon>201408121740222_Service-Archival-To-isOff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408140927321_initial-value-for-new-counter.resx">
-      <DependentUpon>201408140927321_initial-value-for-new-counter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408142007176_db-gen-countervalues.resx">
-      <DependentUpon>201408142007176_db-gen-countervalues.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408151007233_dbgen-none.resx">
-      <DependentUpon>201408151007233_dbgen-none.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408151008447_dbgen-identity.resx">
-      <DependentUpon>201408151008447_dbgen-identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408280842428_payments.resx">
-      <DependentUpon>201408280842428_payments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201409011822115_addPaymentType.resx">
-      <DependentUpon>201409011822115_addPaymentType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411272207392_noServiceInPayments.resx">
+      <DependentUpon>201411272207392_noServiceInPayments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

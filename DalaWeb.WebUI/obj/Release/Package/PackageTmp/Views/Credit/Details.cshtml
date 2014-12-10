@@ -6,16 +6,22 @@
 
 <h2>Детальнее</h2>
 
-<fieldset>
-    <legend>Кредит</legend>
+<table class="table table-striped">
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </td>
+    </tr>
+</table>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-</fieldset>
+
 <p>
     @Html.ActionLink("Редактировать", "Edit", new { id = Model.CreditId }) |
     @Html.ActionLink("Вернуться", "Index")

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Counters.Tariff>
+
+@{
+    ViewBag.Title = "Тарифы";
+}
+
+<h2>
+    Главная
+    <a class="btn" title="Создать новый" href="@Url.Action("Create")">
+        <span class="icon-plus"></span>
+    </a>
+</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimitValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LimitValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OverPrice)
+                </td>
+                <td>
+                    <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = item.TarifId })">
+                        <span class="icon-edit"></span>
+                    </a>
+                    <a class="btn" title="Детальнее" href="@Url.Action("Details", new { id = item.TarifId })">
+                        <span class="icon-info-sign"></span>
+                    </a>
+                    <a class="btn" title="Удалить" href="@Url.Action("Delete", new { id = item.TarifId })">
+                        <span class="icon-remove"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

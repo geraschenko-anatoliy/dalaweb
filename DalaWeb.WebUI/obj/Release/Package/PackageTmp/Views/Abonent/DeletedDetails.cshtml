@@ -6,11 +6,11 @@
 
 <h1>Информационная страница удаленного абонента @Model.Name</h1>
 
-<table>
+<table class="table table-striped">
     <tr>
         <td>
             <h2>Общая информация</h2>
-            <table>
+            <table class="table table-striped">
                 @Html.HiddenFor(model => model.AbonentId)
                 <tr>
                     <td>
@@ -110,7 +110,7 @@
             <h2>Сервисы</h2>
             @if (Model.AbonentServices.Any())
             {
-                <table>
+                <table class="table table-striped">
                     <tr>
                         <td>
                             <div class="column-title">
@@ -182,7 +182,7 @@
             <h2>Кредиты</h2>
             @if (Model.AbonentCredits.Any())
             {
-                <table>
+                <table class="table table-striped">
                     <tr>
                         <td>
                             <div class="column-title">
@@ -234,6 +234,3 @@
     @Html.ActionLink("Вернуться", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

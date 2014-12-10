@@ -44,13 +44,6 @@
 
         @Html.HiddenFor(model => model.PaidForTheEntirePeriod)
 
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.PaidForTheEntirePeriod)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PaidForTheEntirePeriod)
-            @Html.ValidationMessageFor(model => model.PaidForTheEntirePeriod)
-        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.PaidMonths)
@@ -78,14 +71,6 @@
 
         @Html.HiddenFor(model => model.PaymentForMonth)
 
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.PaymentForMonth)
-        </div>
-        <div class="editor-field" id="total">
-            @Html.EditorFor(model => model.PaymentForMonth)
-            @Html.ValidationMessageFor(model => model.PaymentForMonth)
-        </div>*@
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Comment)
         </div>
@@ -94,7 +79,7 @@
             @Html.ValidationMessageFor(model => model.Comment)
         </div>
         <p>
-            <input type="submit" value="Сохранить" class="btn btn-default" />
+            <input type="submit" value="Сохранить" class="btn" />
         </p>
     </fieldset>
 }
@@ -103,7 +88,3 @@
     @Html.ActionLink("К списку кредитов", "Index")
     @Html.ActionLink("К абоненту", "Edit", "Abonent", new { id = Model.AbonentId }, null)
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

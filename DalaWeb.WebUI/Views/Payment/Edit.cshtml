@@ -1,17 +1,17 @@
 ﻿@model DalaWeb.Domain.Entities.Payments.Payment
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Платежи";
 }
 
-<h2>Edit</h2>
+<h2>Редактирование</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Payment</legend>
+        <legend>Платеж</legend>
 
         @Html.HiddenFor(model => model.PaymentId)
 
@@ -56,15 +56,11 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" class="btn" value="Сохранить" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

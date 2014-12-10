@@ -104,15 +104,9 @@
                 </td>
             }
             <td>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Функции
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="@Url.Action("DeletedDetails", new { id = item.AbonentId })">Детальнее</a></li>
-                    </ul>
-                </div>
+                <a class="btn" title="Детальнее" href="@Url.Action("DeletedDetails", new { id = item.AbonentId })">
+                    <span class="icon-info-sign"></span>
+                </a>
             </td>
         </tr>
     }

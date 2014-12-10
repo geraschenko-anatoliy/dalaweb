@@ -36,17 +36,12 @@
         </td>
 
         <td>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Функции
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="@Url.Action("Edit", new { id = item.PaymentId })">Редактировать</a></li>
-                    <li><a href="@Url.Action("Details", new { id = item.PaymentId })">Детальнее</a></li>
-                    <li><a href="@Url.Action("Delete", new { id = item.PaymentId })">Удалить</a></li>
-                </ul>
-            </div>
+            <a class="btn" title="Детальнее" href="@Url.Action("Details", new { id = item.PaymentId })">
+                <span class="icon-info-sign"></span>
+            </a>
+            <a class="btn" title="Удалить" href="@Url.Action("Delete", new { id = item.PaymentId })">
+                <span class="icon-remove"></span>
+            </a>
         </td>
     </tr>
 }

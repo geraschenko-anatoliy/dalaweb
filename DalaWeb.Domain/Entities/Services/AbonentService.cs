@@ -27,11 +27,13 @@ namespace DalaWeb.Domain.Entities.Services
 
         
         [Required]
-        [Key, Column(Order = 2)]
+        [Key, Column(Order = 2, TypeName="Date")]
         [Display(Name = "Дата подключения")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "Дата отключения")]
+        [Column(TypeName="Date")]
         public DateTime FinishDate { get; set; }
     }
 }

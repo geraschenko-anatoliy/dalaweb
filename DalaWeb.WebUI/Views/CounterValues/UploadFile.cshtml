@@ -12,7 +12,7 @@
         Статистика импорта текущего файла
     </h2>
     <table class="table table-hover">
-        <tbody>
+        <thead>
             <tr>
                 <th>
                     Номер
@@ -27,6 +27,8 @@
                     Сообщение
                 </th>
             </tr>
+        </thead>
+        <tbody>
             @foreach (var p in Model.counterStatistic)
             {
                 <tr>

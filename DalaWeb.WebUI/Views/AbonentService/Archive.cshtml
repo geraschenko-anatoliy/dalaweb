@@ -1,11 +1,15 @@
 ﻿@model IEnumerable<DalaWeb.Domain.Entities.Services.AbonentService>
 
 @{
-    ViewBag.Title = "Архив";
+    ViewBag.Title = "Сервисы абонента";
 }
 
-<h2>Услуги в архиве</h2>
-<h3>@Html.ActionLink("Активные услуги", "Index")</h3>
+<h2>
+    Услуги в архиве
+    <a class="btn" title="К активным" href="@Url.Action("Index")">
+        <span class="icon-arrow-left"></span>
+    </a>
+</h2>
 <table class="table table-hover">
     <tr>
         <th>
@@ -59,16 +63,9 @@
                 @Html.DisplayFor(modelItem => item.Service.Price)
             </td>
             <td>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Функции
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Детальнее</a></li>
-                        <li><a href="@Url.Action("Remove", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">Удалить</a></li>
-                    </ul>
-                </div>
+                <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">
+                    <span class="icon-info-sign"></span>
+                </a>
             </td>
         </tr>
     }

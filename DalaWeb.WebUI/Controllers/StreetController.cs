@@ -104,31 +104,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(street);
         }
 
-        //
-        // GET: /Street/Delete/5
-
-        //public ActionResult Delete(int id = 0)
-        //{
-        //    Street street = streetRepository.GetById(id);
-        //    if (street == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(street);
-        //}
-
-        ////
-        //// POST: /Street/Delete/5
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    streetRepository.Delete(id);
-        //    unitOfWork.Save();
-        //    return RedirectToAction("Index");
-        //}
-
         protected override void Dispose(bool disposing)
         {
             unitOfWork.Save();
