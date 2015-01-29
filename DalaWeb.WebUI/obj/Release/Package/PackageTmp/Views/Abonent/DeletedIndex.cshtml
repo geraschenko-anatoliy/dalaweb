@@ -5,11 +5,12 @@
 }
 
 <h2>Удаленные абоненты</h2>
-
 <p>
     @Html.ActionLink("Главная", "Index")
 </p>
-<table class="table table-hover">
+@if (Model.abonents.Any())
+{
+    <table class="table table-hover">
     <tr>
         <th>
             <div class="column-title">
@@ -111,3 +112,12 @@
         </tr>
     }
 </table>
+}
+else
+{
+    <p>
+        Список удаленных абонентов пуст
+    </p>
+}
+
+

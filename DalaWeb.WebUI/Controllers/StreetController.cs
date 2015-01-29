@@ -24,17 +24,12 @@ namespace DalaWeb.WebUI.Controllers
             cityRepository = unitOfWork.CityRepository;
             streetRepository = unitOfWork.StreetRepository;
         }
-        //
-        // GET: /Street/
 
         public ActionResult Index()
         {
             var streets = streetRepository.Get().Include(s => s.City);
             return View(streets.ToList());
         }
-
-        //
-        // GET: /Street/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -46,17 +41,11 @@ namespace DalaWeb.WebUI.Controllers
             return View(street);
         }
 
-        //
-        // GET: /Street/Create
-
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name");
             return View();
         }
-
-        //
-        // POST: /Street/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -69,12 +58,9 @@ namespace DalaWeb.WebUI.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name", street.CityId);
+            ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name", street.City.CityId);
             return View(street);
         }
-
-        //
-        // GET: /Street/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -83,12 +69,9 @@ namespace DalaWeb.WebUI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name", street.CityId);
+            ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name", street.City.CityId);
             return View(street);
         }
-
-        //
-        // POST: /Street/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -100,7 +83,7 @@ namespace DalaWeb.WebUI.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name", street.CityId);
+            ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name", street.City.CityId);
             return View(street);
         }
 

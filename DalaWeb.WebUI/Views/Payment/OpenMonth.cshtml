@@ -7,13 +7,10 @@
 
 @using (Html.BeginForm())
 {
-        <p class="text-center">
-    @Html.AntiForgeryToken()
-
-        @Html.ValidationSummary(true)
+    <p class="text-center">
+       @Html.AntiForgeryToken()
+       @Html.ValidationSummary(true)
     </p>
-
-    
     if (!ViewBag.HasErrors)
     { 
     <table class="table table-striped">
@@ -23,7 +20,7 @@
             </td>
             <td>
                 <div class="editor-field">
-                    @Html.TextBox("date", String.Format("{0:MMMM-yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.TextBox("date", String.Format("{0:MMMM yyyy}", DateTime.Now), new { @class = "datepicker" })
                     @Html.ValidationMessage("date")
                 </div>
             </td>

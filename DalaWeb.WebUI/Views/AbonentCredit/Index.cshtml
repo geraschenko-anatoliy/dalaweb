@@ -4,13 +4,6 @@
     ViewBag.Title = "Главная";
 }
 
-@functions{
-    public string GetRuDate(DateTime date)
-    {
-        return date.ToString("D", System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU"));        
-    }
-}
-
 <h2>Список кредитов</h2>
 
 @if (Model.Any())
@@ -19,10 +12,10 @@
         <thead>
             <tr>
                 <th>
-                    Абонент
+                    @Html.DisplayNameFor(model => model.Abonent.Name)
                 </th>
                 <th>
-                    Кредит
+                    @Html.DisplayNameFor(model => model.Credit.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.StartDate)
@@ -65,10 +58,10 @@
                         @Html.DisplayFor(modelItem => item.Credit.Name)
                     </td>
                     <td>
-                        @GetRuDate(item.StartDate)
+                        @Html.DisplayFor(modelItem => item.StartDate)
                     </td>
                     <td>
-                        @GetRuDate(item.FinishDate)
+                        @Html.DisplayFor(modelItem => item.FinishDate)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PrePayment)
@@ -92,14 +85,13 @@
                         @Html.DisplayFor(modelItem => item.Comment)
                     </td>
                     <td>
-
-                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { abonentId = item.AbonentId, creditId = item.CreditId })">
+                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { abonentCreditId = item.AbonentCreditId })">
                             <span class="icon-edit"></span>
                         </a>
-                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentId = item.AbonentId, creditId = item.CreditId })">
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentCreditId = item.AbonentCreditId })">
                             <span class="icon-info-sign"></span>
                         </a>
-                        <a class="btn" title="Отключить" href="@Url.Action("Delete", new { abonentId = item.AbonentId, creditId = item.CreditId })">
+                        <a class="btn" title="Отключить" href="@Url.Action("Delete", new { abonentCreditId = item.AbonentCreditId })">
                             <span class="icon-remove"></span>
                         </a>
                     </td>

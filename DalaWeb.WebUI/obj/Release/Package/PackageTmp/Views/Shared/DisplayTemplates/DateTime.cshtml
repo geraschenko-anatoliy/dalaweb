@@ -1,3 +1,11 @@
 ﻿@model System.DateTime
+@if (Model != DateTime.MinValue)
+{
+    @Model.ToString("dd MMMM yyyy")
+}
+else
+{
+    <text>...</text>      
+}
 
-@Model.ToString("dd MMMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU"))
+

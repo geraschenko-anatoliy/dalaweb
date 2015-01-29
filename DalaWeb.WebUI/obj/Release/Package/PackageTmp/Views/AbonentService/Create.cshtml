@@ -18,24 +18,26 @@
     <fieldset>
 
         <legend>Сервис для @ViewBag.AbonentName</legend>
-        @Html.Hidden("AbonentId", (int)@ViewBag.AbonentId)
-        @Html.Hidden("FinishDate", (DateTime)@DateTime.MinValue)
+        @Html.Hidden("Abonent.AbonentId", (int)@ViewBag.AbonentId)
+@*        @Html.Hidden("Abonent.Name")*@
+        @Html.Hidden("Abonent.NumberOfInhabitants")
+        @Html.Hidden("Abonent.INN")
         @Html.Hidden("isOff", false)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Service.ServiceCompany.Name)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("CompanyId", string.Empty)
-            @Html.ValidationMessageFor(model => model.ServiceId)
+            @Html.DropDownList("ServiceCompanyId", string.Empty)
+            @Html.ValidationMessageFor(model => model.Service.ServiceCompanyId)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Service.Name)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("ServiceId", new SelectList(string.Empty, "Value", "Text"))
-            @Html.ValidationMessageFor(model => model.ServiceId)
+            @Html.DropDownList("Service.ServiceId", new SelectList(string.Empty, "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Service.ServiceId)
         </div>
 
         <div class="editor-label">
@@ -43,7 +45,7 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.StartDate)
-            @*@Html.ValidationMessageFor(model => model.StartDate)*@
+            @Html.ValidationMessageFor(model => model.StartDate)
         </div>
         <p>
             <input type="submit" class="btn" value="Создать" />

@@ -26,17 +26,13 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Index()
         {
-            return View(stampRepository.Get().Include(c => c.Counter).Where(x => x.isOff == false));
+            return View(stampRepository.Get().Where(x => x.isOff == false));
         }
 
         public ActionResult Archive()
         {
-            return View(stampRepository.Get().Include(c => c.Counter).Where(x => x.isOff == true));
+            return View(stampRepository.Get().Where(x => x.isOff == true));
         }
-
-
-        //
-        // GET: /Stamp/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -48,8 +44,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(stamp);
         }
 
-        //
-        // GET: /Stamp/Create
 
         public ActionResult Create(int counterId)
         {
@@ -57,27 +51,20 @@ namespace DalaWeb.WebUI.Controllers
             return View();
         }
 
-        //
-        // POST: /Stamp/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Stamp stamp)
-        {
-            int abonentId = counterRepository.GetById(stamp.CounterId).AbonentId;
+        {      
             if (ModelState.IsValid)
             {
                 stampRepository.Insert(stamp);
                 unitOfWork.Save();
-                return RedirectToAction("Edit", "Abonent", new { id = abonentId});
+                return RedirectToAction("Edit", "Abonent", new { AbonentId = counterRepository.GetById(stamp.CounterId).AbonentId });
             }
 
             ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", stamp.CounterId);
             return View(stamp);
         }
-
-        //
-        // GET: /Stamp/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -94,9 +81,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(stamp);
         }
 
-        //
-        // POST: /Stamp/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Stamp stamp)
@@ -107,12 +91,9 @@ namespace DalaWeb.WebUI.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", stamp.CounterId);
+            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", stamp.Counter.CounterId);
             return View(stamp);
         }
-
-        //
-        // GET: /Stamp/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -124,9 +105,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(stamp);
         }
-
-        //
-        // POST: /Stamp/Delete/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -1,0 +1,74 @@
+﻿@model DalaWeb.WebUI.ViewModels.ForPayment.RecalculateMonthSummaryViewModel
+
+<div>
+    <h3>
+        Был пересчитан месяц @Model.payments.Last().Date.ToString("MMMM") @Model.payments.Last().Date.Year года
+    </h3>
+</div>
+
+<table class="table table-hover">
+    <caption>
+        <h2>
+            Начисленные платежи
+        </h2>
+    </caption>
+
+    <tbody>
+        <tr>
+            <th>
+                Номер абонента
+            </th>
+            <th>
+                Дата
+            </th>
+            <th>
+                Сумма
+            </th>
+            <th>
+                Комментарий
+            </th>
+        </tr>
+
+        @foreach (var item in Model.payments)
+        {
+            <tr>
+                <td>
+                    @item.Abonent.AbonentNumber
+                </td>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Sum.ToString("F2")
+                </td>
+                <td>
+                    @item.Comment
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<table class="table table-hover">
+    <caption>
+        <h3>
+            Сообщения о ошибках
+        </h3>
+    </caption>
+    <tbody>
+        @foreach (var item in Model.warnings)
+        {
+            <tr>
+                <td>
+                    @item
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink("К платежам", "Index")
+@Html.ActionLink("К квитанциям", "Receipts")
+
+
+

@@ -13,10 +13,7 @@
 
     <fieldset>
         <legend>Кредит</legend>
-
-        @Html.HiddenFor(model => model.AbonentId)
-
-        @Html.HiddenFor(model => model.CreditId)
+        @Html.HiddenFor(model => model.AbonentCreditId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.StartDate)
@@ -86,5 +83,5 @@
 
 <div>
     @Html.ActionLink("К списку кредитов", "Index")
-    @Html.ActionLink("К абоненту", "Edit", "Abonent", new { id = Model.AbonentId }, null)
+    @Html.ActionLink("К абоненту", "Edit", "Abonent", new { id = Model.Abonent.AbonentId }, null)
 </div>

@@ -22,7 +22,6 @@ namespace DalaWeb.WebUI.Controllers
         private IRepository<Stamp> stampRepository;
         private IRepository<CounterValues> counterValuesRepository;
 
-
         public CounterController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
@@ -33,65 +32,52 @@ namespace DalaWeb.WebUI.Controllers
             counterValuesRepository = unitOfWork.CounterValuesRepository;
         }
 
-
-        //
-        // GET: /Counter/
-
         public ActionResult Index()
         {
-            var counters = counterRepository.Get().Where(x => x.isOff == false).Include(x => x.CounterValues).Include(x => x.Stamps);
+            var counters = counterRepository.Get().Where(x => x.isOff == false);
             return View(counters);
         }
-        //public ActionResult Index2()
-        //{
-        //    var counters = counterRepository.Get().Where(x => x.isOff == false).Include(x => x.CounterValues).Include(x => x.Stamps);
-        //    return new RazorPDF.PdfResult(counters, "Index");
-        //}
 
         public ActionResult Archive()
         {
-            return View(counterRepository.Get().Where(x => x.isOff == true).Include(x => x.CounterValues));
+            return View(counterRepository.Get().Where(x => x.isOff == true));
         }
-
-        //
-        // GET: /Counter/Details/5
 
         public ActionResult Details(int id = 0)
         {
             Counter counter = counterRepository.GetById(id);
 
-            counter.CounterValues = counterValuesRepository.Get().Where(x => x.CounterId == counter.CounterId).ToList();
+            //counter.CounterValues = counterValuesRepository.Get().Where(x => x.Counter == counter).ToList();
             if (counter == null)
             {
                 return HttpNotFound();
             }            
             
-            var stamps =  stampRepository.Get().Where(x => x.CounterId == counter.CounterId) ;
-            if (stamps != null)
-                counter.Stamps = stamps.ToList();
+            //var stamps =  stampRepository.Get().Where(x => x.Counter == counter) ;
+            //if (stamps != null)
+            //    counter.Stamps = stamps.ToList();
 
             return View(counter);
         }
 
-        //
-        // GET: /Counter/Create
-
-        public ActionResult Create(int abonentId, int serviceId, DateTime StartDate)
+        public ActionResult Create(int abonentId, int serviceId)
         {
             ViewBag.Services = new SelectList(serviceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name", serviceId);
             ViewBag.AbonentName = abonentRepository.GetById(abonentId).Name;
             ViewBag.AbonentId = abonentId;
+            ViewBag.ServiceId = serviceId;
             return View();
         }
-
-        //
-        // POST: /Counter/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Counter counter)
         {                
-            if (counterRepository.Get().Where( x=> x.Name == counter.Name).Where(x=>x.ServiceId == counter.ServiceId).Where(x=> x.isOff == false).Any())
+            if (counterRepository.Get()
+                .Where( x=> x.Name == counter.Name)
+                .Where(x=>x.Service == counter.Service)
+                .Where(x=> x.isOff == false)
+                .Any())
                 ModelState.AddModelError("Name", "Добавляемый счетчик существует и активно используется");
             if (ModelState.IsValid)
             {
@@ -99,7 +85,7 @@ namespace DalaWeb.WebUI.Controllers
                 unitOfWork.Save();
                 CounterValues countervalue = new CounterValues
                 {
-                    CounterId = counter.CounterId,
+                    Counter = counter,
                     CounterValuesId = 0,
                     Date = counter.StartDate,
                     Value = counter.InitialValue
@@ -108,24 +94,21 @@ namespace DalaWeb.WebUI.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Edit", "Abonent", new { id = counter.AbonentId});
             }
-            ViewBag.Services = new SelectList(serviceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name", counter.ServiceId);
-            ViewBag.AbonentName = abonentRepository.GetById(counter.AbonentId).Name;
-            ViewBag.AbonentId = counter.AbonentId;
+            ViewBag.Services = new SelectList(serviceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name", counter.Service.ServiceId);
+            ViewBag.AbonentName = abonentRepository.GetById(counter.Abonent.AbonentId).Name;
+            ViewBag.AbonentId = counter.Abonent.AbonentId;
 
             return View(counter);
         }
 
-        //
-        // GET: /Counter/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
-            Counter counter = counterRepository.GetById(id);
+            Counter counter = counterRepository.Get().Where(x => x.CounterId == id).Single();
 
             if (counter.isOff)
                 return RedirectToAction("Archive");
 
-            counter.Stamps = stampRepository.Get().Where(x => x.CounterId == counter.CounterId).ToList();
+            //counter.Stamps = stampRepository.Get().Where(x => x.Counter == counter).ToList();
             ViewBag.Services = new SelectList(serviceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name", counter.ServiceId);
             ViewBag.Abonents = new SelectList(abonentRepository.Get(), "AbonentId", "Name");
 
@@ -137,14 +120,10 @@ namespace DalaWeb.WebUI.Controllers
             return View(counter);
         }
 
-        //
-        // POST: /Counter/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Counter counter)
         {
-
             if (ModelState.IsValid)
             {
                 counterRepository.Update(counter);
@@ -156,9 +135,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(counter);
         }
 
-        //
-        // GET: /Counter/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             Counter counter = counterRepository.GetById(id);
@@ -168,9 +144,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(counter);
         }
-
-        //
-        // POST: /Counter/Delete/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]

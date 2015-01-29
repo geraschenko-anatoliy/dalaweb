@@ -31,7 +31,7 @@
         </div>
         <div class="editor-field">
             @Html.DropDownList("CounterId", (SelectList)ViewBag.Counters, new { disabled = "disabled" })
-            @Html.ValidationMessageFor(model => model.CounterId)
+            @Html.ValidationMessageFor(model => model.Counter.CounterId)
         </div>
 
         <div class="editor-label">

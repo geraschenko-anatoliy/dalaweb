@@ -4,15 +4,7 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\bin\Release\EntityFramework.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\bin\Release\EntityFramework.xml
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.csprojResolveAssemblyReference.cache
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.csproj.GenerateResource.Cache
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.pdb
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.PDFStorage.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.PDFStorateFieldRename.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.datetime2todatetime.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.datetime2todatetime2.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.datetime2todatetime21.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.Tariffs.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.AddTimeStampToPDF.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.ServiceInTariffs.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.noServiceInPayments.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.Migrations.a1.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Release\DalaWeb.Domain.csproj.GenerateResource.Cache

@@ -1,0 +1,141 @@
+﻿@model DalaWeb.Domain.Entities.Abonents.Abonent
+
+<table>
+    <tr>
+        <td>
+            <h2 class="text-center">
+                Сервисы
+                <a class="btn" href="@Url.Action("Create", "AbonentService", new { abonentId = Model.AbonentId })">
+                    <span class="icon-plus"></span>
+                </a>
+                <a class="btn" href="@Url.Action("TemporaryDisableForAbonent", "AbonentService", new { abonentId = Model.AbonentId })">
+                    <span class="icon-calendar"></span>
+                </a>
+            </h2>
+        </td>
+    </tr>
+    @if (Model.AbonentServices.Any())
+    {
+        var m = Model.AbonentServices.First();
+        <tr>
+            <td valign="top">
+                <table class="table table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => m.Service.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => m.Service.ServicePrice.OrderBy(x=>x.StartDate).Last().Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => m.Service.Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => m.Service.ServiceCompany.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => m.StartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => m.Abonent.Counters.Where(x=>x.Service.ServiceId == m.Service.ServiceId).Where(x=>x.isOff == false).LastOrDefault().Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => m.Service.Counters.FirstOrDefault().Stamps.FirstOrDefault().Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => m.isOff)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.AbonentServices.Where(x=>x.isOff != true))
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.Service.Name, "Details", "AbonentService", new { abonentServiceId = item.AbonentServiceId }, null)
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.Service.ServicePrice.OrderBy(x => x.StartDate).Last().Price.ToString(), "Details", "AbonentService", new { abonentServiceId = item.AbonentServiceId }, null)
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.Service.ToString(), "Details", "AbonentService", new { abonentServiceId = item.AbonentServiceId }, null)
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.Service.ServiceCompany.Name, "Details", "AbonentService", new { abonentServiceId = item.AbonentServiceId }, null)
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.StartDate.ToShortDateString(), "Details", "AbonentService", new { abonentServiceId = item.AbonentServiceId }, null)
+                            </td>
+
+
+                            @{
+                        if (item.Service.Type == 3)
+                        {
+                            DalaWeb.Domain.Entities.Counters.Counter counter = item.Service.Counters.Where(x => x.Abonent == item.Abonent).Where(x => x.isOff == false).FirstOrDefault();
+
+                            if (counter != null)
+                            {
+                                <td>
+                                    @Html.ActionLink(counter.Name, "Details", "Counter", new { id = counter.CounterId }, null)
+                                </td>
+                                <td>
+                                    @if (!counter.Stamps.Where(s => s.isOff == false).Any())
+                                    {
+                                        @Html.ActionLink("Добавить пломбу", "Create", "Stamp", new { counterId = counter.CounterId }, null)
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(counter.Stamps.Where(s => s.isOff == false).LastOrDefault().Name, "Details", "Stamp", new { id = counter.Stamps.Where(s => s.isOff == false).LastOrDefault().StampId }, null)
+                                    }
+                                </td>
+                            }
+                            else
+                            {
+                                DalaWeb.Domain.Entities.Counters.Counter LastCounter = item.Service.Counters.Where(x => x.Abonent == item.Abonent).Where(x => x.isOff == true).LastOrDefault();
+                                <td>
+                                    @if (LastCounter == null)
+                                    {
+                                        @Html.ActionLink("Подключить счетчик", "Create", "Counter", new { abonentId = item.Abonent.AbonentId, serviceId = item.Service.ServiceId, StartDate = item.StartDate }, null)
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Подключить счетчик", "Create", "Counter", new { abonentId = item.Abonent.AbonentId, serviceId = item.Service.ServiceId, StartDate = LastCounter.FinishDate.AddDays(1.0) }, null)
+                                    }
+                                </td>
+                                <td>
+                                    <p>
+                                        ---
+                                    </p>
+                                </td>
+                            }
+
+                        }
+                        else
+                        {
+                            <td>
+                                <p>
+                                    ---
+                                </p>
+                            </td>
+                                <td>
+                                    <p>
+                                        ---
+                                    </p>
+                                </td>
+                        }
+                            }
+                            <td>
+                                @if (@item.StartDate < DateTime.Now)
+                                {
+                                    <span class="label label-success">Подключено</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-info">Ожидается</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+    }
+</table>

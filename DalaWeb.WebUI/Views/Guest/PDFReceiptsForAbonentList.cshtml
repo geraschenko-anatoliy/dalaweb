@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.PDFStorages.PDFAbonentMonthlyReceipt>
+
+@{
+    ViewBag.Title = "Список счетов пользователя";
+}
+
+<h2>Список счетов пользователя</h2>
+
+<table>
+    <tr>
+        <th>
+            Дата
+        </th>
+        <th>
+            Счет
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Date.ToString("dd MMMM yyyy")
+            </td>
+            <td>
+                <a class="btn" title="PDF" href="@Url.Action("GetPDF", new { PDFId = item.PDFId })">
+                    <span class="icon-download"></span>
+                </a>
+            </td>
+        </tr>       
+    }
+</table>
+
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>

@@ -30,10 +30,10 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = item.CompanyId })">
+                        <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = item.ServiceCompanyId })">
                             <span class="icon-edit"></span>
                         </a>
-                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { id = item.CompanyId })">
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { id = item.ServiceCompanyId })">
                             <span class="icon-info-sign"></span>
                         </a>
                     </td>
@@ -44,7 +44,7 @@
 }
 else
 {
-    <p class="text-center">
-        Список сервис компаний пуст
-    </p>
+    <div class="text-center">
+        @Html.ActionLink("Создать новый сервис", "Create")
+    </div>
 }

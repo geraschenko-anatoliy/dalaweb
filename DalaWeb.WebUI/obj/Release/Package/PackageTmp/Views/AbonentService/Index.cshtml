@@ -16,22 +16,28 @@
         <thead>
             <tr>
                 <th>
-                    Номер
+                    @Html.DisplayNameFor(model => model.Abonent.AbonentNumber)
+                    @*Номер*@
                 </th>
                 <th>
-                    Имя
+                    @*Имя*@
+                    @Html.DisplayNameFor(model => model.Abonent.Name)
                 </th>
                 <th>
-                    Сервис компания
+                    @Html.DisplayNameFor(model => model.Service.ServiceCompany.Name)
+                    @*Сервис компания*@
                 </th>
                 <th>
-                    Сервис
+                    @Html.DisplayNameFor(model => model.Service.Name)
+                
                 </th>
                 <th>
-                    Дата подключения
+                    @Html.DisplayNameFor(model => model.StartDate)
+                    @*Дата подключения*@
                 </th>
                 <th>
-                    Цена
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Service.ServicePrice.FirstOrDefault().Price)
+                    @*Цена*@
                 </th>
                 <th>
                 </th>
@@ -57,13 +63,13 @@
                         @Html.DisplayFor(modelItem => item.StartDate)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Service.Price)
+                        @Html.DisplayFor(modelItem => item.Service.ServicePrice.OrderBy(x => x.StartDate).Last().Price)
                     </td>
                     <td>
-                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">
+                        <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentServiceId = item.AbonentServiceId })">
                             <span class="icon-info-sign"></span>
                         </a>
-                        <a class="btn" title="Отключить" href="@Url.Action("Edit", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">
+                        <a class="btn" title="Отключить" href="@Url.Action("Edit", new { abonentServiceId = item.AbonentServiceId })">
                             <span class="icon-remove"></span>
                         </a>
                     </td>

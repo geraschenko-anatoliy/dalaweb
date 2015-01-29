@@ -18,13 +18,13 @@
             <tr>
                 <td>
                     <div class="editor-label">
-                        @Html.LabelFor(model => model.ServiceId)
+                        @Html.LabelFor(model => model.Service.ServiceId, "Сервис", null)
                     </div>
                 </td>
                 <td>
                     <div class="editor-field">
                         @Html.DropDownList("ServiceId", string.Empty)
-                        @Html.ValidationMessageFor(model => model.ServiceId)
+                        @Html.ValidationMessageFor(model => model.Service.ServiceId)
                     </div>
                 </td>
             </tr>

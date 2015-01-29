@@ -2,6 +2,7 @@
 using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Payments;
+using DalaWeb.Domain.Entities.PDFStorages;
 using DalaWeb.Domain.Entities.Services;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,22 @@ namespace DalaWeb.Domain.Entities.Abonents
     {
         [Key]
         public int AbonentId { get; set; }
+        
         [Display(Name="Номер абонента")]
         public string AbonentNumber { get; set; }
+        
         [Required(ErrorMessage = "*")]
         [Display(Name="Абонент")]
         public string Name { get; set; }
+        
         [Required(ErrorMessage = "*")]
         [Display(Name = "Телефон")]
         public string Telephone { get; set; }
+        
         [Required(ErrorMessage = "*")]
         [Display(Name = "ИНН")]
         public string INN { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Range(1, int.MaxValue, ErrorMessage = "Please enter a positive price")]
         [Display(Name = "Число жителей")]
@@ -36,11 +42,15 @@ namespace DalaWeb.Domain.Entities.Abonents
 
         [DefaultValue(false)]
         public bool isDeleted { get; set; }
+
+        public int AddressId { get; set; }
+        [ForeignKey("AddressId")]
+        public virtual Address Address { get; set; }
         public virtual ICollection<AbonentCredit> AbonentCredits { get; set; }
         public virtual ICollection<AbonentService> AbonentServices { get; set; }
-        public virtual Address Address { get; set; }
         public virtual ICollection<Counter> Counters { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<PDFAbonentMonthlyReceipt> PDFDocuments { get; set; }
 
     }
 }

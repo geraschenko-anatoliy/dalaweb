@@ -12,13 +12,26 @@ namespace DalaWeb.Domain.Entities.Addresses
     public class Address
     {
         [Key]
-        [ForeignKey("Abonent")]
-        public int AbonentId { get; set; }
-        public int CityId { get; set; }
-        public int StreetId { get; set; }
+        public int AddressId { get; set; }
+
         [Required]
         [Display(Name = "Дом")]
         public string House { get; set; }
+
+        public int AbonentId { get; set; }
+        [Required]
+        [ForeignKey("AbonentId")]
         public virtual Abonent Abonent { get; set; }
+
+        [Required]
+        public int CityId { get; set; }
+        [ForeignKey("CityId")]
+        public virtual City City { get; set; }
+
+
+        [Required]
+        public int StreetId { get; set; }
+        [ForeignKey("StreetId")]
+        public virtual Street Street { get; set; }
     }
 }

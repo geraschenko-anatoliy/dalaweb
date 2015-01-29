@@ -10,8 +10,11 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.AbonentServiceId)
     @Html.HiddenFor(model => model.AbonentId)
     @Html.HiddenFor(model => model.ServiceId)
+    @Html.Hidden("FinishDate", DateTime.MinValue)
+        
     <table class="table table-hover">
         <tr>
             <td>
@@ -45,18 +48,10 @@
                 </div>
             </td>
             <td>
-                @if (!@Model.isOff)
-                {
-                    <span class="label label-info">Сервис подключен</span>
-                }
-                else
-                {
-                    <div class="editor-field">
-                        <span class="label label-info">Сервис отключен</span>
-                        @Html.DisplayFor(model => model.FinishDate)
-                        @Html.ValidationMessageFor(model => model.FinishDate)
-                    </div>
-                }
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.FinishDate)
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
             </td>
         </tr>
         <tr>
@@ -73,15 +68,3 @@
 <div>
     @Html.ActionLink("Вернуться", "Index")
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#@ViewData.ModelMetadata.PropertyName").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'yyyy/MM/dd',
-            format: 'yyyy/MM/dd'
-        });
-    });
-</script>
-}

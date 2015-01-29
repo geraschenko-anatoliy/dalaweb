@@ -23,16 +23,10 @@ namespace DalaWeb.WebUI.Controllers
             creditRepository = unitOfWork.CreditRepository;
         }
 
-        //
-        // GET: /Credit/
-
         public ActionResult Index()
         {
             return View(creditRepository.Get());
         }
-
-        //
-        // GET: /Credit/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -45,16 +39,10 @@ namespace DalaWeb.WebUI.Controllers
             return View(credit);
         }
 
-        //
-        // GET: /Credit/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /Credit/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -70,9 +58,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(credit);
         }
 
-        //
-        // GET: /Credit/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
             Credit credit = creditRepository.GetById(id);
@@ -83,9 +68,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(credit);
         }
-
-        //
-        // POST: /Credit/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -100,9 +82,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(credit);
         }
 
-        //
-        // GET: /Credit/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             Credit credit = creditRepository.GetById(id);
@@ -112,9 +91,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(credit);
         }
-
-        //
-        // POST: /Credit/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -15,11 +15,11 @@
         <legend>Сервис</legend>
         @Html.Hidden("isOff", false)
         <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyId, "Сервис компания")
+            @Html.LabelFor(model => model.ServiceCompany.ServiceCompanyId, "Сервис компания")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("CompanyId", String.Empty)
-            @Html.ValidationMessageFor(model => model.CompanyId)
+            @Html.DropDownList("ServiceCompanyId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ServiceCompany.ServiceCompanyId)
         </div>
 
         <div class="editor-label">
@@ -31,11 +31,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Price)
+            @Html.LabelFor(model => model.ServicePrice.FirstOrDefault().Price)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Price)
-            @Html.ValidationMessageFor(model => model.Price)
+            @Html.Editor("Price")
+            @Html.ValidationMessageFor(model => model.ServicePrice.FirstOrDefault().Price)
         </div>
 
         <div class="editor-label">

@@ -22,54 +22,41 @@ namespace DalaWeb.WebUI.Controllers
             this.unitOfWork = unitOfWork;
             serviceCompanyRepository = unitOfWork.ServiceCompanyRepository;
         }
-        //
-        // GET: /ServiceCompany/
 
         public ActionResult Index()
         {
             return View(serviceCompanyRepository.Get());
         }
 
-        //
-        // GET: /ServiceCompany/Details/5
-
         public ActionResult Details(int id = 0)
         {
-            ServiceCompany servicecompany = serviceCompanyRepository.GetById(id);
-            if (servicecompany == null)
+            ServiceCompany serviceCompany = serviceCompanyRepository.GetById(id);
+            if (serviceCompany == null)
             {
                 return HttpNotFound();
             }
-            return View(servicecompany);
+            return View(serviceCompany);
         }
-
-        //
-        // GET: /ServiceCompany/Create
 
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /ServiceCompany/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ServiceCompany servicecompany)
+        public ActionResult Create(ServiceCompany serviceCompany)
         {
             if (ModelState.IsValid)
             {
-                serviceCompanyRepository.Insert(servicecompany);
+                serviceCompanyRepository.Insert(serviceCompany);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(servicecompany);
+            return View(serviceCompany);
         }
-
-        //
-        // GET: /ServiceCompany/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -81,20 +68,17 @@ namespace DalaWeb.WebUI.Controllers
             return View(servicecompany);
         }
 
-        //
-        // POST: /ServiceCompany/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ServiceCompany servicecompany)
+        public ActionResult Edit(ServiceCompany serviceCompany)
         {
             if (ModelState.IsValid)
             {
-                serviceCompanyRepository.Update(servicecompany);
+                serviceCompanyRepository.Update(serviceCompany);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            return View(servicecompany);
+            return View(serviceCompany);
         }
 
         protected override void Dispose(bool disposing)

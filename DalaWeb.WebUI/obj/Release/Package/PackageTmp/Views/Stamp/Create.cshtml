@@ -24,11 +24,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.CounterId, "Counter")
+            @Html.LabelFor(model => model.Counter.CounterId, "Счетчик")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("CounterId", (SelectList)ViewBag.Counters, new { disabled = "disabled" })
-            @Html.ValidationMessageFor(model => model.CounterId)
+            @Html.DropDownList("counterId", (SelectList)ViewBag.Counters, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.Counter.CounterId)
         </div>
 
         <div class="editor-label">

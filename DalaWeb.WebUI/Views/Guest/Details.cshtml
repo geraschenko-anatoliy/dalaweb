@@ -1,0 +1,36 @@
+﻿@model DalaWeb.Domain.Entities.PDFStorages.PDFAbonentMonthlyReceipt
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PDFAbonentMonthlyReceipt</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeStamp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeStamp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Abonent.AbonentNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Abonent.AbonentNumber)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PDFId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -16,11 +16,11 @@
         @Html.HiddenFor(model => model.PaymentId)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.AbonentId, "Abonent")
+            @Html.LabelFor(model => model.Abonent.AbonentId, "Abonent")
         </div>
         <div class="editor-field">
             @Html.DropDownList("AbonentId", String.Empty)
-            @Html.ValidationMessageFor(model => model.AbonentId)
+            @Html.ValidationMessageFor(model => model.Abonent.AbonentId)
         </div>
 
         <div class="editor-label">
@@ -37,14 +37,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Sum)
             @Html.ValidationMessageFor(model => model.Sum)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Balance)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Balance)
-            @Html.ValidationMessageFor(model => model.Balance)
         </div>
 
         <div class="editor-label">

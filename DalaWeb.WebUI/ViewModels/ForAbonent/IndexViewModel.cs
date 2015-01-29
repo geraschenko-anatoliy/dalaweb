@@ -16,11 +16,11 @@ namespace DalaWeb.WebUI.ViewModels.ForAbonent
         public IQueryable<City> cities;
         public IQueryable<Abonent> abonents;
 
-        public IndexViewModel(IRepository<Street> Streets, IRepository<City> Cities, IRepository<Abonent> Abonents)
+        public IndexViewModel(IQueryable<Street> streets, IQueryable<City> cities, IQueryable<Abonent> abonent)
         {
-            this.streets = Streets.Get();
-            this.cities = Cities.Get();
-            this.abonents = Abonents.Get().Where(x=>x.isDeleted == false);
+            this.streets = streets;
+            this.cities = cities;
+            this.abonents = abonent;
         }
     }
 }

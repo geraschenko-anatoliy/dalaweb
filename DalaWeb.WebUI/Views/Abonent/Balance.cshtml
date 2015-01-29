@@ -1,0 +1,5 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Payments.Payment>
+
+<h3>
+    Баланс: @(Model.Any() ? new HtmlString(@Model.Sum(x => x.Sum).ToString()) : new HtmlString("<i>N/A</i>"))
+</h3>

@@ -32,9 +32,6 @@ namespace DalaWeb.WebUI.Controllers
             abonentRepository = unitOfWork.AbonentRepository;
         }
 
-        //
-        // GET: /Address/
-
         public ActionResult Index()
         {
             ViewBag.Cities = cityRepository.Get();
@@ -44,54 +41,51 @@ namespace DalaWeb.WebUI.Controllers
             return View(new AdressIndexViewModel(streetRepository, addressRepository, cityRepository));
         }
 
-        //
-        // GET: /Address/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Address address = addressRepository.GetById(id);
-            if (address == null)
-            {
-                return HttpNotFound();
-            }
-            return View(address);
-        }
-
-        //
-        // GET: /Address/Create
+        //public ActionResult Details(int id = 0)
+        //{
+        //    Address address = addressRepository.GetById(id);
+        //    if (address == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(address);
+        //}
 
         public ActionResult Create(int abonentId)
         {      
-            ViewBag.AbonentId = abonentId;
+            Session["AbonentId"] = abonentId;
+            ViewBag.AbonentName = abonentRepository.GetById(abonentId).Name;
             ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name");
             ViewBag.StreetId = new SelectList(streetRepository.Get(), "StreetId", "Name");
 
             return View();
         }
 
-        //
-        // POST: /Address/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Address address)
+        public ActionResult Create(String House, int CityId, int StreetId)
         {
+            Address address = new Address()
+            {
+                AbonentId = (int)Session["AbonentId"],
+                Abonent = abonentRepository.GetById((int)Session["AbonentId"]),
+                CityId = CityId,
+                StreetId = StreetId,
+                House = House
+            };
+
             if (ModelState.IsValid)
             {
                 addressRepository.Insert(address);
                 GenerateAbonentNumber(address);
                 unitOfWork.Save();
-                return RedirectToAction("Edit", "Abonent", new { id = address.AbonentId });
+                return RedirectToAction("Edit", "Abonent", new { id = address.Abonent.AbonentId });
             }
 
-            ViewBag.AbonentId = address.AbonentId;
             ViewBag.CityId = new SelectList(cityRepository.Get(), "CityId", "Name");
             ViewBag.StreetId = new SelectList(streetRepository.Get(), "StreetId", "Name");
             return View(address);
         }
-
-        //
-        // GET: /Address/Edit/5
 
         public ActionResult Edit(int abonentId )
         {
@@ -103,34 +97,57 @@ namespace DalaWeb.WebUI.Controllers
                 return HttpNotFound();
             }
 
-            SelectList CityIds = new SelectList(cityRepository.Get(), "CityId", "Name", abonent.Address.CityId);
-            ViewBag.Cities = CityIds;
-
-            SelectList StreetIds = new SelectList(streetRepository.Get().Where(x => x.CityId == abonent.Address.CityId), "StreetId", "Name", abonent.Address.StreetId);
-            ViewBag.Streets = StreetIds;
+            ViewBag.Cities = new SelectList(cityRepository.Get(), "CityId", "Name", abonent.Address.City.CityId);
+            ViewBag.Streets= new SelectList(streetRepository.Get().Where(x => x.City.CityId == abonent.Address.City.CityId), "StreetId", "Name", abonent.Address.Street.StreetId);
 
             return View(address);
         }
-
-        //
-        // POST: /Address/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Address address)
         {
-            if (ModelState.IsValid)
+            address.Abonent = abonentRepository.GetById(address.AbonentId);
+            GenerateAbonentNumber(address);
+            addressRepository.Update(address);
+            unitOfWork.Save();
+            return RedirectToAction("Edit", "Abonent", new { id = address.AbonentId });
+        }
+        public ActionResult Delete(int id = 0)
+        {
+            Address address = addressRepository.GetById(id);
+
+            if (address == null)
             {
-                addressRepository.Update(address);
-                GenerateAbonentNumber(address);
-                unitOfWork.Save();
-                return RedirectToAction("Edit", "Abonent", new { id = address.AbonentId });
+                return HttpNotFound();
             }
-            ViewBag.AbonentId = new SelectList(abonentRepository.Get(), "AbonentId", "Name", address.AbonentId);
             return View(address);
         }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            addressRepository.Delete(id);
+            unitOfWork.Save();
+            return RedirectToAction("Index");
+        }
+        public JsonResult GetStreets(int cityId)
+        {
+            List<SelectListItem> streets = new List<SelectListItem>();
 
-        public void GenerateAbonentNumber(Address address)
+            foreach (var item in streetRepository.Get().Where(x => x.City.CityId == cityId))
+            {
+                streets.Add(new SelectListItem { Text = item.Name, Value = item.StreetId.ToString() });
+            }
+            return Json(new SelectList(streets, "Value", "Text"));
+        }
+        protected override void Dispose(bool disposing)
+        {
+            unitOfWork.Dispose();
+            base.Dispose(disposing);
+        }        
+        
+        private void GenerateAbonentNumber(Address address)
         {
             Abonent abonent = abonentRepository.GetById(address.AbonentId);
             if (string.IsNullOrEmpty(abonent.AbonentNumber))
@@ -142,48 +159,6 @@ namespace DalaWeb.WebUI.Controllers
                 abonent.AbonentNumber = abonentNumber;
                 abonentRepository.Update(abonent);
             }
-        }
-        //
-        // GET: /Address/Delete/5
-
-        public ActionResult Delete(int id = 0)
-        {
-            Address address = addressRepository.GetById(id);
-
-            if (address == null)
-            {
-                return HttpNotFound();
-            }
-            return View(address);
-        }
-
-        //
-        // POST: /Address/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            addressRepository.Delete(id);
-            unitOfWork.Save();
-            return RedirectToAction("Index");
-        }
-
-        public JsonResult GetStreets(int cityId)
-        {
-            List<SelectListItem> streets = new List<SelectListItem>();
-
-            foreach (var item in streetRepository.Get().Where(x => x.CityId == cityId))
-            {
-                streets.Add(new SelectListItem { Text = item.Name, Value = item.StreetId.ToString() });
-            }
-            return Json(new SelectList(streets, "Value", "Text"));
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            unitOfWork.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

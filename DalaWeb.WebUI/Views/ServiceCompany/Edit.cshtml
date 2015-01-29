@@ -4,9 +4,6 @@
     ViewBag.Title = "Компании";
 }
 
-
-
-
 <h2>Редактирование</h2>
 
 @using (Html.BeginForm())
@@ -17,7 +14,7 @@
     <fieldset>
         <legend>Сервис компания</legend>
 
-        @Html.HiddenFor(model => model.CompanyId)
+        @Html.HiddenFor(model => model.ServiceCompanyId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)

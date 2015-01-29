@@ -9,6 +9,7 @@ using DalaWeb.Domain.Entities;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
 using DalaWeb.Domain.Entities.Credits;
+using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -17,40 +18,31 @@ namespace DalaWeb.WebUI.Controllers
         private IUnitOfWork unitOfWork;
         private IRepository<AbonentCredit> abonentCreditRepository;
         private IRepository<Credit> creditRepository;
-
+        private IRepository<Abonent> abonentRepository;
 
         public AbonentCreditController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
             abonentCreditRepository = unitOfWork.AbonentCreditRepository;
             creditRepository = unitOfWork.CreditRepository;
+            abonentRepository = unitOfWork.AbonentRepository;
         }
-
-        //
-        // GET: /AbonentCredit/
 
         public ActionResult Index()
         {
-            var abonentCredits = abonentCreditRepository.Get().Include(a => a.Abonent).Include(a => a.Credit);
+            var abonentCredits = abonentCreditRepository.Get();
             return View(abonentCredits.ToList());
         }
 
-        //
-        // GET: /AbonentCredit/Details/5
-
-        public ActionResult Details(int abonentId, int creditId)
+        public ActionResult Details(int abonentCreditId)
         {
-            int[] ids = new int[] { abonentId, creditId };
-            AbonentCredit abonentCredit = abonentCreditRepository.GetById(ids);
+            AbonentCredit abonentCredit = abonentCreditRepository.GetById(abonentCreditId);
             if (abonentCredit == null)
             {
                 return HttpNotFound();
             }
             return View(abonentCredit);
         }
-
-        //
-        // GET: /AbonentCredit/Create
 
         public ActionResult Create(int abonentId)
         {
@@ -59,14 +51,11 @@ namespace DalaWeb.WebUI.Controllers
             return View();
         }
 
-        //
-        // POST: /AbonentCredit/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(AbonentCredit abonentCredit)
         {
-            abonentCredit.PaymentForMonth = (abonentCredit.Price - abonentCredit.PrePayment) / (abonentCredit.Term - abonentCredit.PaidMonths);
+            abonentCredit.PaymentForMonth = (abonentCredit.Price - abonentCredit.PrePayment) / abonentCredit.Term;
             abonentCredit.PaidForTheEntirePeriod = abonentCredit.PrePayment + abonentCredit.PaidMonths * abonentCredit.PaymentForMonth;
             abonentCredit.FinishDate = abonentCredit.StartDate.AddMonths(abonentCredit.Term);
             
@@ -82,22 +71,15 @@ namespace DalaWeb.WebUI.Controllers
             return View(abonentCredit);
         }
 
-        //
-        // GET: /AbonentCredit/Edit/5
-
-        public ActionResult Edit(int abonentId, int creditId)
+        public ActionResult Edit(int abonentCreditId)
         {
-            int[] ids = new int[] { abonentId, creditId };
-            AbonentCredit abonentCredit = abonentCreditRepository.GetById(ids);
+            AbonentCredit abonentCredit = abonentCreditRepository.GetById(abonentCreditId);
             if (abonentCredit == null)
             {
                 return HttpNotFound();
             }
             return View(abonentCredit);
         }
-
-        //
-        // POST: /AbonentCredit/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -112,13 +94,9 @@ namespace DalaWeb.WebUI.Controllers
             return View(abonentCredit);
         }
 
-        //
-        // GET: /AbonentCredit/Delete/5
-
-        public ActionResult Delete(int abonentId, int creditId)
+        public ActionResult Delete(int abonentCreditId)
         {
-            int[] ids = new int[] { abonentId, creditId };
-            AbonentCredit abonentCredit = abonentCreditRepository.GetById(ids);
+            AbonentCredit abonentCredit = abonentCreditRepository.GetById(abonentCreditId);
             if (abonentCredit == null)
             {
                 return HttpNotFound();
@@ -126,15 +104,11 @@ namespace DalaWeb.WebUI.Controllers
             return View(abonentCredit);
         }
 
-        //
-        // POST: /AbonentCredit/Delete/5
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int abonentId, int creditId)
+        public ActionResult DeleteConfirmed(int abonentCreditId)
         {
-            int[] ids = new int[] { abonentId, creditId };
-            AbonentCredit abonentCredit = abonentCreditRepository.GetById(ids);
+            AbonentCredit abonentCredit = abonentCreditRepository.GetById(abonentCreditId);
             abonentCreditRepository.Delete(abonentCredit);
             unitOfWork.Save();
             return RedirectToAction("Index");

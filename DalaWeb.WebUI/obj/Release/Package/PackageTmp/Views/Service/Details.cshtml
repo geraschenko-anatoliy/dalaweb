@@ -34,25 +34,36 @@
     <tr>
         <td>
             <div class="display-label">
-                @Html.DisplayNameFor(model => model.Price)
+                История цен
             </div>
         </td>
         <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Price)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Type)
-            </div>
-        </td>
-        <td>
-            <div class="display-field">
-                @Model.ToString()
-            </div>
+            <table>
+                <tr>
+                    <th>
+                        Дата
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ServicePrice.FirstOrDefault().Price)
+                    </th>
+                </tr>
+                @foreach(var item in Model.ServicePrice.OrderByDescending(x=>x.StartDate))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.StartDate) - @Html.DisplayFor(modelitem => item.FinishDate)
+                            @*@item.StartDate.ToShortDateString() - @item.FinishDate.ToShortDateString()*@
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            @*<div class="display-field">
+                @Html.DisplayFor(model => model.ServicePrice.OrderBy(x=>x.StartDate).Last().Price)
+            </div>*@
         </td>
     </tr>
 </table>

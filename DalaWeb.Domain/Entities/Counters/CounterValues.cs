@@ -10,16 +10,20 @@ namespace DalaWeb.Domain.Entities.Counters
 {
     public class CounterValues
     {
-        [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int CounterValuesId { get; set; }
-        [Key, Column(Order = 1)]
+
         [Display(Name = "Дата")]
+        [Column(TypeName = "Date")]
         public DateTime Date { get; set; }
-        [ForeignKey("Counter")]
-        public int CounterId { get; set; }
+
         [Required]
         [Display(Name = "Значение")]
         public double Value { get; set; }
+
+        [Required]
+        public int CounterId { get; set; }
+        [ForeignKey("CounterId")]
 
         public virtual Counter Counter { get; set; }
     }

@@ -22,12 +22,12 @@
     <tr>
         <td>
             <div class="editor-label">
-                @Html.DisplayNameFor(model => model.Service.Price)
+                @Html.DisplayNameFor(model => model.Service.ServicePrice.OrderBy(x => x.StartDate).Last().Price)
             </div>
         </td>
         <td>
             <div class="editor-field">
-                @Html.DisplayFor(model => model.Service.Price)
+                @Html.DisplayFor(model => model.Service.ServicePrice.OrderBy(x => x.StartDate).Last().Price)
             </div>
         </td>
     </tr>
@@ -63,21 +63,13 @@
         </td>
         <td>
             <div class="editor-field">
-                @if (Model.isOff)
-                {
-                    @Model.FinishDate.ToShortDateString()
-                }
-                else
-                {
-                    <span class="label label-success">Услуга подключена</span>
-                }
+                @Html.DisplayFor(model => model.FinishDate)
             </div>
         </td>
     </tr>
 </table>
 
-
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { abonentId = Model.AbonentId, serviceId = Model.ServiceId, startDate = Model.StartDate }) |
+    @Html.ActionLink("Редактировать", "Edit", new { abonentServiceId = Model.AbonentServiceId }) |
     @Html.ActionLink("Вернуться", "Index")
 </p>

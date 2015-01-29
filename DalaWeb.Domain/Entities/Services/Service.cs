@@ -14,15 +14,11 @@ namespace DalaWeb.Domain.Entities.Services
     {
         [Key]
         public int ServiceId { get; set; }
-        [ForeignKey("ServiceCompany")]
-        public int CompanyId { get; set; }
+        
         [Required(ErrorMessage = "*")]
         [Display(Name = "Сервис")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "*")]
-        [Range(0, double.MaxValue, ErrorMessage = "Введите положительное значение")]
-        [Display(Name = "Цена")]
-        public double Price { get; set; }
+      
         [Required(ErrorMessage = "*")]
         [Display(Name = "Тип сервиса")]
         public int Type { get; set; }
@@ -31,10 +27,14 @@ namespace DalaWeb.Domain.Entities.Services
         [Display(Name = "Статус")]
         public bool isOff { get; set; }
 
+        [Required]
+        public int ServiceCompanyId { get; set; }
+        [ForeignKey("ServiceCompanyId")]
         public virtual ServiceCompany ServiceCompany { get; set; }
+
+        public virtual ICollection<ServicePrice> ServicePrice { get; set; }
         public virtual ICollection<AbonentService> AbonentServices { get; set; }
         public virtual ICollection<Counter> Counters { get; set; }
-
         public virtual ICollection<Tariff> Tariffs { get; set; }
 
         public override string ToString()

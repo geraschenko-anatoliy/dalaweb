@@ -36,9 +36,18 @@ namespace DalaWeb.Domain.Concrete
 
         public DbSet<Payment> Payments { get; set; }
 
-        public DbSet<PDFDocument> PDFDocuments { get; set; }
+        public DbSet<PDFAbonentMonthlyReceipt> PDFAbonentMonthlyReceipt { get; set; }
 
         public DbSet<Tariff> Tariffs { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }

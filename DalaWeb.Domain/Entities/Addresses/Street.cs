@@ -13,13 +13,14 @@ namespace DalaWeb.Domain.Entities.Addresses
         [Key]
         public int StreetId { get; set; }
 
-        [ForeignKey("City")]
-        public int CityId { get; set; }
-
         [Required]
         [Display(Name = "Улица")]
         public string Name { get; set; }
 
+        [Required]
+        public int CityId { get; set; }
+
+        [ForeignKey("CityId")]
         public virtual City City { get; set; }
     }
 }

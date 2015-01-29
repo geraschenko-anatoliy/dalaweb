@@ -14,7 +14,8 @@
         <legend>Счетчик</legend>
 
         @Html.Hidden("isOff", false)
-        @Html.HiddenFor(model => model.AbonentId)
+        @Html.Hidden("AbonentId", (int)ViewBag.AbonentId)
+        @Html.Hidden("ServiceId", (int)ViewBag.ServiceId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
@@ -22,14 +23,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ServiceId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.ServiceId, (SelectList)ViewBag.Services, new { disabled = "disabled" })
-            @Html.ValidationMessageFor(model => model.ServiceId)
         </div>
 
         <div class="editor-label">

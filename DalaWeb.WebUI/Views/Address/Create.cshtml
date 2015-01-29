@@ -1,7 +1,7 @@
 ﻿@model DalaWeb.Domain.Entities.Addresses.Address
 
 @{
-    ViewBag.Title = "Создание";
+    ViewBag.Title = "Адрес";
 }
 
 <script type="text/javascript">
@@ -10,14 +10,12 @@
 
 <script src="~/Scripts/DropDownHelpers/AddressDropdown.js"></script>
 
-<h2>Создать</h2>
+<h2>Создать адрес для абонента" + (string)ViewBag.AbonentName</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
-    @Html.Hidden("AbonentId", (int)ViewBag.AbonentId)
     <fieldset>
         <legend>Адрес</legend>
 
@@ -26,7 +24,7 @@
         </div>
         <div class="editor-field">
             @Html.DropDownList("CityId", string.Empty)
-            @Html.ValidationMessageFor(model => model.CityId)
+            @Html.ValidationMessageFor(model => model.City.CityId)
         </div>
 
         <div class="editor-label">
@@ -34,7 +32,7 @@
         </div>
         <div class="editor-field">
             @Html.DropDownList("StreetId", new SelectList(string.Empty, "Value", "Text"))
-            @Html.ValidationMessageFor(model => model.StreetId)
+            @Html.ValidationMessageFor(model => model.Street.StreetId)
         </div>
 
         <div class="editor-label">
@@ -43,8 +41,7 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.House)
             @Html.ValidationMessageFor(model => model.House)
-            @Html.ValidationMessage("MyDropDownListKey")
-        </div>
+        </div>        
         <p>
             <input type="submit" value="Создать" class="btn" />
         </p>
@@ -52,5 +49,5 @@
 }
 
 <div>
-    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = (int)ViewBag.AbonentId }, null)
+    @Html.ActionLink("Назад", "Edit", "Abonent", new { id = (int)Session["AbonentId"] }, null)
 </div>

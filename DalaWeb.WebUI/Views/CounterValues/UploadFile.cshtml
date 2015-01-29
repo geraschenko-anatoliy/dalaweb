@@ -39,7 +39,7 @@
                         @p.counterValue
                     </td>
                     <td align="center" valign="middle">
-                        @p.isSuccess
+                        @(p.isSuccess ? new HtmlString("Да") : new HtmlString("Нет"))
                     </td>
                     <td align="center" valign="middle">
                         @p.message

@@ -158,6 +158,7 @@
     <Compile Include="Controllers\CounterController.cs" />
     <Compile Include="Controllers\CounterValuesController.cs" />
     <Compile Include="Controllers\CreditController.cs" />
+    <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ServiceCompanyController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -168,6 +169,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Infrastructure\PDFAbonentMonthlyReceiptGenerator.cs" />
+    <Compile Include="Infrastructure\StatisticsCalculator.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
@@ -177,13 +180,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\ArrayAwareRoute.cs" />
     <Compile Include="ViewModels\ForCounterValues\UploadFileStaticticsViewModel.cs" />
+    <Compile Include="Infrastructure\MonthCalculator.cs" />
     <Compile Include="ViewModels\ForPayment\NumerousViewModel.cs" />
     <Compile Include="ViewModels\ForPayment\IndexViewModel.cs" />
     <Compile Include="ViewModels\ForAbonent\DeletedIndexViewModel.cs" />
     <Compile Include="ViewModels\ForAddress\AddressIndexViewModel.cs" />
     <Compile Include="ViewModels\ForAbonent\IndexViewModel.cs" />
     <Compile Include="ViewModels\ForPayment\OpenMonthSummaryViewModel.cs" />
-    <Compile Include="ViewModels\ForPayment\PDFGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\body.css" />
@@ -394,14 +397,13 @@
     <Content Include="Views\Payment\Edit.cshtml" />
     <Content Include="Views\Payment\Delete.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\double.cshtml" />
-    <Content Include="Views\Payment\All.cshtml" />
-    <Content Include="Views\Payment\Month.cshtml" />
     <Content Include="Views\Payment\Filter.cshtml" />
+    <Content Include="Views\Payment\Receipts.cshtml" />
+    <Content Include="Views\Payment\ReceiptFilter.cshtml" />
     <Content Include="Views\Payment\Create.cshtml" />
     <Content Include="Views\Payment\Recalculation.cshtml" />
-    <Content Include="Views\Payment\Numerous.cshtml" />
-    <Content Include="Views\Payment\ForAbonent.cshtml" />
-    <Content Include="Views\Payment\CheckMonthOpenAbility.cshtml" />
+    <Content Include="Views\Payment\NumerousRefill.cshtml" />
+    <Content Include="Views\Payment\ReceiptForAbonent.cshtml" />
     <Content Include="Views\Payment\OpenMonthSummary.cshtml" />
     <Content Include="Views\Tariff\Index.cshtml" />
     <Content Include="Views\Tariff\Details.cshtml" />
@@ -409,6 +411,16 @@
     <Content Include="Views\Tariff\Edit.cshtml" />
     <Content Include="Views\Tariff\Delete.cshtml" />
     <Content Include="Views\AbonentService\TemporaryDisableForAbonent.cshtml" />
+    <Content Include="Views\Payment\RecalculateMonthSummary.cshtml" />
+    <Content Include="Views\Abonent\AbonentServices.cshtml" />
+    <Content Include="Views\Abonent\AbonentCredits.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Service.cshtml" />
+    <Content Include="Views\Abonent\Balance.cshtml" />
+    <Content Include="Views\Guest\Index.cshtml" />
+    <Content Include="Views\Guest\Details.cshtml" />
+    <Content Include="Views\Guest\Create.cshtml" />
+    <Content Include="Views\Guest\PDFReceiptsForAbonentList.cshtml" />
+    <Content Include="Views\Guest\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,20 +44,6 @@
         <tr>
             <th>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.Type)
-                </div>
-            </th>
-            <td>
-                <div class="editor-field">
-                    @Html.DropDownListFor(model => model.Type, (SelectList)ViewBag.PaymentTypes)
-                    @Html.ValidationMessageFor(model => model.Date)
-                </div>
-            </td>
-        </tr>
-
-        <tr>
-            <th>
-                <div class="editor-label">
                     @Html.LabelFor(model => model.Sum)
                 </div>
             </th>

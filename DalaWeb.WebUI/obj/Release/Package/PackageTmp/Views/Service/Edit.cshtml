@@ -9,8 +9,8 @@
         $("#FinishDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'dd/MM/yyyy',
-            format: 'dd/MM/yyyy',
+            dateFormat: 'dd MM yyyy',
+            format: 'dd MM yyyy',
             autoclose: true
         });
     });
@@ -27,14 +27,16 @@
         <legend>Сервис</legend>
 
         @Html.HiddenFor(model => model.ServiceId)
+        @Html.HiddenFor(model => model.ServiceCompanyId)
         @Html.HiddenFor(model => model.isOff)
+        @Html.HiddenFor(model => model.Type)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyId, "Сервис компания")
+            @Html.LabelFor(model => model.ServiceCompanyId, "Сервис компания")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("CompanyId", String.Empty)
-            @Html.ValidationMessageFor(model => model.CompanyId)
+            @Html.DropDownList("сompanyId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ServiceCompanyId)
         </div>
 
         <div class="editor-label">
@@ -46,19 +48,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Price)
+            @Html.LabelFor(model => model.ServicePrice.OrderBy(x=>x.StartDate).Last().Price)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Price)
-            @Html.ValidationMessageFor(model => model.Price)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Type)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("Type", string.Empty)
-            @Html.ValidationMessageFor(model => model.Type)
+            @Html.Editor("Price", string.Empty)
+            @Html.ValidationMessageFor(model => model.ServicePrice.OrderBy(x => x.StartDate).Last().Price)
         </div>
 
         <div class="display-label">
@@ -67,7 +61,7 @@
 
         <div class ="editor-field">
             <div class="editor-field">
-                @Html.TextBox("FinishDate", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                @Html.TextBox("FinishDate", String.Format("{0:dd MMMM yyyy}", DateTime.Now), new { @class = "datepicker" })
             </div>
         </div>
 

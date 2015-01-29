@@ -28,8 +28,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(cityRepository.Get());
         }
 
-        //
-        // GET: /City/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -41,16 +39,10 @@ namespace DalaWeb.WebUI.Controllers
             return View(city);
         }
 
-        //
-        // GET: /City/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /City/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -66,9 +58,6 @@ namespace DalaWeb.WebUI.Controllers
             return View(city);
         }
 
-        //
-        // GET: /City/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
             City city = cityRepository.GetById(id);
@@ -79,9 +68,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(city);
         }
-
-        //
-        // POST: /City/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]

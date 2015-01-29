@@ -9,8 +9,8 @@
         $("#FinishDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yyyy/MM/dd',
-            format: 'yyyy/MM/dd',
+            dateFormat: 'dd MMMM yyyy',
+            format: 'dd MMMM yyyy',
             autoclose: true
         });
     });
@@ -27,7 +27,6 @@
     <table class="table table-striped">
         @Html.HiddenFor(model => model.ServiceId)
         @Html.HiddenFor(model => model.Name)
-        @Html.HiddenFor(model => model.CompanyId)
         @Html.HiddenFor(model => model.Type)
         @Html.HiddenFor(model => model.Price)
 
@@ -87,7 +86,7 @@
             </td>
             <td>
                 <div class="editor-field">
-                    @Html.TextBox("FinishDate", String.Format("{0:yyyy/MM/dd}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.TextBox("FinishDate", String.Format("{0:dd MMMM yyyy}", DateTime.Now), new { @class = "datepicker" })
                 </div>
             </td>
         </tr>

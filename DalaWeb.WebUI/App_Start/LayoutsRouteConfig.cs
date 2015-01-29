@@ -21,7 +21,7 @@ namespace DalaWeb.WebUI
                 .AddChildRoute<CityController>("Города", c => c.Index())
                 .AddChildRoute<StreetController>("Улицы", c => c.Index());
 
-            routes.MapNavigationRoute<AbonentCreditController>("Кредиты", c => c.Delete(0, 0))
+            routes.MapNavigationRoute<AbonentCreditController>("Кредиты", c => c.Delete(0))
                 .AddChildRoute<CreditController>("Кредиты", c => c.Index())
                 .AddChildRoute<AbonentCreditController>("Абоненты", c => c.Index());
 
@@ -37,9 +37,12 @@ namespace DalaWeb.WebUI
                 .AddChildRoute<StampController>("Пломбы", c => c.Index());
 
             routes.MapNavigationRoute<PaymentController>("Оплата", c => c.Delete(0))
-                .AddChildRoute<PaymentController>("Квитанции", c => c.Month())
+                .AddChildRoute<PaymentController>("Квитанции", c => c.Receipts())
                 .AddChildRoute<PaymentController>("Платежи", c => c.Index())
-                .AddChildRoute<PaymentController>("Массовое пополнение", c => c.Numerous());
+                .AddChildRoute<PaymentController>("Массовое пополнение", c => c.NumerousRefill());
+
+            routes.MapNavigationRoute<GuestController>("Вход", c => c.Index());
+               //.AddChildRoute<GuestController>("Вход", c => c.Index());
         }
     }
 }

@@ -60,10 +60,10 @@
                 @Html.DisplayFor(modelItem => item.FinishDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Service.Price)
+                @Html.DisplayFor(modelItem => item.Service.ServicePrice.OrderBy(x => x.StartDate).Last().Price)
             </td>
             <td>
-                <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate })">
+                <a class="btn" title="Детальнее" href="@Url.Action("Details", new { abonentServiceId = item.AbonentServiceId })">
                     <span class="icon-info-sign"></span>
                 </a>
             </td>

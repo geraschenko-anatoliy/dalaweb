@@ -10,10 +10,13 @@ namespace DalaWeb.Domain.Entities.Credits
 {
     public class Credit
     {
+        [Key]
         public int CreditId { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Название")]
         public string Name { get; set; }
+        
         public virtual ICollection<AbonentCredit> AbonentCredits { get; set; }
     }
 }

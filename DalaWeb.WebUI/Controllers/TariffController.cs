@@ -9,6 +9,7 @@ using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Concrete;
 using DalaWeb.Domain.Abstract;
 using DalaWeb.Domain.Entities.Abonents;
+using DalaWeb.Domain.Entities.Services;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -17,12 +18,14 @@ namespace DalaWeb.WebUI.Controllers
         private IUnitOfWork unitOfWork;
         private IRepository<Tariff> tariffRepository;
         private IRepository<Abonent> abonentRepository;
+        private IRepository<Service> serviceRepository;
         
         public TariffController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
             tariffRepository = unitOfWork.TariffRepository;
             abonentRepository = unitOfWork.AbonentRepository;
+            serviceRepository = unitOfWork.ServiceRepository;
         }
 
         public ActionResult Index()
@@ -42,7 +45,7 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.ServiceId = new SelectList(unitOfWork.ServiceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name");
+            ViewBag.ServiceId = new SelectList(serviceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name");
             return View();
         }
 
@@ -51,12 +54,12 @@ namespace DalaWeb.WebUI.Controllers
         public ActionResult Create(Tariff tariff)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 tariffRepository.Insert(tariff);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.ServiceId = new SelectList(unitOfWork.ServiceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name");
+            ViewBag.ServiceId = new SelectList(serviceRepository.Get().Where(x => x.Type == 3), "ServiceId", "Name");
             return View(tariff);
         }
 

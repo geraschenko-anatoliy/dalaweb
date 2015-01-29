@@ -12,12 +12,12 @@ namespace DalaWeb.Domain.Entities.Services
 {
     public class ServiceCompany
     {
-        [Key]
-        public int CompanyId { get; set; }
+        public int ServiceCompanyId { get; set; }
 
         [Required(ErrorMessage = "*")]
         [Display(Name = "Название компании")]
         public string Name { get; set; }
+
         public virtual ICollection<Service> Services { get; set; }
     }
 

@@ -5,13 +5,7 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\bin\Debug\EntityFramework.xml
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.pdb
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.PDFStorage.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.a1.resources
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csproj.GenerateResource.Cache
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.PDFStorateFieldRename.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.datetime2todatetime.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.datetime2todatetime2.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.datetime2todatetime21.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.Tariffs.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.AddTimeStampToPDF.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.ServiceInTariffs.resources
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.noServiceInPayments.resources
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.csprojResolveAssemblyReference.cache
+C:\Users\geras_000\Documents\Visual Studio 2013\Projects\DalaWeb\DalaWeb.Domain\obj\Debug\DalaWeb.Domain.Migrations.a11.resources

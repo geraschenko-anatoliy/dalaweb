@@ -36,9 +36,10 @@ namespace DalaWeb.Domain.Abstract
         IRepository<Stamp> StampRepository { get; }
 
         IRepository<Payment> PaymentRepository { get; }
-        IRepository<PDFDocument> PDFDocumentRepository { get; }
+        IRepository<PDFAbonentMonthlyReceipt> PDFAbonentMonthlyReceiptRepository { get; }
 
         IRepository<Tariff> TariffRepository { get; }
+        IRepository<ServicePrice> ServicePriceRepository { get; }
 
     }
 }

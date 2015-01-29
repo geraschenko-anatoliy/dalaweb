@@ -12,24 +12,38 @@ namespace DalaWeb.Domain.Entities.Services
 {
     public class AbonentService
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        public int AbonentServiceId { get; set; }
+
+        [DefaultValue(false)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)] 
+        [Display(Name = "Услуга отключена?")]
+        public bool? isOff 
+        {
+            get 
+            {
+                if (FinishDate != DateTime.MinValue)
+                    return DateTime.Now > FinishDate ? true : false;
+                else
+                    return false;
+            }  
+            private set {} 
+        }
+        [Required]
         public int AbonentId { get; set; }
-        [Key, Column(Order = 1)]
+
+        [ForeignKey("AbonentId")]
+        public virtual Abonent Abonent { get; set; }
+        [Required]
         public int ServiceId { get; set; }
 
-        [Required]
-        [DefaultValue(false)]
-        [Display(Name = "Услуга отключена?")]
-        public bool isOff { get; set; }
-
-        public virtual Abonent Abonent { get; set; }
+        [ForeignKey("ServiceId")]
         public virtual Service Service { get; set; }
 
         
         [Required]
-        [Key, Column(Order = 2, TypeName="Date")]
+        [Column(TypeName="Date")]
         [Display(Name = "Дата подключения")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "Дата отключения")]

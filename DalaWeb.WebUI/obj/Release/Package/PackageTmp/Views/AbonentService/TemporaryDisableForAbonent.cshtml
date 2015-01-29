@@ -20,7 +20,7 @@
             </td>
             <td>
                 <div class="editor-field">
-                    @Html.TextBox("finishDate", String.Format("{0:dd/MMMM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.TextBox("finishDate", String.Format("{0:dd MMMM yyyy}", DateTime.Now), new { @class = "datepicker" })
                     @Html.ValidationMessage("finishDate")
                 </div>
             </td>
@@ -31,7 +31,7 @@
             </td>
             <td>
                 <div class="editor-field">
-                    @Html.TextBox("startDate", String.Format("{0:dd/MMMM/yyyy}", DateTime.Now), new { @class = "datepicker" })
+                    @Html.TextBox("startDate", String.Format("{0:dd MMMM yyyy}", DateTime.Now), new { @class = "datepicker" })
                     @Html.ValidationMessage("startDate")
                 </div>
             </td>
@@ -57,9 +57,9 @@
         $(".datepicker").datepicker({
             changeMonth: true,
             changeYear: true,
-            autoclose: true
-            //dateFormat: 'dd/MM/yyyy',
-            //format: 'dd/MM/yyyy'
+            autoclose: true,
+            dateFormat: 'dd MMMM yyyy',
+            format: 'dd MM yyyy'
         });
     });
 </script>

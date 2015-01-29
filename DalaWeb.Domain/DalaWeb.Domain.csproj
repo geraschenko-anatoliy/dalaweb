@@ -96,45 +96,18 @@
     <Compile Include="Entities\Addresses\Address.cs" />
     <Compile Include="Entities\Credits\Credit.cs" />
     <Compile Include="Entities\Payments\Payment.cs" />
-    <Compile Include="Entities\PDFStorages\PDFDocument.cs" />
+    <Compile Include="Entities\PDFStorages\PDFAbonentMonthlyReceipt.cs" />
     <Compile Include="Entities\Services\AbonentService.cs" />
+    <Compile Include="Entities\Services\ServicePrice.cs" />
     <Compile Include="Entities\Services\Service.cs" />
     <Compile Include="Entities\Services\ServiceCompany.cs" />
-    <Compile Include="Migrations\201411231635123_PDFStorage.cs" />
-    <Compile Include="Migrations\201411231635123_PDFStorage.Designer.cs">
-      <DependentUpon>201411231635123_PDFStorage.cs</DependentUpon>
+    <Compile Include="Migrations\201501071931565_a1.cs" />
+    <Compile Include="Migrations\201501071931565_a1.Designer.cs">
+      <DependentUpon>201501071931565_a1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201411231915157_PDFStorateFieldRename.cs" />
-    <Compile Include="Migrations\201411231915157_PDFStorateFieldRename.Designer.cs">
-      <DependentUpon>201411231915157_PDFStorateFieldRename.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411232311595_datetime2todatetime.cs" />
-    <Compile Include="Migrations\201411232311595_datetime2todatetime.Designer.cs">
-      <DependentUpon>201411232311595_datetime2todatetime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411232312372_datetime2todatetime2.cs" />
-    <Compile Include="Migrations\201411232312372_datetime2todatetime2.Designer.cs">
-      <DependentUpon>201411232312372_datetime2todatetime2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411232312590_datetime2todatetime21.cs" />
-    <Compile Include="Migrations\201411232312590_datetime2todatetime21.Designer.cs">
-      <DependentUpon>201411232312590_datetime2todatetime21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411251315108_Tariffs.cs" />
-    <Compile Include="Migrations\201411251315108_Tariffs.Designer.cs">
-      <DependentUpon>201411251315108_Tariffs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411251900179_AddTimeStampToPDF.cs" />
-    <Compile Include="Migrations\201411251900179_AddTimeStampToPDF.Designer.cs">
-      <DependentUpon>201411251900179_AddTimeStampToPDF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411271017488_ServiceInTariffs.cs" />
-    <Compile Include="Migrations\201411271017488_ServiceInTariffs.Designer.cs">
-      <DependentUpon>201411271017488_ServiceInTariffs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411272207392_noServiceInPayments.cs" />
-    <Compile Include="Migrations\201411272207392_noServiceInPayments.Designer.cs">
-      <DependentUpon>201411272207392_noServiceInPayments.cs</DependentUpon>
+    <Compile Include="Migrations\201501282000560_a11.cs" />
+    <Compile Include="Migrations\201501282000560_a11.Designer.cs">
+      <DependentUpon>201501282000560_a11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,33 +119,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411231635123_PDFStorage.resx">
-      <DependentUpon>201411231635123_PDFStorage.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Migrations\201501071931565_a1.resx">
+      <DependentUpon>201501071931565_a1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411231915157_PDFStorateFieldRename.resx">
-      <DependentUpon>201411231915157_PDFStorateFieldRename.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411232311595_datetime2todatetime.resx">
-      <DependentUpon>201411232311595_datetime2todatetime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411232312372_datetime2todatetime2.resx">
-      <DependentUpon>201411232312372_datetime2todatetime2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411232312590_datetime2todatetime21.resx">
-      <DependentUpon>201411232312590_datetime2todatetime21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411251315108_Tariffs.resx">
-      <DependentUpon>201411251315108_Tariffs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411251900179_AddTimeStampToPDF.resx">
-      <DependentUpon>201411251900179_AddTimeStampToPDF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411271017488_ServiceInTariffs.resx">
-      <DependentUpon>201411271017488_ServiceInTariffs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411272207392_noServiceInPayments.resx">
-      <DependentUpon>201411272207392_noServiceInPayments.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501282000560_a11.resx">
+      <DependentUpon>201501282000560_a11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

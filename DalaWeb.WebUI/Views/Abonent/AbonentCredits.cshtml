@@ -1,0 +1,88 @@
+﻿@model DalaWeb.Domain.Entities.Abonents.Abonent
+
+
+<table>
+    <tr>
+        <td>
+            <h2 class="text-center">
+                Кредиты
+                <a class="btn" href="@Url.Action("Create", "AbonentCredit", new { abonentId = Model.AbonentId})">
+                    <span class="icon-plus"></span>
+                </a>
+            </h2>
+            @if (Model.AbonentCredits.Any())
+            {
+                var m = Model.AbonentCredits.First();
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => m.Credit.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.StartDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.FinishDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.PrePayment)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.PaidForTheEntirePeriod)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.PaidMonths)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.Term)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.Price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => m.PaymentForMonth)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.AbonentCredits)
+                        {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.Credit.Name, "Details", "AbonentCredit", new { abonentCreditId = item.AbonentCreditId }, null)
+                            </td>
+                            <td>
+                                @item.StartDate.ToString("D")
+                            </td>
+                            <td>
+                                @item.FinishDate.ToString("D")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrePayment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaidForTheEntirePeriod)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaidMonths)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Term)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaymentForMonth)
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </td>
+    </tr>
+</table>
+

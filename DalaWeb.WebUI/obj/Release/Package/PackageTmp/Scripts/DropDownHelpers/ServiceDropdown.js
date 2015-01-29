@@ -1,14 +1,14 @@
 ﻿$(document).ready(function () {
-    $("#CompanyId").change(function () {
-        $("#ServiceId").empty();
+    $("#ServiceCompanyId").change(function () {
+        $("#Service_ServiceId").empty();
         $.ajax({
             type: 'POST',
             url: addressGetServicesPath,
             dataType: 'json',
-            data: { companyId: $("#CompanyId").val(), abonentId:  $("#AbonentId").val() },
+            data: { companyId: $("#ServiceCompanyId").val(), abonentId: $("#Abonent_AbonentId").val() },
             success: function (services) {
                 $.each(services, function (i, company) {
-                    $("#ServiceId").append('<option value="' + company.Value + '">' +
+                    $("#Service_ServiceId").append('<option value="' + company.Value + '">' +
                      company.Text + '</option>');
                 });
             },

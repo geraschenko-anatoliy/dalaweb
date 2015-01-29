@@ -14,15 +14,15 @@ namespace DalaWeb.Domain.Entities.Counters
         [Key]
         public int StampId { get; set; }
 
-        [ForeignKey("Counter")]
-        public int CounterId { get; set; }
         [Required]
         [Display(Name = "Пломба")]
         public string Name { get; set; }
+
         [Required]
         [Display(Name = "Дата установки")]
         [Column(TypeName = "Date")]
         public DateTime StartDate { get; set; }
+
         [Column(TypeName = "Date")]
         [Display(Name = "Дата снятия")]
         public DateTime FinishDate { get; set; }
@@ -30,6 +30,10 @@ namespace DalaWeb.Domain.Entities.Counters
         [DefaultValue(false)]
         public bool isOff { get; set; }
 
+        [Required]
+        public int CounterId { get; set; }
+
+        [ForeignKey("CounterId")]
         public virtual Counter Counter { get; set; }
     }
 }

@@ -5,178 +5,17 @@
 }
 
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-@*<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
 
 <table>
     <tr>
         <td>
             <h3>Информационная страница абонента @Model.Name</h3>
         </td>
-        <td>
-            <table>
-                <tr>
-                    <td>
-                        <h3>
-                            Баланс:
-                        </h3>
-                    </td>
-                    <td>
-                        <h3 id="balance">
-                            @if (Model.Payments.Any())
-                            {
-                                @Model.Payments.OrderBy(x=>x.Date).LastOrDefault().Balance.ToString("F2")
-                            }
-                            else
-                            {
-                                <a>
-                                    N/A
-                                </a>
-                            }
-                        </h3>
-                    </td>
-                    <td>
-                        <h3>
-                            @using (Ajax.BeginForm(actionName: "RecalculateBalance", controllerName: "Payment", htmlAttributes: new { abonentId = Model.AbonentId }, routeValues: null, ajaxOptions: new AjaxOptions() { UpdateTargetId = "balance" }))
-                            {
-                                @Html.HiddenFor(model => Model.AbonentId)
-                                <button type="submit" class="btn btn-default btn-lg">
-                                    <i class="icon-refresh"></i>
-                                </button>
-                            }
-                        </h3>
-                    </td>
-
-                </tr>
-            </table>
+        <td class="text-center">
+            @Html.Partial("Balance", Model.Payments)
         </td>
     </tr>
 </table>
-
-
-
-@helper RenderService(IEnumerable<DalaWeb.Domain.Entities.Services.AbonentService> items)
-{
-    <table class="table table-hover">
-        <tr>
-            <th>
-                Название
-            </th>
-            <th>
-                Цена
-            </th>
-            <th>
-                Тип
-            </th>
-            <th>
-                Поставщик
-            </th>
-            <th>
-                Дата подключения
-            </th>
-            <th>
-                Счетчик
-            </th>
-            <th>
-                Пломба
-            </th>
-            <th>
-                Статус
-            </th>
-        </tr>
-        @foreach (var item in items)
-        {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.Service.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                </td>
-                <td>
-                    @Html.ActionLink(item.Service.Price.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                </td>
-                <td>
-                    @Html.ActionLink(item.Service.ToString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                </td>
-                <td>
-                    @Html.ActionLink(item.Service.ServiceCompany.Name, "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                </td>
-                <td>
-                    @Html.ActionLink(item.StartDate.ToShortDateString(), "Details", "AbonentService", new { abonentId = item.AbonentId, serviceId = item.ServiceId, startDate = item.StartDate }, null)
-                </td>
-
-
-                @{
-            if (item.Service.Type == 3)
-            {
-
-                DalaWeb.Domain.Entities.Counters.Counter counter = item.Service.Counters.Where(x => x.AbonentId == item.AbonentId).Where(x => x.isOff == false).FirstOrDefault();
-
-                if (counter != null)
-                {
-                    <td>
-                        @Html.ActionLink(counter.Name, "Details", "Counter", new { id = counter.CounterId }, null)
-                    </td>
-                    <td>
-
-                        @if (!counter.Stamps.Where(s => s.isOff == false).Any())
-                        {
-                            @Html.ActionLink("Добавить пломбу", "Create", "Stamp", new { counterId = counter.CounterId }, null)
-                        }
-                        else
-                        {
-                            @Html.ActionLink(counter.Stamps.Where(s => s.isOff == false).LastOrDefault().Name, "Details", "Stamp", new { id = counter.Stamps.Where(s => s.isOff == false).LastOrDefault().StampId }, null)
-                        }
-                    </td>
-                }
-                else
-                {
-                    DalaWeb.Domain.Entities.Counters.Counter LastCounter = item.Service.Counters.Where(x => x.AbonentId == item.AbonentId).Where(x => x.isOff == true).LastOrDefault();
-                    <td>
-                        @if (LastCounter == null)
-                        {
-                            @Html.ActionLink("Подключить счетчик", "Create", "Counter", new { abonentId = Model.AbonentId, serviceId = item.Service.ServiceId, StartDate = item.StartDate }, null)
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Подключить счетчик", "Create", "Counter", new { abonentId = Model.AbonentId, serviceId = item.Service.ServiceId, StartDate = LastCounter.FinishDate.AddDays(1.0) }, null)
-                        }
-                    </td>
-                    <td>
-                        <p>
-                            ---
-                        </p>
-                    </td>
-                }
-
-            }
-            else
-            {
-                <td>
-                    <p>
-                        ---
-                    </p>
-                </td>
-                    <td>
-                        <p>
-                            ---
-                        </p>
-                    </td>
-            }
-                }
-
-                <td>
-                    @if (@item.StartDate < DateTime.Now)
-                    {
-                        <span class="label label-success">Подключено</span>
-                    }
-                    else
-                    {
-                        <span class="label label-info">Ожидается</span>
-                    }
-                </td>
-            </tr>
-        }
-    </table>
-}
-
 <table>
     <tr>
         <td>
@@ -266,15 +105,17 @@
                         @if (Model.Address != null)
                         {
                             <td>
-                                @Html.ActionLink((string)ViewBag.City + " " +
-                                                        (string)ViewBag.Street + " " +
-                                                        @Model.Address.House, "Edit", "Address", new { abonentId = Model.Address.AbonentId }, null)
+                                @Html.ActionLink(Model.Address.City.Name + " " +
+                                                 Model.Address.Street.Name + " " +
+                                                 Model.Address.House, "Edit", "Address", 
+                                                 new { abonentId = Model.AbonentId }, null)
                             </td>
                         }
                         else
                         {
                             <td>
-                                @Html.ActionLink("Добавить адрес", "Create", "Address", new { abonentId = Model.AbonentId }, null)
+                                @Html.ActionLink("Добавить адрес", "Create", "Address", 
+                                                new { abonentId = Model.AbonentId }, null)
                             </td>
                         }
                     </tr>
@@ -295,70 +136,8 @@
     </tr>
 </table>
 
-<table>
-    <caption>
-        <h2 class="text-center">
-            Сервисы
-            <a class="btn" href="@Url.Action("Create", "AbonentService", new { abonentId = Model.AbonentId })">
-                <span class="icon-plus"></span>
-            </a>
-            <a class="btn" href="@Url.Action("TemporaryDisableForAbonent", "AbonentService", new { abonentId = Model.AbonentId })">
-                <span class="icon-calendar"></span>
-            </a>
-        </h2>
-    </caption>
-    <tr>
-        <td valign="top">
-            @if (Model.AbonentServices.Any())
-            {
-                @RenderService(Model.AbonentServices.OrderBy(x => x.Service.Type).Where(x=>x.isOff == false))
-            }
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>
-            <h2 class="text-center">
-                Кредиты
-                <a class="btn" href="@Url.Action("Create", "AbonentCredit", new { abonentId = Model.AbonentId })">
-                    <span class="icon-plus"></span>
-                </a>
-            </h2>
-            @if (Model.AbonentCredits.Any())
-            {
-                <table class="table table-hover">
-                    <tr>
-                        <td>
-                            <b>Название</b>
-                        </td>
-                        <td>
-                            <b>Сумма</b>
-                        </td>
-                    </tr>
-                    @foreach (var item in Model.AbonentCredits.Where(i => i.AbonentId == Model.AbonentId))
-                    {
-                        <tr>
-                            <td>
-                                @Html.ActionLink(item.Credit.Name, "Details", "AbonentCredit", new { abonentId = item.AbonentId, creditId = item.CreditId }, null)
-                            </td>
-                            <td>
-                                @Html.ActionLink(item.Price.ToString(), "Details", "AbonentCredit", new { abonentId = item.AbonentId, creditId = item.CreditId }, null)
-                            </td>
-                        </tr>
-                    }
-                </table>
-            }
-            else
-            {
-                <p>
-                    Открытых кредитов нет
-                </p>
-            }
-        </td>
-    </tr>
-</table>
+@Html.Partial("AbonentServices", Model)
+@Html.Partial("AbonentCredits", Model)
 
 <div>
     @Html.ActionLink("Вернуться", "Index")

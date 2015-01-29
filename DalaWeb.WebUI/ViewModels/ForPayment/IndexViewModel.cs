@@ -26,41 +26,41 @@ namespace DalaWeb.WebUI.ViewModels.ForPayment
     public class IndexViewModel
     {
         IQueryable<Payment> payments;
-        public IQueryable <MonthPayment> monthPayments;
+        public IQueryable<MonthPayment> monthPayments;
 
         void SetMonthPayments()
-        { 
+        {
             List<MonthPayment> monthPaymentsList = new List<MonthPayment>();
-            foreach (var year in payments.Select(x=>x.Date.Year).Distinct())
+            foreach (var year in payments.Select(x => x.Date.Year).Distinct())
             {
                 foreach (var month in payments.Where(x => x.Date.Year == year).Select(x => x.Date.Month).Distinct())
                 {
                     foreach (var abonentId in payments.Where(x => x.Date.Year == year)
                                                                    .Where(x => x.Date.Month == month)
-                                                                   .Where(x=>x.Type == "Списание")
-                                                                   .Select(x => x.AbonentId)
+                                                                   .Where(x => (x.AbonentCredit != null || x.AbonentService != null))
+                                                                   .Select(x => x.Abonent.AbonentId)
                                                                    .Distinct())
-                    { 
+                    {
                         double summ = 0;
                         Payment tempPayment = new Payment();
                         foreach (var payment in payments.Where(x => x.Date.Year == year)
                                                                    .Where(x => x.Date.Month == month)
-                                                                   .Where(x => x.Type == "Списание")
-                                                                   .Where(x => x.AbonentId == abonentId))
+                                                                   .Where(x => (x.AbonentCredit != null || x.AbonentService != null))
+                                                                   .Where(x => x.Abonent.AbonentId == abonentId))
                         {
                             summ += payment.Sum;
                             tempPayment = payment;
                         }
                         MonthPayment item = new MonthPayment()
                         {
-                            AbonentId  = tempPayment.AbonentId,
+                            AbonentId = tempPayment.Abonent.AbonentId,
                             AbonentName = tempPayment.Abonent.Name,
                             AbonentNumber = tempPayment.Abonent.AbonentNumber,
                             Day = tempPayment.Date.Day,
-                            Month = tempPayment.Date.ToString("MMMM", CultureInfo.CreateSpecificCulture("ru-RU")),
+                            Month = tempPayment.Date.ToString("MMMM"), 
                             Year = tempPayment.Date.Year.ToString(),
                             Sum = summ,
-                            Comment = "Квитанция за " + tempPayment.Date.ToString("MMMM", CultureInfo.CreateSpecificCulture("ru-RU"))
+                            Comment = "Квитанция за " + tempPayment.Date.ToString("MMMM")
                         };
                         monthPaymentsList.Add(item);
                     }

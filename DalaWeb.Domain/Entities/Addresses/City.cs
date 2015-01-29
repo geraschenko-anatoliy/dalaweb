@@ -11,6 +11,7 @@ namespace DalaWeb.Domain.Entities.Addresses
     {
         [Key]
         public int CityId { get; set; }
+
         [Required]
         [Display(Name = "Город")]
         public string Name { get; set; }

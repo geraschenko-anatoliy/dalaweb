@@ -150,7 +150,7 @@
                                 @item.Service.Name
                             </td>
                             <td>
-                                @item.Service.Price.ToString()
+                                @item.Service.ServicePrice.OrderBy(x => x.StartDate).Last().Price.ToString()
                             </td>
                             <td>
                                 @item.Service.ToString()
@@ -162,14 +162,7 @@
                                 @item.StartDate.ToShortDateString()
                             </td>
                             <td>
-                                @if (@item.isOff)
-                                {
-                                    <span class="label label-warning">Отключено</span>
-                                }
-                                else
-                                {
-                                    <span class="label label-success">Подключено</span>
-                                }
+                                <span class="label label-warning">Отключено</span>
                             </td>
                         </tr>
                     }
@@ -200,7 +193,7 @@
                             </div>
                         </td>
                     </tr>
-                    @foreach (var item in Model.AbonentCredits.Where(i => i.AbonentId == Model.AbonentId))
+                    @foreach (var item in Model.AbonentCredits)
                     {
                         <tr>
                             <td>

@@ -40,10 +40,12 @@
                         @item.Abonent.Name
                     </td>
                     <td>
-                        @Model.cities.Where(x => x.CityId == item.CityId).Select(x => x.Name).FirstOrDefault()
+                        @item.City.Name
+@*                        @Model.cities.Where(x => x.CityId == item.).Select(x => x.Name).FirstOrDefault()*@
                     </td>
                     <td>
-                        @Model.streets.Where(x => x.StreetId == item.StreetId).Select(x => x.Name).FirstOrDefault()
+                        @item.Street.Name
+@*                        @Model.streets.Where(x => x.StreetId == item.StreetId).Select(x => x.Name).FirstOrDefault()*@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.House)

@@ -43,6 +43,12 @@
                 <th>
                     Дом
                 </th>
+                <th>
+                    Кредиты
+                </th>
+                <th>
+                    Услуги
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -75,10 +81,10 @@
                     @if (item.Address != null)
                     {
                         <td>
-                            @Model.cities.Where(x => x.CityId == item.Address.CityId).Select(x => x.Name).FirstOrDefault()
+                            @Model.cities.Where(x => x.CityId == item.Address.City.CityId).Select(x => x.Name).FirstOrDefault()
                         </td>
                         <td>
-                            @Model.streets.Where(x => x.StreetId == item.Address.StreetId).Select(x => x.Name).FirstOrDefault()
+                            @Model.streets.Where(x => x.StreetId == item.Address.Street.StreetId).Select(x => x.Name).FirstOrDefault()
                         </td>
                         <td>
                             @item.Address.House
@@ -96,6 +102,12 @@
                             <i class="icon-warning-sign"></i>
                         </td>
                     }
+                    <td>
+                        @item.AbonentCredits.Where(x=>x.FullyPaid == false).Count().ToString()
+                    </td>
+                    <td>
+                        @item.AbonentServices.Where(x=>x.isOff == false).Count().ToString()
+                    </td>
                     <td>
                         <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = item.AbonentId })">
                             <span class="icon-edit"></span>

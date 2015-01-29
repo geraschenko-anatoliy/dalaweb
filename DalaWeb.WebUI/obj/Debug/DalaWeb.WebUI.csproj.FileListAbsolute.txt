@@ -4,11 +4,13 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\b
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Antlr3.Runtime.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\DalaWeb.Domain.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\EntityFramework.dll
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\itextsharp.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Microsoft.Web.Mvc.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Newtonsoft.Json.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\Ninject.dll
+C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\RazorPDF.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\System.Web.Mvc.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\System.Web.Optimization.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\System.Web.Providers.dll
@@ -29,5 +31,3 @@ C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\b
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\obj\Debug\DalaWeb.WebUI.csprojResolveAssemblyReference.cache
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\obj\Debug\DalaWeb.WebUI.dll
 C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\obj\Debug\DalaWeb.WebUI.pdb
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\itextsharp.dll
-C:\Users\geras_000\documents\visual studio 2013\Projects\DalaWeb\DalaWeb.WebUI\bin\RazorPDF.dll

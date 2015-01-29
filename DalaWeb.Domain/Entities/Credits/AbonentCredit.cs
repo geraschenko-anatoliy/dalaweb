@@ -12,18 +12,13 @@ namespace DalaWeb.Domain.Entities.Credits
 {
     public class AbonentCredit
     {
-        [Key, Column(Order = 0)]
-        public int AbonentId { get; set; }
-        [Key, Column(Order = 1)]
-        public int CreditId { get; set; }
+        [Key]
+        public int AbonentCreditId { get; set; }
 
-        public virtual Abonent Abonent { get; set; }
-        public virtual Credit Credit { get; set; }
 
         [Required]
         [Display(Name = "Дата открытия"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "Date")]
-
         public DateTime StartDate { get; set; }
 
         [Required]
@@ -57,13 +52,27 @@ namespace DalaWeb.Domain.Entities.Credits
         [Range(0, double.MaxValue, ErrorMessage = "Введите положительное значение")]
         [Display(Name = "Общая сумма кредита")]
         public double Price { get; set; }
+        
         [Required(ErrorMessage = "*")]
         [Display(Name = "Сумма в месяц")]
         public double PaymentForMonth { get; set; }
+
         [DefaultValue(false)]
         [Display(Name = "Полностью оплачен")]
         public bool FullyPaid { get; set; }
+        
         [Display(Name = "Комментарий")]
         public string Comment { get; set; }
+
+        [Required]
+        public int AbonentId { get; set; }
+        
+        [ForeignKey("AbonentId")]
+        public virtual Abonent Abonent { get; set; }
+
+        [Required]
+        public int CreditId { get; set; }
+        [ForeignKey("CreditId")]
+        public virtual Credit Credit { get; set; }
     }
 }

@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    @Html.Hidden("AbonentId", Model.AbonentId)
+    @Html.Hidden("AbonentServiceId", Model.AbonentServiceId)
     <table class="table table-hover">
         <tr>
             <td>
@@ -22,7 +22,7 @@
             <td>
                 <div class="editor-field">
                     @Html.DisplayFor(model => model.Service.Name)
-                    @Html.ValidationMessageFor(model => model.ServiceId)
+                    @Html.ValidationMessageFor(model => model.Service.Name)
                 </div>
             </td>
         </tr>
@@ -52,7 +52,6 @@
                 </div>
             </td>
         </tr>
-
         <tr>
             <td></td>
             <td>

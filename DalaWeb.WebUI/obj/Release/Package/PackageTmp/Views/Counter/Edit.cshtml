@@ -12,7 +12,6 @@
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.CounterId)
     @Html.HiddenFor(model => model.AbonentId)
-    @Html.HiddenFor(model => model.ServiceId)
     @Html.HiddenFor(model => model.Name)
     <table class="table table-hover">
         <tr>
@@ -31,7 +30,7 @@
         <tr>
             <td>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.AbonentId)
+                    @Html.LabelFor(model => model.Abonent.Name)
                 </div>
             </td>
             <td>
@@ -44,7 +43,7 @@
         <tr>
             <td>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.ServiceId)
+                    @Html.LabelFor(model => model.Name)
                 </div>
             </td>
             <td>

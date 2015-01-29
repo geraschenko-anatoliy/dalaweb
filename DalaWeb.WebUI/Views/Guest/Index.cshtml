@@ -1,0 +1,27 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.PDFStorages.PDFAbonentMonthlyReceipt>
+
+@{
+    ViewBag.Title = "Гостевой доступ";
+}
+
+<h2>Гостевой доступ</h2>
+
+@using (Html.BeginForm("PDFReceiptsForAbonentList", "Guest"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Для получения доступа к счетам введите информацию ниже</legend>
+        <div class="editor-label">
+            @Html.Label("ИНН")
+        </div>
+        <div class="editor-field">
+            @Html.Editor("INN")
+            @*@Html.ValidationMessageFor(model => model.Date)*@
+        </div>
+        <p>
+            <input type="submit" value="ОК" />
+        </p>
+    </fieldset>
+}

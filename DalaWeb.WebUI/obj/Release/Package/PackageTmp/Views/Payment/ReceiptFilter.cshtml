@@ -1,0 +1,66 @@
+﻿@model DalaWeb.WebUI.ViewModels.ForPayment.IndexViewModel
+
+<table align="center" class="table table-hover">
+    <tr>
+        <th>
+            Номер абонента
+        </th>
+        <th>
+            ФИО
+        </th>
+        <th></th>
+        <th>
+            Дата
+        </th>
+        <th></th>
+        <th>
+            Сумма
+        </th>
+        <th>
+            Комментарий
+        </th>
+        <th>
+            Функции
+        </th>
+    </tr>
+    @foreach (var item in Model.monthPayments)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AbonentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AbonentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                <a class="btn" title="Детальнее" href="@Url.Action("ReceiptForAbonent", new { abonentId = item.AbonentId, year = item.Year, month = item.Month })">
+                    <span class="icon-info-sign"></span>
+                </a>
+                <a class="btn" title="PDF" href="@Url.Action("GetPDF", new { abonentId = item.AbonentId, year = item.Year, month = item.Month })">
+                    <span class="icon-download"></span>
+                </a>
+                <a class="btn" title="Пересчитать" href="@Url.Action("RecalculateMonth", new { abonentId = item.AbonentId, year = item.Year, month = item.Month })">
+                    <span class="icon-refresh"></span>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+

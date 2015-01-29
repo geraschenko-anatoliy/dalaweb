@@ -12,6 +12,8 @@ using DalaWeb.Domain.Entities.Addresses;
 using DalaWeb.Domain.Entities.Abonents;
 using DalaWeb.WebUI.ViewModels.ForAbonent;
 using DalaWeb.Domain.Entities.Payments;
+using DalaWeb.Domain.Entities.Credits;
+using DalaWeb.Domain.Entities.Services;
 
 namespace DalaWeb.WebUI.Controllers
 {
@@ -29,20 +31,14 @@ namespace DalaWeb.WebUI.Controllers
             cityRepository = unitOfWork.CityRepository;
             streetRepository = unitOfWork.StreetRepository;
         }
-
         public ActionResult Index()
         {
-            return View(new IndexViewModel(streetRepository, cityRepository, abonentRepository));
+            return View(new IndexViewModel(streetRepository.Get(), cityRepository.Get(), abonentRepository.Get().Where(x=>x.isDeleted == false)));
         }
-
         public ActionResult DeletedIndex()
         {
             return View(new DeletedViewModel(streetRepository, cityRepository, abonentRepository));
         }
-
-        //
-        // GET: /Abonent/Details/5
-
         public ActionResult Details(int id = 0)
         {
             Abonent abonent = abonentRepository.GetById(id);
@@ -56,18 +52,10 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(abonent);
         }
-
-        //
-        // GET: /Abonent/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /Abonent/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Abonent abonent)
@@ -81,18 +69,14 @@ namespace DalaWeb.WebUI.Controllers
 
             return View(abonent);
         }
-
-        //
-        // GET: /Abonent/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
-            Abonent abonent = abonentRepository.GetById(id);
+            Abonent abonent = abonentRepository.Get()
+                .Where(x => x.AbonentId == id)
+                .Single()
+                ;
 
-            foreach (var counter in abonent.Counters)
-            {
-                counter.Stamps = unitOfWork.StampRepository.Get().Where(x => x.CounterId == counter.CounterId).ToList();
-            }
+            Session["AbonenId"] = abonent.AbonentId;
 
             if (abonent == null)
             {
@@ -102,19 +86,8 @@ namespace DalaWeb.WebUI.Controllers
             if (abonent.isDeleted)
                 return RedirectToAction("DeletedIndex");
 
-            if (abonent.Address != null)
-            {
-                ViewBag.City = cityRepository.GetById(abonent.Address.CityId).Name;
-                ViewBag.Street = streetRepository.GetById(abonent.Address.StreetId).Name;
-            }
-
             return View(abonent);
         }
-
-
-        //
-        // POST: /Abonent/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Abonent abonent)
@@ -127,14 +100,13 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(abonent);
         }
-
         public ActionResult DeletedDetails(int id = 0)
         {
             Abonent abonent = abonentRepository.GetById(id);
             if (abonent.Address != null)
             {
-                ViewBag.City = cityRepository.GetById(abonent.Address.CityId).Name;
-                ViewBag.Street = streetRepository.GetById(abonent.Address.StreetId).Name;
+                ViewBag.City = cityRepository.GetById(abonent.Address.City.CityId).Name;
+                ViewBag.Street = streetRepository.GetById(abonent.Address.Street.StreetId).Name;
             }
             if (abonent == null)
             {
@@ -142,10 +114,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(abonent);
         }
-
-        //
-        // GET: /Abonent/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             Abonent abonent = abonentRepository.GetById(id);
@@ -159,8 +127,6 @@ namespace DalaWeb.WebUI.Controllers
             }
             return View(abonent);
         }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Abonent abonent)

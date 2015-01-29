@@ -35,8 +35,9 @@ namespace DalaWeb.Domain.Concrete
         private Repository<Stamp> stampRepository;
         
         private Repository<Payment> paymentRepository;
-        private Repository<PDFDocument> pdfDocumentRepository;
+        private Repository<PDFAbonentMonthlyReceipt> pdfAbonentMonthlyReceiptRepository;
         private Repository<Tariff> tariffRepository;
+        private Repository<ServicePrice> servicePriceRepository;
 
         public IRepository<Tariff> TariffRepository
         {
@@ -48,14 +49,24 @@ namespace DalaWeb.Domain.Concrete
             }
         }
 
-
-        public IRepository<PDFDocument> PDFDocumentRepository
+        public IRepository<ServicePrice> ServicePriceRepository
         {
             get
             {
-                if (this.pdfDocumentRepository == null)
-                    this.pdfDocumentRepository = new Repository<PDFDocument>(context);
-                return pdfDocumentRepository;
+                if (this.servicePriceRepository == null)
+                    this.servicePriceRepository = new Repository<ServicePrice>(context);
+                return servicePriceRepository;
+            }
+        }
+
+
+        public IRepository<PDFAbonentMonthlyReceipt> PDFAbonentMonthlyReceiptRepository
+        {
+            get
+            {
+                if (this.pdfAbonentMonthlyReceiptRepository == null)
+                    this.pdfAbonentMonthlyReceiptRepository = new Repository<PDFAbonentMonthlyReceipt>(context);
+                return pdfAbonentMonthlyReceiptRepository;
             }
         }
 

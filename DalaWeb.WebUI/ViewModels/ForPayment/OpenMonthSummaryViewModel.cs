@@ -17,4 +17,16 @@ namespace DalaWeb.WebUI.ViewModels.ForPayment
         }
 
     }
+
+    public class RecalculateMonthSummaryViewModel
+    {
+        public List<string> warnings { get; set; }
+        public List<Payment> payments { get; set; }
+        public RecalculateMonthSummaryViewModel(List<string> warnings, List<Payment> payments)
+        {
+            this.payments = payments;
+            this.warnings = warnings;
+        }
+
+    }
 }

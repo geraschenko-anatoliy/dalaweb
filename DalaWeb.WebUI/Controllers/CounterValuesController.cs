@@ -51,12 +51,12 @@ namespace DalaWeb.WebUI.Controllers
 
         List<CounterValues> GetLastCounterValues()
         {
-            var counterValues = counterValuesRepository.Get().Include(c => c.Counter).Include(c => c.Counter.Service).Where(x=>x.Counter.Service.isOff == false);
+            var counterValues = counterValuesRepository.Get().Where(x=>x.Counter.Service.isOff == false);
             List<CounterValues> lastCounterValues = new List<CounterValues>();
             foreach (CounterValues cv in counterValues)
             {
-                CounterValues temp = counterValues.Where(x => x.CounterId == cv.CounterId).Last();
-                if (!lastCounterValues.Exists(x => x.CounterId == cv.CounterId))
+                CounterValues temp = counterValues.Where(x => x.Counter == cv.Counter).Last();
+                if (!lastCounterValues.Exists(x => x.Counter == cv.Counter))
                     lastCounterValues.Add(temp);
             }
 
@@ -89,7 +89,7 @@ namespace DalaWeb.WebUI.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.CounterId);
+            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.Counter.CounterId);
             return View(countervalues);
         }
 
@@ -100,7 +100,7 @@ namespace DalaWeb.WebUI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.CounterId);
+            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.Counter.CounterId);
             return View(countervalues);
         }
         [HttpPost]
@@ -113,7 +113,7 @@ namespace DalaWeb.WebUI.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.CounterId);
+            ViewBag.CounterId = new SelectList(counterRepository.Get(), "CounterId", "Name", countervalues.Counter.CounterId);
             return View(countervalues);
         }
         public ActionResult Delete(int id = 0)
@@ -167,7 +167,7 @@ namespace DalaWeb.WebUI.Controllers
                     Stream ImportStream = ms;
                     DataTable dt =  getDataTableFromExcel(ImportStream);
 
-                    IQueryable<Counter> counters = counterRepository.Get().Include(c => c.CounterValues);
+                    IQueryable<Counter> counters = counterRepository.Get();
                     List<CounterValues> lastCounterValues = GetLastCounterValues();
 
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -183,15 +183,12 @@ namespace DalaWeb.WebUI.Controllers
                             TryToParseDouble(dt.Rows[i].ItemArray[2].ToString()),
                             TryToParseDateTime(dt.Rows[i].ItemArray[1].ToString()));
                     }
-
                     unitOfWork.Save();
                 }
             }
             
             return View(new UploadFileStaticticsViewModel(dataCounterNamesList, dataCounterValuesList, dataIsSuccessList, dataMessagesList));
         }
-
-
 
         public static DataTable getDataTableFromExcel(Stream stream)
         {
@@ -213,7 +210,7 @@ namespace DalaWeb.WebUI.Controllers
                     var row = tbl.NewRow();
                     foreach (var cell in wsRow)
                     {
-                        row[cell.Start.Column - 1] = cell.Value; //cell.text
+                        row[cell.Start.Column - 1] = cell.Value;
                     }
                     tbl.Rows.Add(row);
                 }
@@ -271,10 +268,9 @@ namespace DalaWeb.WebUI.Controllers
 
                 CounterValues counterValue = new CounterValues
                             {
-                                CounterId = counter.CounterId,
                                 Value = value,
                                 Date = date,
-                                Counter = counter
+                                CounterId = counter.CounterId
                             };
 
                 counterValuesRepository.Insert(counterValue);
