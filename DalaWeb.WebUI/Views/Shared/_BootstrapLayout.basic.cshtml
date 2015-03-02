@@ -16,14 +16,12 @@
     <script src="~/Scripts/messages_ru.js"></script>
     <script src="~/Scripts/globalize/globalize.js"></script>
     <script src="~/Scripts/globalize/cultures/globalize.culture.ru-RU.js"></script>
-
-    <script> 
+    <script>
         $.validator.methods.number = function (value, element) {
             return this.optional(element) ||
                 !isNaN(Globalize.parseFloat(value));
         }
     </script>
-
     <script>
         jQuery.extend(jQuery.validator.methods, {
             range: function (value, element, param) {
@@ -39,16 +37,10 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
                 <a class="brand" href="@Url.Action("Index","Abonent")" title="Домашняя">Dala Web</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        @Html.Navigation()
-                    </ul>
+                <div class="nav-collapse nav navbar">
+                    @Html.Navigation()
+                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
         </div>

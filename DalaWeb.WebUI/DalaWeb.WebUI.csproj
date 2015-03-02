@@ -41,6 +41,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus">
       <HintPath>..\..\..\..\..\Desktop\EPPlus.dll</HintPath>
     </Reference>
@@ -51,6 +69,7 @@
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -61,12 +80,16 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -137,6 +160,12 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +182,7 @@
     <Compile Include="Controllers\AbonentController.cs" />
     <Compile Include="Controllers\AbonentCreditController.cs" />
     <Compile Include="Controllers\AbonentServiceController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CounterController.cs" />
@@ -160,11 +190,15 @@
     <Compile Include="Controllers\CreditController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PaymentQueueController.cs" />
     <Compile Include="Controllers\ServiceCompanyController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\StampController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\StreetController.cs" />
     <Compile Include="Controllers\TariffController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,6 +213,7 @@
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\ArrayAwareRoute.cs" />
+    <Compile Include="ViewModels\ForAccount\UserRoleViewModel.cs" />
     <Compile Include="ViewModels\ForCounterValues\UploadFileStaticticsViewModel.cs" />
     <Compile Include="Infrastructure\MonthCalculator.cs" />
     <Compile Include="ViewModels\ForPayment\NumerousViewModel.cs" />
@@ -187,6 +222,10 @@
     <Compile Include="ViewModels\ForAddress\AddressIndexViewModel.cs" />
     <Compile Include="ViewModels\ForAbonent\IndexViewModel.cs" />
     <Compile Include="ViewModels\ForPayment\OpenMonthSummaryViewModel.cs" />
+    <Compile Include="ViewModels\ForStatistic\MalignantDebtor.cs" />
+    <Compile Include="ViewModels\ForStatistic\MonthlyPayment.cs" />
+    <Compile Include="ViewModels\ForStatistic\DailyPayment.cs" />
+    <Compile Include="ViewModels\ForStatistic\PaymentQueueViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\body.css" />
@@ -256,7 +295,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Scripts\AutocompleteHepler.js" />
     <Content Include="Scripts\DropDownHelpers\AddressDropdown.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -333,7 +372,6 @@
     <Content Include="Views\Address\Create.cshtml" />
     <Content Include="Views\Address\Edit.cshtml" />
     <Content Include="Views\Address\Delete.cshtml" />
-    <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Shared\Details.cshtml" />
     <Content Include="Views\Shared\Create.cshtml" />
@@ -421,10 +459,38 @@
     <Content Include="Views\Guest\Create.cshtml" />
     <Content Include="Views\Guest\PDFReceiptsForAbonentList.cshtml" />
     <Content Include="Views\Guest\Delete.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_GuestLayout.cshtml" />
+    <Content Include="Views\Shared\_UnAuthorizedLayout.cshtml" />
+    <Content Include="Views\Account\List.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\PaymentQueue\Index.cshtml" />
+    <Content Include="Views\PaymentQueue\Details.cshtml" />
+    <Content Include="Views\PaymentQueue\Create.cshtml" />
+    <Content Include="Views\PaymentQueue\Edit.cshtml" />
+    <Content Include="Views\PaymentQueue\Delete.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\Setting\Details.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
+    <Content Include="Views\Setting\Delete.cshtml" />
+    <Content Include="Views\Statistic\Index.cshtml" />
+    <Content Include="Views\Statistic\MonthDailyPayments.cshtml" />
+    <Content Include="Views\Statistic\MonthServicePayments.cshtml" />
+    <Content Include="Views\Statistic\DailyPayments.cshtml" />
+    <Content Include="Views\Account\ManageRoles.cshtml" />
+    <Content Include="Views\Account\AddRoleToUser.cshtml" />
+    <Content Include="Views\Account\RemoveRoleFromUser.cshtml" />
+    <Content Include="Views\Statistic\ListOfDebtors.cshtml" />
+    <Content Include="Views\Payment\CreateForAbonent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="PDFHelpers\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,0 +1,29 @@
+﻿@model List<DalaWeb.WebUI.ViewModels.ForStatistic.DailyPayment>
+
+<h2>Ежедневные поступления в кассу</h2>
+
+<h4>Общие поступления за период с @ViewBag.DateFrom по @ViewBag.DateTo - @ViewBag.OverallSum</h4>
+
+ <table class="table table-hover text-center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x => Model.First().Day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => Model.First().Summ)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Day.ToString("dd MMMM yyyy")
+            </td>
+            <td>
+                @item.Summ
+            </td>
+        </tr>
+    }
+</table>
+
+

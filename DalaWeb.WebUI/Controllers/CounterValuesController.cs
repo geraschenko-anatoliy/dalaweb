@@ -22,12 +22,12 @@ using System.Globalization;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class CounterValuesController : Controller
     {
         private IUnitOfWork unitOfWork;
         private IRepository<CounterValues> counterValuesRepository;
         private IRepository<Counter> counterRepository;
-
 
         public CounterValuesController(IUnitOfWork unitOfWork)
         {

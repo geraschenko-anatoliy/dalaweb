@@ -14,6 +14,9 @@ using DalaWeb.Domain.Entities.Counters;
 using System.Data.Metadata.Edm;
 using DalaWeb.Domain.Entities.Payments;
 using DalaWeb.Domain.Entities.PDFStorages;
+using DalaWeb.Domain.Entities.Users;
+using DalaWeb.Domain.Entities.Statistics;
+using DalaWeb.Domain.Entities.Settings;
 
 namespace DalaWeb.Domain.Concrete
 {
@@ -39,6 +42,9 @@ namespace DalaWeb.Domain.Concrete
         public DbSet<PDFAbonentMonthlyReceipt> PDFAbonentMonthlyReceipt { get; set; }
 
         public DbSet<Tariff> Tariffs { get; set; }
+        public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<PaymentQueue> PaymentQueues { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

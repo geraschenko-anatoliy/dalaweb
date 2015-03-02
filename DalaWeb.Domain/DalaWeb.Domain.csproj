@@ -101,6 +101,9 @@
     <Compile Include="Entities\Services\ServicePrice.cs" />
     <Compile Include="Entities\Services\Service.cs" />
     <Compile Include="Entities\Services\ServiceCompany.cs" />
+    <Compile Include="Entities\Settings\Setting.cs" />
+    <Compile Include="Entities\Statistics\PaymentQueue.cs" />
+    <Compile Include="Entities\Users\UserProfile.cs" />
     <Compile Include="Migrations\201501071931565_a1.cs" />
     <Compile Include="Migrations\201501071931565_a1.Designer.cs">
       <DependentUpon>201501071931565_a1.cs</DependentUpon>
@@ -108,6 +111,22 @@
     <Compile Include="Migrations\201501282000560_a11.cs" />
     <Compile Include="Migrations\201501282000560_a11.Designer.cs">
       <DependentUpon>201501282000560_a11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501312206515_a12.cs" />
+    <Compile Include="Migrations\201501312206515_a12.Designer.cs">
+      <DependentUpon>201501312206515_a12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502020953593_PaymentQueue.cs" />
+    <Compile Include="Migrations\201502020953593_PaymentQueue.Designer.cs">
+      <DependentUpon>201502020953593_PaymentQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502021212359_Percentage.cs" />
+    <Compile Include="Migrations\201502021212359_Percentage.Designer.cs">
+      <DependentUpon>201502021212359_Percentage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502031541143_Setting.cs" />
+    <Compile Include="Migrations\201502031541143_Setting.Designer.cs">
+      <DependentUpon>201502031541143_Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,6 +143,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501282000560_a11.resx">
       <DependentUpon>201501282000560_a11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501312206515_a12.resx">
+      <DependentUpon>201501312206515_a12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502020953593_PaymentQueue.resx">
+      <DependentUpon>201502020953593_PaymentQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502021212359_Percentage.resx">
+      <DependentUpon>201502021212359_Percentage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502031541143_Setting.resx">
+      <DependentUpon>201502031541143_Setting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

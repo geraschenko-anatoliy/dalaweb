@@ -1,0 +1,26 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Settings.Setting>
+
+@{
+    ViewBag.Title = "Настройки";
+}
+
+<h2>Настройки</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SignatureText)
+            <a class="btn" title="Редактировать" href="@Url.Action("Edit", new { id = Model.Single().SettingId })">
+                <span class="icon-edit"></span>
+            </a>
+        </th>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.TextAreaFor(modelItem => item.SignatureText, new { style="width:900px; height:150px" })
+        </td>
+    </tr>
+}
+
+</table>

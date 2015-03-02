@@ -1,0 +1,16 @@
+﻿@model DalaWeb.Domain.Entities.Users.UserProfile
+@{
+    ViewBag.Title = "Удаление администратора";
+}
+
+<h3 class="text-center">Вы действительно хотите удалить администратора @Model.UserName ?</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("UserNameId", Model.UserName)
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" class="btn" value="Удалить" /> |
+        @Html.ActionLink("Вернуться", "List")
+    </p>
+}

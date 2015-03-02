@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DalaWeb.Domain.Entities.Users.UserProfile>
+
+@{
+    ViewBag.Title = "Администраторы. Главная";
+}
+
+@if (Model.Any())
+{
+    <table>
+        <tr>
+            <td>
+                Имя администратора
+            </td>
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.UserName
+                </td>
+                <td>
+                    <a class="btn" title="Редактировать" href="@Url.Action("Manage", "Account")">
+                        <span class="icon-edit"></span>
+                    </a>
+                    <a class="btn" title="Удалить" href="@Url.Action("Delete", new { UserProfileId = item.UserId })">
+                        <span class="icon-remove"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>  
+}

@@ -21,6 +21,7 @@ using DalaWeb.WebUI.Infrastructure;
 
 namespace DalaWeb.WebUI.Controllers
 {
+	[Authorize]
 	public class PaymentController : Controller
 	{
 		private IUnitOfWork unitOfWork;
@@ -178,6 +179,7 @@ namespace DalaWeb.WebUI.Controllers
 		{
 			return View();
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Payment payment, string AbonentNumber)
@@ -198,6 +200,29 @@ namespace DalaWeb.WebUI.Controllers
 			}
 			return View(payment);
 		}
+		
+		public ActionResult CreateForAbonent(int abonentId)
+		{
+            ViewBag.AbonentId = abonentId;
+            ViewBag.AbonentName = abonentRepository.GetById(abonentId).Name;
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult CreateForAbonent(Payment payment)
+		{
+            if (ModelState.IsValid)
+            {
+                paymentRepository.Insert(payment);
+                unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+            ViewBag.AbonentId = payment.AbonentId;
+            ViewBag.AbonentName = abonentRepository.GetById(payment.AbonentId).Name;
+            return View();
+		}
+
 		public FileStreamResult GetPDF(int abonentId, int year, string month)
 		{
 			Domain.Entities.PDFStorages.PDFAbonentMonthlyReceipt doc = unitOfWork.PDFAbonentMonthlyReceiptRepository.Get()
@@ -272,6 +297,7 @@ namespace DalaWeb.WebUI.Controllers
 			unitOfWork.Save();
 			return RedirectToAction("Index");
 		}
+
 		protected override void Dispose(bool disposing)
 		{
 			unitOfWork.Dispose();

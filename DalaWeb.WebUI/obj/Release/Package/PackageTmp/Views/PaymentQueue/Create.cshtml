@@ -1,0 +1,78 @@
+﻿@model List<DalaWeb.WebUI.ViewModels.ForStatistic.PaymentQueueViewModel>
+
+@{
+    ViewBag.Title = "Статистика";
+}
+
+<h2>Создание очереди расчета услуг абонента @ViewBag.abonentName</h2>
+
+
+@if (Model.Any())
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.Hidden("abonentId", (int)ViewBag.abonentId)
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(modelFirst => Model.First().AbonentServiceName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelFirst => Model.First().PercentageInCalculation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelFirst => Model.First().NumberInQueue)
+                </th>
+            </tr>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => Model[i].AbonentServiceOrCreditId)
+                    @Html.HiddenFor(modelItem => Model[i].isAbonentService)
+                    @Html.DisplayFor(modelItem => Model[i].AbonentServiceName)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => Model[i].PercentageInCalculation)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => Model[i].NumberInQueue)
+                </td>
+            </tr>
+            }
+        </table>
+
+    <p>
+        @Html.TextBox("date", String.Format("{0:dd MMMM yyyy}", ""), new { required = "required" })
+        @Html.ValidationMessage("date")
+    </p>
+    <p>
+        <input type="submit" class="btn btn-success" value="Создать" />
+    </p>
+    }
+}
+else
+{
+    <p>
+        У данного абонента нет активных услуг
+    </p>
+}
+    
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd MM yyyy',
+            format: 'dd MM yyyy',
+            autoclose: true
+        });
+    });
+</script>

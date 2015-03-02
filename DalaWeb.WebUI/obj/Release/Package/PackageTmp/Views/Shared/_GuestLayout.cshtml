@@ -1,0 +1,38 @@
+﻿@using System.Web.Optimization
+@using BootstrapSupport
+@using NavigationRoutes
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@Styles.Url("~/content/css")" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    @Scripts.Render("~/js")
+    @RenderSection("Scripts", required: false)
+
+    <script src="~/Scripts/messages_ru.js"></script>
+    <script src="~/Scripts/globalize/globalize.js"></script>
+    <script src="~/Scripts/globalize/cultures/globalize.culture.ru-RU.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="@Url.Action("Index","Guest")" title="Вход">Dala Web</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @Html.Partial("_alerts")
+        @RenderBody()
+        <hr>
+        <footer class="footer">
+            <p>&copy; Dala Web @System.DateTime.Now.ToString("yyyy")</p>
+        </footer>
+    </div>
+</body>
+</html>
+

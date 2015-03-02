@@ -4,6 +4,7 @@ using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Payments;
 using DalaWeb.Domain.Entities.PDFStorages;
 using DalaWeb.Domain.Entities.Services;
+using DalaWeb.Domain.Entities.Statistics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,8 @@ namespace DalaWeb.Domain.Entities.Abonents
         public virtual ICollection<Counter> Counters { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<PDFAbonentMonthlyReceipt> PDFDocuments { get; set; }
+
+        public virtual ICollection<PaymentQueue> PaymentQueues { get; set; }
 
     }
 }

@@ -4,6 +4,7 @@ using DalaWeb.Domain.Entities.Counters;
 using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Payments;
 using DalaWeb.Domain.Entities.Services;
+using DalaWeb.Domain.Entities.Settings;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
@@ -52,6 +53,7 @@ namespace DalaWeb.WebUI.Infrastructure
         private IRepository<Counter> counterRepository;
         private IRepository<CounterValues> counterValuesRepository;
         private IRepository<Service> serviceRepository;
+        private IRepository<Setting> settingRepository;
 
         private DateTime date;
         private Abonent abonent;
@@ -71,6 +73,7 @@ namespace DalaWeb.WebUI.Infrastructure
             counterRepository = unitOfWork.CounterRepository;
             counterValuesRepository = unitOfWork.CounterValuesRepository;
             serviceRepository = unitOfWork.ServiceRepository;
+            settingRepository = unitOfWork.SettingRepository;
         }
 
         public void GenerateAbonentPDFReceipt()
@@ -541,6 +544,15 @@ namespace DalaWeb.WebUI.Infrastructure
             cell.BorderWidth = 1;
             receipt.table.AddCell(cell);
         }
+
+        private void GenerateAfterReceiptSignatureText()
+        {
+            string sigantureText = settingRepository.Get().Single().SignatureText;
+            PdfPCell cell = new PdfPCell(new Phrase(sigantureText, receipt.headerFont));
+            cell.Colspan = 12;
+            cell.BorderWidth = 0;
+            receipt.table.AddCell(cell);
+        }
         private PdfPTable PDFReceiptWhiteSpasecAdder(int count)
         {
             PdfPTable table = new PdfPTable(12);
@@ -558,6 +570,7 @@ namespace DalaWeb.WebUI.Infrastructure
         {
             receipt.document.Add(receipt.table);
             receipt.document.Add(PDFReceiptWhiteSpasecAdder(10));
+            GenerateAfterReceiptSignatureText();
             receipt.document.Add(receipt.table);
             receipt.document.Close();
 

@@ -27,6 +27,10 @@ namespace DalaWeb.WebUI.Controllers
         public FileStreamResult GetPDF(int PDFId)
         {
             Domain.Entities.PDFStorages.PDFAbonentMonthlyReceipt doc = pdfAbonentMonthlyReceiptRepository.GetById(PDFId);
+            if (doc == null)
+                return null;
+            if (!string.Equals(doc.Abonent.INN, (string)Session["INN"]) || doc == null)
+                return null;            
             MemoryStream workStream = new MemoryStream(doc.Value);
             workStream.Position = 0;
 
@@ -43,6 +47,7 @@ namespace DalaWeb.WebUI.Controllers
 
         public ActionResult PDFReceiptsForAbonentList(string INN)
         {
+            Session["INN"] = INN;
             var pdfReceipts = pdfAbonentMonthlyReceiptRepository.Get().Where(x => x.Abonent.INN == INN);
             return View(pdfReceipts);
         }

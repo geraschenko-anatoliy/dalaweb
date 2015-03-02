@@ -1,0 +1,32 @@
+﻿@model List<DalaWeb.WebUI.ViewModels.ForStatistic.MonthlyPayment>
+
+<h2>Статистика поступлений</h2>
+
+<table class="table table-hover text-center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x => Model.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => Model.First().PaidSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => Model.First().PaymentSum)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.PaidSum
+            </td>
+            <td>
+                @item.PaymentSum
+            </td>
+        </tr>
+    }
+</table>
+

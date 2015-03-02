@@ -1,0 +1,36 @@
+﻿<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle='dropdown'>
+        Админ
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        @if (Request.IsAuthenticated)
+        {
+            <li>
+                <a href="@Url.Action("Manage", "Account")">
+                    Привет, @User.Identity.Name!
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Register", "Account")">
+                    Добавить админа
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("List", "Account")">
+                    Список админов
+                </a>
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()">
+                    Выход
+                </a>
+            </li>
+        }
+        </ul>
+</li>
+@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
+    @Html.AntiForgeryToken()
+}

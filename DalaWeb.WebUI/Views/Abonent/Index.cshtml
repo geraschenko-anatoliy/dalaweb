@@ -118,6 +118,9 @@
                         <a class="btn" title="Отключить" href="@Url.Action("Delete", new { id = item.AbonentId })">
                             <span class="icon-remove"></span>
                         </a>
+                        <a class="btn" title="Платежи" href="@Url.Action("CreateForAbonent","Payment", new { abonentId = item.AbonentId })">
+                            <span class="icon-tags"></span>
+                        </a>
                     </td>
                 </tr>
             }

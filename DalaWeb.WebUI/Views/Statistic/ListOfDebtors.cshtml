@@ -1,0 +1,48 @@
+﻿@model List<DalaWeb.WebUI.ViewModels.ForStatistic.MalignantDebtor>
+
+@{
+    ViewBag.Title = "Кандидаты на отключение";
+}
+
+@if (Model.Any())
+{ 
+<h2>Кандидаты на отключение</h2>
+
+<table class="table table-hover" >
+    <tr class="text-center">
+        <th>
+            Абонент
+        </th>
+        <th>
+            Счет за прошлый месяц
+        </th>
+        <th>
+            @{
+                DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month - 1, 1);
+            }
+            Оплата за период с @date.ToString("dd MMMM yyyy") по @DateTime.Now.ToString("dd MMMM yyyy")
+        </th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr class="text-center">
+            <td>
+                @Html.ActionLink(item.Abonent.Name, "Edit", "Abonent", new { Id = item.Abonent.AbonentId }, null)
+            </td>
+            <td>
+                @Html.ActionLink( (item.ServicePaymentForPreviousPeriod * -1).ToString(), "ReceiptForAbonent", "Payment", 
+                new { abonentId = item.Abonent.AbonentId, year = date.Year, month = date.ToString("MMMM")}, null )
+            </td>
+            <td>
+                @item.UserPaymentForPreviousPeriod
+            </td>
+        </tr>
+    }
+</table>
+}
+else
+{
+    <h3>
+        Кандидатов на отключение нет
+    </h3>
+}

@@ -14,7 +14,7 @@ using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
-    
+    [Authorize]
     public class AddressController : Controller
     {
         private IUnitOfWork unitOfWork;

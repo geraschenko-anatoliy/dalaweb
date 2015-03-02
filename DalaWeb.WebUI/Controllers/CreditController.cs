@@ -12,6 +12,7 @@ using DalaWeb.Domain.Entities.Credits;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class CreditController : Controller
     {
         private IUnitOfWork unitOfWork;

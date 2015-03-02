@@ -12,6 +12,7 @@ using DalaWeb.Domain.Entities.Addresses;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class CityController : Controller
     {
         private IUnitOfWork unitOfWork;

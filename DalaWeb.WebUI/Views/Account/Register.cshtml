@@ -1,0 +1,31 @@
+﻿@model DalaWeb.Domain.Entities.Users.RegisterModel
+@{
+    ViewBag.Title = "Регистрация нового администратора";
+}
+
+<hgroup class="title">
+    <h2>Регистрация нового администратора</h2>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        <input type="submit" value="ОК" class="btn btn-success" />
+    </fieldset>
+}

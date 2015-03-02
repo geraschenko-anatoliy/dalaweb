@@ -13,6 +13,7 @@ using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class CounterController : Controller
     {
         private IUnitOfWork unitOfWork;

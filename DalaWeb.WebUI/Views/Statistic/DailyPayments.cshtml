@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Статистика";
+}
+
+<h3>
+    Статистика по кассе
+</h3>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<table>
+
+    <tr>
+        <td>
+            Начальная дата
+        </td>
+        <td>
+            Конечная дата
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+            @using (Ajax.BeginForm("MonthDailyPayments", new AjaxOptions() { UpdateTargetId = "dailyPayments" }))
+            {
+                <td>
+                    @Html.TextBox("dateFrom", String.Format("{0:dd MMMM yyyy}", ""), new { required = "required" })
+                    @Html.ValidationMessage("dateFrom")
+                </td>
+                <td>
+                    @Html.TextBox("dateTo", String.Format("{0:dd MMMM yyyy}", ""), new { required = "required" })
+                    @Html.ValidationMessage("dateTo")
+                </td>
+                <td>
+                    <input type="submit" value="Ок" class="btn" />
+                </td>
+            }
+    </tr>
+</table>
+
+<div id="dailyPayments">
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dateFrom").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd MM yyyy',
+            format: 'dd MM yyyy',
+            autoclose: true
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dateTo").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd MM yyyy',
+            format: 'dd MM yyyy',
+            autoclose: true
+        });
+    });
+</script>

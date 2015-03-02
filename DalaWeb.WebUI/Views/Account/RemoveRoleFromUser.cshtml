@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Менеджер ролей";
+}
+
+<h2>Удаление роли пользователя</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("UserName", (string)ViewBag.UserName)
+    @Html.Hidden("UserRole", (string)ViewBag.UserRole)
+
+    @Html.AntiForgeryToken()
+    <h4>
+        Вы действительно хотите удалить роль @ViewBag.UserRole пользователю @ViewBag.UserName?
+    </h4>
+    <p>
+        <input type="submit" class="btn" value="Удалить" /> |
+        @Html.ActionLink("Вернуться", "ManageRoles")
+    </p>
+}
+

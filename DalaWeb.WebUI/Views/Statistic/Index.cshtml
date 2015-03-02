@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Статистика";
+}
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<h3>Информация по услугам</h3>
+
+<table>
+    <tr>
+        <td>
+            Последний день рассчетов
+        </td>
+        <td>
+            Последний день оплат
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+            @using (Ajax.BeginForm("MonthServicePayments", new AjaxOptions() { UpdateTargetId = "monthPayments" }))
+            {
+                <td>
+                    @Html.TextBox("lastDayOfServiceCreditPayments", String.Format("{0:dd MMMM yyyy}", ""), new { required = "required" })
+                    @Html.ValidationMessage("lastDayOfServiceCreditPayments")
+                </td>
+                <td>
+                    @Html.TextBox("lastDayOfAbonentPayments", String.Format("{0:dd MMMM yyyy}", ""), new { required = "required" })
+                    @Html.ValidationMessage("lastDayOfAbonentPayments")
+                </td>
+                <td>
+                    <input type="submit" value="Ок" class="btn" />
+                </td>                    
+            }
+    </tr>
+</table>
+<div id="monthPayments">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#lastDayOfAbonentPayments").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd MM yyyy',
+            format: 'dd MM yyyy',
+            autoclose: true
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#lastDayOfServiceCreditPayments").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd MM yyyy',
+            format: 'dd MM yyyy',
+            autoclose: true
+        });
+    });
+</script>

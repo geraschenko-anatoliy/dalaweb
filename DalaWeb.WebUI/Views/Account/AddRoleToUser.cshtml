@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Менеджер ролей";
+}
+
+<h2>Добавление роли пользователя</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("UserName", (string)ViewBag.UserName)
+    @Html.Hidden("UserRole", (string)ViewBag.UserRole)
+
+    @Html.AntiForgeryToken()
+    <h4>
+        Вы действительно хотите добавить роль @ViewBag.UserRole пользователю @ViewBag.UserName?
+    </h4>
+    <p>
+        <input type="submit" class="btn" value="Добавить" /> |
+        @Html.ActionLink("Вернуться", "ManageRoles")
+    </p>
+}
+

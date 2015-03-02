@@ -6,6 +6,9 @@ using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Payments;
 using DalaWeb.Domain.Entities.PDFStorages;
 using DalaWeb.Domain.Entities.Services;
+using DalaWeb.Domain.Entities.Settings;
+using DalaWeb.Domain.Entities.Statistics;
+using DalaWeb.Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +43,12 @@ namespace DalaWeb.Domain.Abstract
 
         IRepository<Tariff> TariffRepository { get; }
         IRepository<ServicePrice> ServicePriceRepository { get; }
+
+        IRepository<UserProfile> UserProfileRepository { get; }
+
+        IRepository<PaymentQueue> PaymentQueueRepository { get; }
+
+        IRepository<Setting> SettingRepository { get; }
 
     }
 }

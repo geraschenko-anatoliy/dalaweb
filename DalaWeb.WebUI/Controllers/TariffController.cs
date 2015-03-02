@@ -13,6 +13,7 @@ using DalaWeb.Domain.Entities.Services;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class TariffController : Controller
     {
         private IUnitOfWork unitOfWork;

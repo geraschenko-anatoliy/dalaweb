@@ -1,0 +1,41 @@
+﻿@model List<DalaWeb.WebUI.ViewModels.ForAccount.UserRoleViewModel>
+
+@{
+    ViewBag.Title = "Менеджер ролей";
+}
+
+<h2>Менеджер ролей</h2>
+
+<table>
+    <tr>
+        <th>
+            Пользователь
+        </th>
+        <th>
+            Текущие роли
+        </th>
+        <th>
+            Можно добавить роли
+        </th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @item.UserName
+            </td>
+            <td>
+                @foreach(var role in item.CurrentRoles)
+                {
+                    @Html.ActionLink(role+" " , "RemoveRoleFromUser", new { userId = item.UserId, userName = item.UserName, userRole = role}, null) 
+                }
+            </td>
+            <td>
+                @foreach (var role in item.AnotherRoles)
+                {
+                    @Html.ActionLink(role + " ", "AddRoleToUser", new { userId = item.UserId, userName = item.UserName, userRole = role }, null)
+                }
+            </td>
+        </tr>
+    }
+</table>

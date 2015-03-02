@@ -11,6 +11,7 @@ using DalaWeb.Domain.Abstract;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class StampController : Controller
     {
         private IUnitOfWork unitOfWork;

@@ -1,0 +1,35 @@
+﻿@model DalaWeb.Domain.Entities.Settings.Setting
+
+@{
+    ViewBag.Title = "Настройки. Редактирование";
+}
+
+<h2>Редактирование настроек</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Текст подписи к счетам абонентов</legend>
+
+        @Html.HiddenFor(model => model.SettingId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SignatureText)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.SignatureText, new { style="width:900px; height:150px" })
+            @*@Html.EditorFor(model => model.SignatureText)*@
+            @Html.ValidationMessageFor(model => model.SignatureText)
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-success" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>

@@ -7,6 +7,9 @@ using DalaWeb.Domain.Entities.Credits;
 using DalaWeb.Domain.Entities.Payments;
 using DalaWeb.Domain.Entities.PDFStorages;
 using DalaWeb.Domain.Entities.Services;
+using DalaWeb.Domain.Entities.Settings;
+using DalaWeb.Domain.Entities.Statistics;
+using DalaWeb.Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +41,42 @@ namespace DalaWeb.Domain.Concrete
         private Repository<PDFAbonentMonthlyReceipt> pdfAbonentMonthlyReceiptRepository;
         private Repository<Tariff> tariffRepository;
         private Repository<ServicePrice> servicePriceRepository;
+
+        private Repository<UserProfile> userProfileRepository;
+        private Repository<PaymentQueue> paymentQueueRepository;
+
+        private Repository<Setting> settingRepository;
+
+
+        public IRepository<Setting> SettingRepository
+        {
+            get
+            {
+                if (this.settingRepository == null)
+                    this.settingRepository = new Repository<Setting>(context);
+                return settingRepository;
+            }
+        }
+
+        public IRepository<PaymentQueue> PaymentQueueRepository
+        {
+            get
+            {
+                if (this.paymentQueueRepository == null)
+                    this.paymentQueueRepository = new Repository<PaymentQueue>(context);
+                return paymentQueueRepository;
+            }
+        }
+
+        public IRepository<UserProfile> UserProfileRepository
+        {
+            get
+            {
+                if (this.userProfileRepository == null)
+                    this.userProfileRepository = new Repository<UserProfile>(context);
+                return userProfileRepository;
+            }
+        }
 
         public IRepository<Tariff> TariffRepository
         {

@@ -17,6 +17,7 @@ using DalaWeb.Domain.Entities.Services;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class AbonentController : Controller
     {
         private IUnitOfWork unitOfWork;

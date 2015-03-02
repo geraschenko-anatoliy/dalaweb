@@ -1,0 +1,41 @@
+﻿@model DalaWeb.Domain.Entities.Users.LoginModel
+
+@{
+    ViewBag.Title = "Вход для администраторов";
+    Layout = "~/Views/Shared/_UnAuthorizedLayout.cshtml";
+}
+<div class="span12">
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        <div class="span12 text-center">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+        </div>
+    <div class="span4 offset4">
+        <fieldset>
+            <legend>Вход для администратора</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </li>
+                <li>
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe) @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                    </div>
+
+                </li>
+            </ol>
+            <input type="submit" value="Ок" class="btn btn-success " />
+        </fieldset>
+    </div>
+    }
+</div>
+
+<div class="span12"></div>

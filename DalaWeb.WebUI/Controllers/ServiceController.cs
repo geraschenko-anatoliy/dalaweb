@@ -13,6 +13,7 @@ using DalaWeb.Domain.Entities.Payments;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class ServiceController : Controller
     {
         private IUnitOfWork unitOfWork;

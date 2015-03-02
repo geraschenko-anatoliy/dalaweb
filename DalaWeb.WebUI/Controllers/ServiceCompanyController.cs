@@ -12,6 +12,7 @@ using DalaWeb.Domain.Entities.Services;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class ServiceCompanyController : Controller
     {
         private IUnitOfWork unitOfWork;

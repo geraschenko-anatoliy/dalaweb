@@ -13,6 +13,7 @@ using DalaWeb.Domain.Entities.Abonents;
 
 namespace DalaWeb.WebUI.Controllers
 {
+    [Authorize]
     public class AbonentCreditController : Controller
     {
         private IUnitOfWork unitOfWork;

@@ -1,0 +1,22 @@
+﻿@model DalaWeb.Domain.Entities.Settings.Setting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Setting</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SignatureText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SignatureText)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.SettingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
